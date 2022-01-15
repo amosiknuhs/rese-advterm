@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Favorite;
 use App\Models\Reserve;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class MypageController extends Controller

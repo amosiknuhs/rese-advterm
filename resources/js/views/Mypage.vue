@@ -27,6 +27,9 @@
                         ></button>
                     </div>
                     <div class="reserve-confirm">
+                        <div class="rsvCard-img">
+                            <img :src="reserve.shop.img_url" alt="" />
+                        </div>
                         <table>
                             <tr>
                                 <th>店名</th>
@@ -38,11 +41,11 @@
                             </tr>
                             <tr>
                                 <th>時間</th>
-                                <td>{{ reserve.time }}</td>
+                                <td>{{ reserve.time | jsonTime }}</td>
                             </tr>
                             <tr>
                                 <th>人数</th>
-                                <td>{{ reserve.number }}</td>
+                                <td>{{ reserve.number | numUnit }}</td>
                             </tr>
                         </table>
                     </div>
@@ -98,10 +101,26 @@ export default {
             favorites: [],
         };
     },
+    filters: {
+        jsonTime: function (value) {
+            var tenHour = parseInt(value.substring(11, 12), 10);
+            var oneHour = parseInt(value.substring(12, 13), 10);
+            var min = value.substring(14, 16);
+            if (tenHour == 0) {
+                return oneHour + 9 + ":" + min;
+            } else {
+                return oneHour + 19 + ":" + min;
+            }
+        },
+        numUnit: function (value) {
+            return value + "人";
+        },
+    },
     methods: {
         getUserData() {
             axios.get("/api/user").then((response) => {
                 this.user = response.data;
+                console.log(response.data);
             });
         },
         getReserves() {
@@ -195,17 +214,6 @@ export default {
     justify-content: space-between;
     height: 70px;
 }
-.reserve-delete {
-    display: inline-block;
-    padding: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    height: 30px;
-    width: 30px;
-    background-repeat: no-repeat;
-    background-image: url("/img/delete.svg");
-}
 .reserve-name {
     color: #ffffff;
     font-size: 20px;
@@ -221,10 +229,37 @@ export default {
     background-size: contain;
     margin-right: 50px;
 }
+.reserve-delete {
+    display: inline-block;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    background-repeat: no-repeat;
+    background-image: url("/img/delete.svg");
+}
+.reserve-confirm {
+    display: flex;
+    justify-content: space-between;
+    /* gap: 0 50px; */
+}
+.rsvCard-img {
+    width: 40%;
+    height: 160px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.rsvCard-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .reserve-confirm table {
     color: #ffffff;
-    width: 80%;
-    height: 70%;
+    width: 45%;
     text-align: left;
     font-size: 18px;
 }

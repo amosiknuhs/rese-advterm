@@ -14,7 +14,9 @@
                         />
                     </div>
                     <div class="email-error">
-                        <span class="error-message"></span>
+                        <span class="error-message" v-if="emailMessage">{{
+                            emailMessage[0]
+                        }}</span>
                     </div>
                     <div class="pass-form">
                         <input
@@ -24,10 +26,12 @@
                         />
                     </div>
                     <div class="pass-error">
-                        <span class="error-message"></span>
+                        <span class="error-message" v-if="passMessage">{{
+                            passMessage[0]
+                        }}</span>
                     </div>
                     <div class="login-form-footer">
-                        <p></p>
+                        <span v-if="loginMessage">{{ loginMessage[0] }}</span>
                         <button type="submit">ログイン</button>
                     </div>
                 </form>
@@ -42,6 +46,9 @@ export default {
         return {
             email: "",
             password: "",
+            emailMessage: "",
+            passMessage: "",
+            loginMessage: "",
         };
     },
     methods: {
@@ -53,9 +60,14 @@ export default {
                         password: this.password,
                     })
                     .then((response) => {
-                        console.log(response);
                         localStorage.setItem("auth", "true");
                         this.$router.push("/mypage");
+                    })
+                    .catch((err) => {
+                        this.emailMessage = err.response.data.errors.email;
+                        this.passMessage = err.response.data.errors.password;
+                        this.loginMessage =
+                            err.response.data.errors.login_error;
                     });
             });
         },
@@ -123,7 +135,7 @@ export default {
     align-items: center;
     margin-top: 15px;
 }
-.login-form-footer p {
+.login-form-footer span {
     display: inline-block;
     color: red;
 }
@@ -141,9 +153,9 @@ export default {
 .pass-error {
     height: 20px;
 }
-/* .error-message {
+.error-message {
     color: red;
     display: inline-block;
     padding-left: 50px;
-} */
+}
 </style>

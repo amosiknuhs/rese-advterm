@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Reserve;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ReserveRequest;
 
 class ReserveController extends Controller
 {
-    public function reserve(Request $request)
+    public function reserve(ReserveRequest $request)
     {
-        $rsvContent = $request->reserve;
+        $rsvContent = $request->all();
         $rsvContent['user_id'] = Auth::id();
         Reserve::create($rsvContent);
-        // return response()->json('reserveMsg', '※予約を登録しました');
+        // if (Auth::id() != null) {
+        // } else {
+        //     return response()->json(['isLogin' => false]);
+        // }
     }
 
     public function cancel(Request $request)
     {
         Reserve::find($request->reserveId)->delete();
-        // return response()->json('cancelMsg', '※予約を削除しました');
     }
 }

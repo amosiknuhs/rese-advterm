@@ -9,32 +9,38 @@
                     <div class="name-form">
                         <input
                             type="text"
-                            v-model="user.name"
+                            v-model="name"
                             placeholder="Username"
                         />
                     </div>
                     <div class="name-error">
-                        <span class="error-message"></span>
+                        <span class="error-message" v-if="nameMessage">{{
+                            nameMessage[0]
+                        }}</span>
                     </div>
                     <div class="email-form">
                         <input
                             type="text"
-                            v-model="user.email"
+                            v-model="email"
                             placeholder="Email"
                         />
                     </div>
                     <div class="email-error">
-                        <span class="error-message"></span>
+                        <span class="error-message" v-if="emailMessage">{{
+                            emailMessage[0]
+                        }}</span>
                     </div>
                     <div class="pass-form">
                         <input
                             type="password"
-                            v-model="user.password"
+                            v-model="password"
                             placeholder="Password"
                         />
                     </div>
                     <div class="pass-error">
-                        <span class="error-message"></span>
+                        <span class="error-message" v-if="passMessage">{{
+                            passMessage[0]
+                        }}</span>
                     </div>
                     <button type="submit">登録</button>
                 </form>
@@ -47,20 +53,29 @@
 export default {
     data: function () {
         return {
-            user: {
-                name: "",
-                email: "",
-                password: "",
-            },
+            name: "",
+            email: "",
+            password: "",
+            nameMessage: "",
+            emailMessage: "",
+            passMessage: "",
         };
     },
     methods: {
         registerUser() {
-            console.log(this.user);
             axios
-                .post("/api/register", { user: this.user })
+                .post("/api/register", {
+                    name: this.name,
+                    email: this.email,
+                    password: this.password,
+                })
                 .then((response) => {
                     this.$router.push("/login");
+                })
+                .catch((err) => {
+                    this.nameMessage = err.response.data.errors.name;
+                    this.emailMessage = err.response.data.errors.email;
+                    this.passMessage = err.response.data.errors.password;
                 });
         },
     },
@@ -145,9 +160,9 @@ export default {
 .pass-error {
     height: 20px;
 }
-/* .error-message {
+.error-message {
     color: red;
     display: inline-block;
     padding-left: 50px;
-} */
+}
 </style>

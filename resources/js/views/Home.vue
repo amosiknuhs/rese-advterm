@@ -74,7 +74,6 @@ export default {
         getShops() {
             axios.get("/api/").then((response) => {
                 this.shops = response.data;
-                console.log(response.data);
             });
         },
         changeFav(isFavorite, shopId) {
@@ -82,6 +81,11 @@ export default {
                 .post("/api/favorite", { isFavorite, shopId })
                 .then((response) => {
                     this.getShops();
+                })
+                .catch((err) => {
+                    if (err.response.data.message == "Unauthenticated.") {
+                        this.$router.push("/login");
+                    }
                 });
         },
     },
