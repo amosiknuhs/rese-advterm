@@ -1,50 +1,85 @@
 <template>
-    <div class="login-content">
-        <div class="login-box">
-            <div class="login-title">
+    <div class="register-content">
+        <div class="register-box">
+            <div class="register-title">
                 <p>Register</p>
             </div>
-            <div class="login-form">
-                <form @submit.prevent="registerUser">
-                    <div class="name-form">
-                        <input
-                            type="text"
-                            v-model="name"
-                            placeholder="Username"
-                        />
-                    </div>
-                    <div class="name-error">
-                        <span class="error-message" v-if="nameMessage">{{
-                            nameMessage[0]
-                        }}</span>
-                    </div>
-                    <div class="email-form">
-                        <input
-                            type="text"
-                            v-model="email"
-                            placeholder="Email"
-                        />
-                    </div>
-                    <div class="email-error">
-                        <span class="error-message" v-if="emailMessage">{{
-                            emailMessage[0]
-                        }}</span>
-                    </div>
-                    <div class="pass-form">
-                        <input
-                            type="password"
-                            v-model="password"
-                            placeholder="Password"
-                        />
-                    </div>
-                    <div class="pass-error">
-                        <span class="error-message" v-if="passMessage">{{
-                            passMessage[0]
-                        }}</span>
-                    </div>
-                    <button type="submit">登録</button>
-                </form>
-            </div>
+            <validation-observer v-slot="{ invalid }">
+                <div class="register-form">
+                    <form @submit.prevent="registerUser">
+                        <validation-provider
+                            rules="required|max:128"
+                            v-slot="{ errors }"
+                            class="name-form"
+                            mode="eager"
+                        >
+                            <input
+                                name="氏名"
+                                type="text"
+                                v-model="name"
+                                placeholder="Username"
+                            />
+                            <div class="name-error">
+                                <span
+                                    class="error-message"
+                                    v-if="nameMessage && !errors[0]"
+                                    >{{ nameMessage[0] }}</span
+                                >
+                                <span class="error-message">{{
+                                    errors[0]
+                                }}</span>
+                            </div>
+                        </validation-provider>
+                        <validation-provider
+                            rules="required|email|max:128"
+                            v-slot="{ errors }"
+                            class="email-form"
+                            mode="eager"
+                        >
+                            <input
+                                name="メールアドレス"
+                                type="text"
+                                v-model="email"
+                                placeholder="Email"
+                            />
+                            <div class="email-error">
+                                <span
+                                    class="error-message"
+                                    v-if="emailMessage && !errors[0]"
+                                    >{{ emailMessage[0] }}</span
+                                >
+                                <span class="error-message">{{
+                                    errors[0]
+                                }}</span>
+                            </div>
+                        </validation-provider>
+                        <validation-provider
+                            rules="required|alpha_num|min:8|max:128"
+                            v-slot="{ errors }"
+                            class="pass-form"
+                            mode="eager"
+                        >
+                            <input
+                                name="パスワード"
+                                type="password"
+                                v-model="password"
+                                placeholder="Password"
+                            />
+                            <div class="pass-error">
+                                <span
+                                    class="error-message"
+                                    v-if="passMessage && !errors[0]"
+                                    >{{ passMessage[0] }}</span
+                                >
+                                <span class="error-message">{{
+                                    errors[0]
+                                }}</span>
+                            </div>
+                        </validation-provider>
+                        <button type="submit" :disabled="invalid">登録</button>
+                    </form>
+                </div>
+            </validation-observer>
         </div>
     </div>
 </template>
@@ -70,7 +105,7 @@ export default {
                     password: this.password,
                 })
                 .then((response) => {
-                    this.$router.push("/login");
+                    this.$router.push("/thanks");
                 })
                 .catch((err) => {
                     this.nameMessage = err.response.data.errors.name;
@@ -83,13 +118,13 @@ export default {
 </script>
 
 <style scoped>
-.login-content {
+.register-content {
     height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.login-box {
+.register-box {
     background-color: #ffffff;
     box-shadow: 2px 2px 4px gray;
     border-radius: 5px;
@@ -97,7 +132,7 @@ export default {
     height: 350px;
     overflow: hidden;
 }
-.login-title {
+.register-title {
     height: 80px;
     background-color: #2f60ff;
     font-size: 25px;
@@ -107,10 +142,10 @@ export default {
     align-items: center;
     padding-left: 30px;
 }
-.login-form {
+.register-form {
     padding: 20px 40px;
 }
-.login-form input {
+.register-form input {
     width: 89%;
     height: 35px;
     margin-left: 10px;
@@ -145,7 +180,7 @@ export default {
     vertical-align: middle;
     background-size: contain;
 }
-.login-form button {
+.register-form button {
     display: block;
     border: none;
     background-color: #2f60ff;
@@ -154,6 +189,11 @@ export default {
     border-radius: 5px;
     cursor: pointer;
     margin: 15px 0 0 auto;
+}
+.register-form button:disabled {
+    cursor: default;
+    background-color: #cfcfcf;
+    color: #999999;
 }
 .name-error,
 .email-error,

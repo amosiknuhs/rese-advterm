@@ -14,10 +14,12 @@ class ReserveController extends Controller
         $rsvContent = $request->all();
         $rsvContent['user_id'] = Auth::id();
         Reserve::create($rsvContent);
-        // if (Auth::id() != null) {
-        // } else {
-        //     return response()->json(['isLogin' => false]);
-        // }
+    }
+
+    public function change(ReserveRequest $request)
+    {
+        $rsvContent = $request->all();
+        Reserve::find($request->id)->update($rsvContent);
     }
 
     public function cancel(Request $request)

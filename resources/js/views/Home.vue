@@ -1,23 +1,33 @@
 <template>
     <div>
-        <form class="search-box">
-            <select v-model="search.area_id">
-                <option value="">All area</option>
-                <option value="1">東京都</option>
-                <option value="2">大阪府</option>
-                <option value="3">福岡県</option>
-            </select>
-            <select v-model="search.genre_id">
-                <option value="">All genre</option>
-                <option value="1">寿司</option>
-                <option value="2">焼肉</option>
-                <option value="3">居酒屋</option>
-                <option value="4">イタリアン</option>
-                <option value="5">ラーメン</option>
-            </select>
-            <input v-model="search.name" type="text" placeholder="Search …" />
-            <span class="search-submit"></span>
-        </form>
+        <div class="search-box">
+            <div class="input-area">
+                <select v-model="search.area_id" class="search-area">
+                    <option value="">All area</option>
+                    <option value="1">東京都</option>
+                    <option value="2">大阪府</option>
+                    <option value="3">福岡県</option>
+                </select>
+                <select v-model="search.genre_id" class="search-genre">
+                    <option value="">All genre</option>
+                    <option value="1">寿司</option>
+                    <option value="2">焼肉</option>
+                    <option value="3">居酒屋</option>
+                    <option value="4">イタリアン</option>
+                    <option value="5">ラーメン</option>
+                </select>
+                <div class="img-container">
+                    <span class="search-img"></span>
+                </div>
+                <input
+                    v-model="search.name"
+                    type="text"
+                    class="search-name"
+                    placeholder="Shop name …"
+                />
+            </div>
+            <button class="search-reset" @click="searchReset">RESET</button>
+        </div>
         <div class="shop-list">
             <div
                 class="card"
@@ -32,6 +42,16 @@
                     <div class="tag">
                         <span class="area-tag">#{{ shop.area.name }}</span>
                         <span class="genre-tag">#{{ shop.genre.name }}</span>
+                    </div>
+                    <div class="star">
+                        <star-rating
+                            :rating="shop.star"
+                            :increment="0.01"
+                            :read-only="true"
+                            :star-size="15"
+                        >
+                        </star-rating>
+                        <p class="review-count">（{{ shop.reviewCount }}件）</p>
                     </div>
                     <div class="card-footer">
                         <router-link
@@ -70,9 +90,27 @@ export default {
             },
         };
     },
+    filters: {},
     methods: {
-        getShops() {
-            axios.get("/api/").then((response) => {
+        async getShops() {
+            await axios.get("/api/").then((response) => {
+                for (let i in response.data) {
+                    let shop = response.data[i];
+                    let arr = shop.evaluations.map((star) => star["rating"]);
+                    if (arr.length == 0) {
+                        shop["star"] = 0;
+                        shop["reviewCount"] = 0;
+                    } else {
+                        let sum = 0;
+                        arr.forEach(function (value) {
+                            sum += value;
+                        });
+                        shop["star"] =
+                            Math.round((sum / arr.length) * Math.pow(10, 2)) /
+                            Math.pow(10, 2);
+                        shop["reviewCount"] = arr.length;
+                    }
+                }
                 this.shops = response.data;
             });
         },
@@ -81,20 +119,20 @@ export default {
                 .post("/api/favorite", { isFavorite, shopId })
                 .then((response) => {
                     this.getShops();
-                })
-                .catch((err) => {
-                    if (err.response.data.message == "Unauthenticated.") {
-                        this.$router.push("/login");
-                    }
                 });
+        },
+        searchReset() {
+            this.search.area_id = "";
+            this.search.genre_id = "";
+            this.search.name = "";
         },
     },
     computed: {
         // リアルタイム検索機能
         filteredShops: function () {
-            var shops = [];
-            for (var i in this.shops) {
-                var shop = this.shops[i];
+            let shops = [];
+            for (let i in this.shops) {
+                let shop = this.shops[i];
                 if (this.search.area_id == "") {
                     if (this.search.genre_id == "") {
                         if (shop.name.indexOf(this.search.name) !== -1) {
@@ -142,37 +180,56 @@ export default {
     box-shadow: 2px 2px 4px gray;
     border-radius: 5px;
     overflow: hidden;
-    margin-bottom: 50px;
-    padding: 10px 0;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
 }
 .search-box * {
     display: inline-block;
     border: none;
     outline: 0;
-    font-size: 16px;
+    font-size: 17px;
 }
-.search-box select {
+.input-area {
+    width: 100%;
+    padding: 5px;
+}
+.search-area,
+.search-genre {
     height: 100%;
-    width: 150px;
-    padding-left: 10px;
+    width: 20%;
 }
-.search-box select:nth-of-type(2) {
+.search-genre {
     border-left: 1px solid #dfdfdf;
+    padding: 0 5px;
 }
-.search-box input {
+.img-container {
     height: 100%;
-    width: 400px;
-    border-left: 1px solid #dfdfdf;
-    padding-left: 10px;
-    border-right: 1px solid #dfdfdf;
-}
-.search-submit {
-    content: "";
-    background-image: url("/img/search.svg");
-    vertical-align: middle;
-    height: 30px;
     width: 30px;
-    margin-left: 15px;
+    padding: 0 5px;
+    border-left: 1px solid #dfdfdf;
+}
+.search-img {
+    background-image: url("/img/search.svg");
+    background-position: center;
+    vertical-align: middle;
+    height: 100%;
+    width: 30px;
+    background-repeat: no-repeat;
+}
+.search-name {
+    height: 100%;
+    width: 52%;
+    padding: 0;
+    margin-left: 5px;
+}
+.search-reset {
+    height: 100%;
+    width: 12%;
+    padding: 0;
+    background-color: #2f60ff;
+    color: #fff;
+    cursor: pointer;
 }
 
 /* ---------- 飲食店一覧表示 ---------- */
@@ -213,7 +270,7 @@ export default {
     font-size: small;
 }
 .card-footer {
-    margin-top: 40px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
 }
@@ -241,5 +298,17 @@ export default {
 }
 .favorite {
     background-image: url("/img/heart-pink.svg");
+}
+.star {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+.review-count {
+    color: #999;
+    font-size: 14px;
+}
+>>> .vue-star-rating-rating-text {
+    font-size: 14px;
 }
 </style>

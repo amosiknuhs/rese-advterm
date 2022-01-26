@@ -22,7 +22,7 @@ class ReserveRequest extends FormRequest
     public function messages()
     {
         return [
-            'date.required' => '※日付を選択してください',
+            'date.required' => '※来店日を選択してください',
             'time.required' => '※時間を選択してください',
             'number.required' => '※人数を選択してください',
         ];

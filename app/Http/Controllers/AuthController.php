@@ -25,6 +25,6 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return response()->json(['message' => 'ログアウトしました'], 200);
+        // return response()->json(['message' => 'ログアウトしました'], 200);
     }
 }

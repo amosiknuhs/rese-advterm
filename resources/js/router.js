@@ -7,6 +7,10 @@ import Register from "./views/Register.vue";
 import Mypage from "./views/Mypage.vue";
 import Thanks from "./views/Thanks.vue";
 import Done from "./views/Done.vue";
+import ChangeReserve from "./views/ChangeReserve.vue";
+import Evaluation from "./views/Evaluation.vue";
+import MypageDialog from "./views/MypageDialog.vue";
+import CancelDialog from "./views/CancelDialog.vue";
 
 const router = new Router({
     mode: "history",
@@ -43,6 +47,28 @@ const router = new Router({
             name: "mypage",
             component: Mypage,
             meta: { authOnly: true },
+            children: [
+                {
+                    path: "change-reserve",
+                    name: "change-reserve",
+                    component: ChangeReserve,
+                },
+                {
+                    path: "evaluation",
+                    name: "evaluation",
+                    component: Evaluation,
+                },
+                {
+                    path: "dialog",
+                    name: "dialog",
+                    component: MypageDialog,
+                },
+                {
+                    path: "cancel-dialog",
+                    name: "cancel-dialog",
+                    component: CancelDialog,
+                },
+            ],
         },
         {
             path: "/thanks",

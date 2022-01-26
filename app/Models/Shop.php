@@ -28,4 +28,8 @@ class Shop extends Model
   {
     return $this->hasMany('App\Models\Favorite')->where('user_id', Auth::id());
   }
+  public function evaluations()
+  {
+    return $this->hasMany('App\Models\Evaluation');
+  }
 }

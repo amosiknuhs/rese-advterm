@@ -5,7 +5,7 @@
         <p>ご指定のページが見つかりません</p>
     </div>
 </template>
-<style>
+<style scoped>
 .not-found {
     width: 50%;
     margin: 35vh auto;

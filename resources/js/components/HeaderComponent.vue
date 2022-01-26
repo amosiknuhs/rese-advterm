@@ -1,47 +1,49 @@
 <template>
-    <div class="rese-header">
-        <div class="menu" id="menu" @click="openDrawer">
-            <span class="menu__line--top"></span>
-            <span class="menu__line--middle"></span>
-            <span class="menu__line--bottom"></span>
+    <div>
+        <div class="rese-header">
+            <router-link v-bind:to="{ name: 'home' }" class="header-title"
+                >Rese</router-link
+            >
+            <!-- <div v-if="isLogin" class="nav-block">
+                <router-link v-bind:to="{ name: 'home' }" class="nav-link"
+                    >HOME</router-link
+                >
+                <p class="nav-link logout" @click="logout()">Logout</p>
+                <router-link v-bind:to="{ name: 'mypage' }" class="nav-link"
+                    >Mypage</router-link
+                >
+            </div>
+            <div v-else-if="!isLogin" class="nav-block">
+                <router-link v-bind:to="{ name: 'home' }" class="nav-link"
+                    >HOME</router-link
+                >
+                <router-link v-bind:to="{ name: 'register' }" class="nav-link"
+                    >Register</router-link
+                >
+                <router-link v-bind:to="{ name: 'login' }" class="nav-link"
+                    >Login</router-link
+                >
+            </div> -->
+
+            <div class="nav-block">
+                <router-link v-bind:to="{ name: 'home' }" class="nav-link"
+                    >HOME</router-link
+                >
+                <p class="nav-link logout" @click="logout()">Logout</p>
+                <router-link v-bind:to="{ name: 'mypage' }" class="nav-link"
+                    >Mypage</router-link
+                >
+                <router-link v-bind:to="{ name: 'home' }" class="nav-link"
+                    >HOME</router-link
+                >
+                <router-link v-bind:to="{ name: 'register' }" class="nav-link"
+                    >Register</router-link
+                >
+                <router-link v-bind:to="{ name: 'login' }" class="nav-link"
+                    >Login</router-link
+                >
+            </div>
         </div>
-        <div class="header-title">Rese</div>
-        <nav class="header-nav" id="header-nav" @click="closeDrawer">
-            <ul v-if="isLogin == 'true'">
-                <li>
-                    <router-link v-bind:to="{ name: 'home' }" class="nav-link"
-                        >HOME</router-link
-                    >
-                </li>
-                <li>
-                    <span class="nav-link logout" @click="logout">Logout</span>
-                </li>
-                <li>
-                    <router-link v-bind:to="{ name: 'mypage' }" class="nav-link"
-                        >Mypage</router-link
-                    >
-                </li>
-            </ul>
-            <ul v-else>
-                <li>
-                    <router-link v-bind:to="{ name: 'home' }" class="nav-link"
-                        >HOME</router-link
-                    >
-                </li>
-                <li>
-                    <router-link
-                        v-bind:to="{ name: 'register' }"
-                        class="nav-link"
-                        >Register</router-link
-                    >
-                </li>
-                <li>
-                    <router-link v-bind:to="{ name: 'login' }" class="nav-link"
-                        >Login</router-link
-                    >
-                </li>
-            </ul>
-        </nav>
     </div>
 </template>
 
@@ -49,132 +51,100 @@
 export default {
     data: function () {
         return {
-            number: 5,
-            isLogin: "",
+            // isLogin: "",
         };
     },
+    computed: {
+        count() {
+            return this.$store.state.count;
+        },
+        isLogin() {
+            return localStorage.getItem("auth");
+            // return this.$store.state.isLogin;
+        },
+    },
     methods: {
-        openDrawer: function () {
-            document.getElementById("menu").classList.toggle("open");
-            document.getElementById("header-nav").classList.toggle("in");
-            this.isLogin = localStorage.getItem("auth");
-        },
-        closeDrawer: function (e) {
-            if (e.target.tagName == "A" || e.target.tagName == "SPAN") {
-                document.getElementById("menu").classList.toggle("open");
-                document.getElementById("header-nav").classList.toggle("in");
-                this.isLogin = localStorage.getItem("auth");
-            }
-        },
-        logout() {
-            axios.post("api/logout").then((response) => {
-                console.log(response);
+        // getAuth() {
+        //     this.isLogin = localStorage.getItem("auth");
+        // },
+        async logout() {
+            await axios.post("/api/logout").then((response) => {
                 localStorage.removeItem("auth");
+                // this.setLogout();
                 this.$router.push("/login");
             });
         },
+        setLogout() {
+            this.$store.commit("setLogout");
+        },
+    },
+    // mounted() {
+    //     this.getAuth();
+    // },
+    beforeRouteEnter(to, from, next) {
+        console.log("beforeRouteEnter");
+        next();
+    },
+    beforeRouteUpdate(to, from, next) {
+        console.log("beforeRouteUpdate");
+        next();
+    },
+    beforeRouteLeave(to, from, next) {
+        console.log("beforeRouteLeave");
+        next();
     },
 };
 </script>
 
 <style scoped>
-.header-title {
-    color: #2f60ff;
-    font-weight: bold;
-    font-size: 30px;
-    font-family: "Hiragino Sans", "ヒラギノ角ゴシック";
-    display: block;
-    height: 30px;
-    position: relative;
-    top: 36px;
-    left: 15px;
-}
 .rese-header {
+    position: fixed;
+    height: 70px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 0 100px;
+    background-color: #2f60ff;
     display: flex;
-    margin: 0 0 40px 0;
-    height: 75px;
+    justify-content: space-between;
+    box-shadow: 0px 2px 4px gray;
 }
-
-/* ---------- モーダルウィンドウ部分 ---------- */
-.header-nav {
-    position: absolute;
-    height: 100vh;
-    width: 30%;
-    left: -30%;
-    background-color: #ffffff;
-    transition: 0.5s;
-    text-align: center;
-    z-index: 1;
+.header-title {
+    color: #afafaf;
+    font-weight: bold;
+    font-size: 35px;
+    font-family: "Hiragino Sans", "ヒラギノ角ゴシック";
+    /* display: block; */
+    height: 35px;
+    margin: auto 0;
+    text-decoration: none;
 }
-.header-nav ul {
-    padding-top: 80px;
+.header-title::before {
+    content: "";
+    background-image: url("/img/mainlogo.svg");
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    margin-right: 10px;
+    vertical-align: top;
+    background-size: contain;
 }
-.header-nav ul li {
-    list-style-type: none;
-    padding: 30px 0;
-    margin: 0 50px;
-    border-bottom: 1px solid #2f60ff;
+.nav-block {
+    height: 25px;
+    margin: auto 0;
+    display: flex;
+    justify-content: flex-end;
+    gap: 50px;
 }
 .nav-link {
     display: inline-block;
     text-decoration: none;
-    color: #2f60ff;
-    font-size: 30px;
+    color: #fff;
+    font-size: 25px;
     font-weight: bold;
+    font-family: "Hiragino Sans", "ヒラギノ角ゴシック";
 }
 .logout {
     cursor: pointer;
-}
-.menu {
-    background-color: #2f60ff;
-    border-radius: 5px;
-    box-shadow: 2px 2px 4px gray;
-    display: block;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    position: relative;
-    top: 30px;
-    z-index: 2;
-}
-.menu__line--top,
-.menu__line--middle,
-.menu__line--bottom {
-    display: inline-block;
-    height: 2px;
-    background-color: #ffffff;
-    position: absolute;
-    transition: 0.5s;
-}
-.menu__line--top {
-    width: 30%;
-    top: 10px;
-    left: 10px;
-}
-.menu__line--middle {
-    width: 50%;
-    top: 19px;
-    left: 10px;
-}
-.menu__line--bottom {
-    width: 20%;
-    bottom: 10px;
-    left: 10px;
-}
-.menu.open span:nth-of-type(1) {
-    width: 50%;
-    top: 19px;
-    transform: rotate(45deg);
-}
-.menu.open span:nth-of-type(2) {
-    opacity: 0;
-}
-.menu.open span:nth-of-type(3) {
-    width: 50%;
-    top: 19px;
-    transform: rotate(-45deg);
-}
-.in {
-    transform: translateX(100%);
 }
 </style>

@@ -4,38 +4,66 @@
             <div class="login-title">
                 <p>Login</p>
             </div>
-            <div class="login-form">
-                <form @submit.prevent="login">
-                    <div class="email-form">
-                        <input
-                            type="text"
-                            v-model="email"
-                            placeholder="Email"
-                        />
-                    </div>
-                    <div class="email-error">
-                        <span class="error-message" v-if="emailMessage">{{
-                            emailMessage[0]
-                        }}</span>
-                    </div>
-                    <div class="pass-form">
-                        <input
-                            type="password"
-                            v-model="password"
-                            placeholder="Password"
-                        />
-                    </div>
-                    <div class="pass-error">
-                        <span class="error-message" v-if="passMessage">{{
-                            passMessage[0]
-                        }}</span>
-                    </div>
-                    <div class="login-form-footer">
-                        <span v-if="loginMessage">{{ loginMessage[0] }}</span>
-                        <button type="submit">ログイン</button>
-                    </div>
-                </form>
-            </div>
+            <validation-observer v-slot="{ invalid }">
+                <div class="login-form">
+                    <form @submit.prevent="login">
+                        <validation-provider
+                            rules="required|email|max:128"
+                            v-slot="{ errors }"
+                            class="email-form"
+                            mode="eager"
+                        >
+                            <input
+                                name="メールアドレス"
+                                type="text"
+                                v-model="email"
+                                placeholder="Email"
+                            />
+                            <div class="email-error">
+                                <span
+                                    class="error-message"
+                                    v-if="emailMessage && !errors[0]"
+                                    >{{ emailMessage[0] }}</span
+                                >
+                                <span class="error-message">{{
+                                    errors[0]
+                                }}</span>
+                            </div>
+                        </validation-provider>
+                        <validation-provider
+                            rules="required|alpha_num|min:8|max:128"
+                            v-slot="{ errors }"
+                            class="pass-form"
+                            mode="eager"
+                        >
+                            <input
+                                name="パスワード"
+                                type="password"
+                                v-model="password"
+                                placeholder="Password"
+                            />
+                            <div class="pass-error">
+                                <span
+                                    class="error-message"
+                                    v-if="passMessage && !errors[0]"
+                                    >{{ passMessage[0] }}</span
+                                >
+                                <span class="error-message">{{
+                                    errors[0]
+                                }}</span>
+                            </div>
+                        </validation-provider>
+                        <div class="login-form-footer">
+                            <span v-if="loginMessage">{{
+                                loginMessage[0]
+                            }}</span>
+                            <button type="submit" :disabled="invalid">
+                                ログイン
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </validation-observer>
         </div>
     </div>
 </template>
@@ -61,6 +89,7 @@ export default {
                     })
                     .then((response) => {
                         localStorage.setItem("auth", "true");
+                        // this.setLogin();
                         this.$router.push("/mypage");
                     })
                     .catch((err) => {
@@ -71,7 +100,17 @@ export default {
                     });
             });
         },
+        setLogin() {
+            this.$store.commit("setLogin");
+        },
     },
+    // mounted:{
+    //     this.loginMessage =response.data.message;
+    // }
+    // beforeRouteLeave(to, from, next) {
+    //     console.log("beforeRouteLeave");
+    //     next();
+    // },
 };
 </script>
 
@@ -148,6 +187,11 @@ export default {
     border-radius: 5px;
     cursor: pointer;
     margin-left: auto;
+}
+.login-form-footer button:disabled {
+    cursor: default;
+    background-color: #cfcfcf;
+    color: #999999;
 }
 .email-error,
 .pass-error {

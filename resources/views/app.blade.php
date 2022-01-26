@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Document</title>
+    <title>Rese</title>
+    <link rel="shortcut icon" href="{{ asset('/img/favicon.svg') }}">
     <link rel="stylesheet" href="{{ mix('/css/reset.css') }}">
     <link rel="stylesheet" href="{{ mix('/css/style.css') }}">
 </head>

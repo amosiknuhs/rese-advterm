@@ -10,10 +10,10 @@ class MypageController extends Controller
 {
     public function getReserves()
     {
-        return Reserve::with(['shop'])->where('user_id', Auth::id())->get();
+        return Reserve::with(['shop.evaluations'])->where('user_id', Auth::id())->get();
     }
     public function getFavorites()
     {
-        return Favorite::with(['shop.area', 'shop.genre'])->where('user_id', Auth::id())->get();
+        return Favorite::with(['shop.area', 'shop.genre', 'shop.evaluations'])->where('user_id', Auth::id())->get();
     }
 }
