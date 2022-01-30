@@ -107,7 +107,7 @@ export default {
                     number: this.number,
                 })
                 .then((response) => {
-                    this.$router.push("/mypage/dialog");
+                    this.$router.push("/mypage/reservation/dialog");
                 });
         },
         setToday() {

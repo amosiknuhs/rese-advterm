@@ -22,7 +22,7 @@ export default {
     methods: {
         async cancelRsv(reserveId) {
             await axios.post("/api/cancel", { reserveId }).then((response) => {
-                this.$router.push("/mypage/dialog");
+                this.$router.push("/mypage/reservation/dialog");
             });
         },
     },

@@ -1,4 +1,5 @@
 import Router from "vue-router";
+import store from "./store";
 import NotFound from "./views/NotFound.vue";
 import Home from "./views/Home.vue";
 import Detail from "./views/Detail.vue";
@@ -10,7 +11,12 @@ import Done from "./views/Done.vue";
 import ChangeReserve from "./views/ChangeReserve.vue";
 import Evaluation from "./views/Evaluation.vue";
 import MypageDialog from "./views/MypageDialog.vue";
-import CancelDialog from "./views/CancelDialog.vue";
+import Cancel from "./views/Cancel.vue";
+import Reservation from "./views/Reservation.vue";
+import Favorite from "./views/Favorite.vue";
+import userLogin from "./views/userLogin.vue";
+import ownerLogin from "./views/ownerLogin.vue";
+import adminLogin from "./views/adminLogin.vue";
 
 const router = new Router({
     mode: "history",
@@ -35,6 +41,23 @@ const router = new Router({
             name: "login",
             component: Login,
             meta: { guestOnly: true },
+            children: [
+                {
+                    path: "user",
+                    name: "user",
+                    component: userLogin,
+                },
+                {
+                    path: "owner",
+                    name: "owner",
+                    component: ownerLogin,
+                },
+                {
+                    path: "admin",
+                    name: "admin",
+                    component: adminLogin,
+                },
+            ],
         },
         {
             path: "/register",
@@ -49,24 +72,36 @@ const router = new Router({
             meta: { authOnly: true },
             children: [
                 {
-                    path: "change-reserve",
-                    name: "change-reserve",
-                    component: ChangeReserve,
+                    path: "reservation",
+                    name: "reservation",
+                    component: Reservation,
+                    children: [
+                        {
+                            path: "change-reserve",
+                            name: "change-reserve",
+                            component: ChangeReserve,
+                        },
+                        {
+                            path: "evaluation",
+                            name: "evaluation",
+                            component: Evaluation,
+                        },
+                        {
+                            path: "cancel",
+                            name: "cancel",
+                            component: Cancel,
+                        },
+                        {
+                            path: "dialog",
+                            name: "dialog",
+                            component: MypageDialog,
+                        },
+                    ],
                 },
                 {
-                    path: "evaluation",
-                    name: "evaluation",
-                    component: Evaluation,
-                },
-                {
-                    path: "dialog",
-                    name: "dialog",
-                    component: MypageDialog,
-                },
-                {
-                    path: "cancel-dialog",
-                    name: "cancel-dialog",
-                    component: CancelDialog,
+                    path: "favorite",
+                    name: "favorite",
+                    component: Favorite,
                 },
             ],
         },
@@ -84,19 +119,19 @@ const router = new Router({
 });
 
 function isLoggedIn() {
-    return localStorage.getItem("auth");
+    return store.state.isLogin;
 }
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.authOnly)) {
         if (!isLoggedIn()) {
-            next("/login");
+            next("/login/user");
         } else {
             next();
         }
     } else if (to.matched.some((record) => record.meta.guestOnly)) {
         if (isLoggedIn()) {
-            next("/mypage");
+            next("/mypage/reservation");
         } else {
             next();
         }

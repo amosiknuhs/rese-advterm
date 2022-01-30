@@ -12,7 +12,15 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
+        if ($request->is('api/user/*')) {
+            $guard = 'user';
+        } elseif ($request->is('api/owner/*')) {
+            $guard = 'owner';
+        } elseif ($request->is('api/admin/*')) {
+            $guard = 'admin';
+        }
+
+        if (Auth::guard($guard)->attempt($credentials)) {
             $request->session()->regenerate();
             return response()->json(['message' => 'ログインに成功しました'], 200);
         }
@@ -24,7 +32,9 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout();
-        // return response()->json(['message' => 'ログアウトしました'], 200);
+        Auth::guard('user')->logout();
+        Auth::guard('owner')->logout();
+        Auth::guard('admin')->logout();
+        return response()->json(['message' => 'ログアウトしました'], 200);
     }
 }
