@@ -9,7 +9,7 @@
                 <p v-else-if="processType == 'cancel'">
                     予約をキャンセルしました
                 </p>
-                <router-link v-bind:to="{ name: 'mypage' }">
+                <router-link v-bind:to="{ name: 'reservation' }">
                     <button class="back">戻る</button>
                 </router-link>
             </div>

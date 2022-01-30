@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home-content">
         <div class="search-box">
             <div class="input-area">
                 <select v-model="search.area_id" class="search-area">
@@ -237,12 +237,11 @@ export default {
 .shop-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 40px 40px;
+    gap: 20px 20px;
 }
 .card {
     background-color: #ffffff;
-    width: 370px;
+    width: 300px;
     height: 340px;
     border-radius: 10px;
     overflow: hidden;

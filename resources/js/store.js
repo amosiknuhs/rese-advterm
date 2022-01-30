@@ -4,7 +4,12 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
+// const initialState = {
+//     isLogin: false,
+// };
+
 export default new Vuex.Store({
+    // state: initialState,
     state: {
         isLogin: false,
     },
@@ -13,14 +18,9 @@ export default new Vuex.Store({
         setLogin(state) {
             state.isLogin = true;
         },
-        setLogout() {
+        setLogout(state) {
             state.isLogin = false;
         },
     },
-    plugins: [
-        createPersistedState({
-            key: "auth",
-            paths: ["isLogin"],
-        }),
-    ],
+    plugins: [createPersistedState()],
 });

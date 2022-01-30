@@ -10,7 +10,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\EvaluationController;
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:user,owner,admin')->group(function () {
     // ユーザー情報取得
     Route::get('/user', [UserController::class, "user"]);
     // マイページで予約情報を取得
@@ -28,10 +28,24 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/evaluate', [EvaluationController::class, "evaluate"]);
 });
 
+// Route::middleware('auth:owner')->group(function () {
+//     Route::get('/user', [UserController::class, "user"]);
+//     Route::get('/mypage/reserves', [MypageController::class, "getReserves"]);
+//     Route::get('/mypage/favorites', [MypageController::class, "getFavorites"]);
+// });
+
+// Route::middleware('auth:admin')->group(function () {
+//     Route::get('/user', [UserController::class, "user"]);
+//     Route::get('/mypage/reserves', [MypageController::class, "getReserves"]);
+//     Route::get('/mypage/favorites', [MypageController::class, "getFavorites"]);
+// });
+
 // ユーザー登録機能
 Route::post('/register', [UserController::class, "create"]);
 // ログイン機能
-Route::post('/login', [AuthController::class, "login"]);
+Route::post('/user/login', [AuthController::class, "login"]);
+Route::post('/owner/login', [AuthController::class, "login"]);
+Route::post('/admin/login', [AuthController::class, "login"]);
 // ログアウト機能
 Route::post('/logout', [AuthController::class, "logout"]);
 // 飲食店検索機能

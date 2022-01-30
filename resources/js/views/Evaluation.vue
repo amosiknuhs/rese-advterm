@@ -48,7 +48,7 @@ export default {
                     comment: this.comment,
                 })
                 .then((response) => {
-                    this.$router.push("/mypage/dialog");
+                    this.$router.push("/mypage/reservation/dialog");
                 })
                 .catch((err) => {
                     this.errorMessage = err.response.data.errors.comment;

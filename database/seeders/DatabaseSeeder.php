@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
     $this->call(ReservesTableSeeder::class);
     $this->call(FavoritesTableSeeder::class);
     $this->call(EvaluationsTableSeeder::class);
+    $this->call(OwnersTableSeeder::class);
+    $this->call(AdminsTableSeeder::class);
   }
 }

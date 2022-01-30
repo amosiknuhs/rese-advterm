@@ -1,119 +1,21 @@
 <template>
     <div class="login-content">
         <div class="login-box">
-            <div class="login-title">
-                <p>Login</p>
+            <div class="role-tab">
+                <router-link v-bind:to="{ name: 'user' }" class="userLogin"
+                    >ユーザー</router-link
+                >
+                <router-link v-bind:to="{ name: 'owner' }" class="ownerLogin"
+                    >店舗オーナー</router-link
+                >
+                <router-link v-bind:to="{ name: 'admin' }" class="adminLogin"
+                    >管理者</router-link
+                >
             </div>
-            <validation-observer v-slot="{ invalid }">
-                <div class="login-form">
-                    <form @submit.prevent="login">
-                        <validation-provider
-                            rules="required|email|max:128"
-                            v-slot="{ errors }"
-                            class="email-form"
-                            mode="eager"
-                        >
-                            <input
-                                name="メールアドレス"
-                                type="text"
-                                v-model="email"
-                                placeholder="Email"
-                            />
-                            <div class="email-error">
-                                <span
-                                    class="error-message"
-                                    v-if="emailMessage && !errors[0]"
-                                    >{{ emailMessage[0] }}</span
-                                >
-                                <span class="error-message">{{
-                                    errors[0]
-                                }}</span>
-                            </div>
-                        </validation-provider>
-                        <validation-provider
-                            rules="required|alpha_num|min:8|max:128"
-                            v-slot="{ errors }"
-                            class="pass-form"
-                            mode="eager"
-                        >
-                            <input
-                                name="パスワード"
-                                type="password"
-                                v-model="password"
-                                placeholder="Password"
-                            />
-                            <div class="pass-error">
-                                <span
-                                    class="error-message"
-                                    v-if="passMessage && !errors[0]"
-                                    >{{ passMessage[0] }}</span
-                                >
-                                <span class="error-message">{{
-                                    errors[0]
-                                }}</span>
-                            </div>
-                        </validation-provider>
-                        <div class="login-form-footer">
-                            <span v-if="loginMessage">{{
-                                loginMessage[0]
-                            }}</span>
-                            <button type="submit" :disabled="invalid">
-                                ログイン
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </validation-observer>
+            <router-view></router-view>
         </div>
     </div>
 </template>
-
-<script>
-export default {
-    data: function () {
-        return {
-            email: "",
-            password: "",
-            emailMessage: "",
-            passMessage: "",
-            loginMessage: "",
-        };
-    },
-    methods: {
-        login() {
-            axios.get("/sanctum/csrf-cookie").then((response) => {
-                axios
-                    .post("/api/login", {
-                        email: this.email,
-                        password: this.password,
-                    })
-                    .then((response) => {
-                        localStorage.setItem("auth", "true");
-                        // this.setLogin();
-                        this.$router.push("/mypage");
-                    })
-                    .catch((err) => {
-                        this.emailMessage = err.response.data.errors.email;
-                        this.passMessage = err.response.data.errors.password;
-                        this.loginMessage =
-                            err.response.data.errors.login_error;
-                    });
-            });
-        },
-        setLogin() {
-            this.$store.commit("setLogin");
-        },
-    },
-    // mounted:{
-    //     this.loginMessage =response.data.message;
-    // }
-    // beforeRouteLeave(to, from, next) {
-    //     console.log("beforeRouteLeave");
-    //     next();
-    // },
-};
-</script>
-
 <style scoped>
 .login-content {
     height: 80vh;
@@ -126,80 +28,31 @@ export default {
     box-shadow: 2px 2px 4px gray;
     border-radius: 5px;
     width: 500px;
-    height: 300px;
+    height: 330px;
     overflow: hidden;
 }
-.login-title {
-    height: 80px;
+.role-tab {
+    height: 30px;
+    font-size: 0;
+}
+.role-tab * {
+    font-size: 16px;
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: calc(100% / 3);
+    margin: 0;
+}
+.userLogin {
     background-color: #2f60ff;
-    font-size: 25px;
-    font-weight: bold;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    padding-left: 30px;
 }
-.login-form {
-    padding: 20px 40px;
+.ownerLogin {
+    background-color: #552fff;
 }
-.login-form input {
-    width: 89%;
-    height: 35px;
-    margin-left: 10px;
-    border: none;
-    outline: 0;
-    border-bottom: 1px solid #d1d5db;
-}
-.email-form::before {
-    content: "";
-    background-image: url("/img/email.svg");
-    display: inline-block;
-    height: 35px;
-    width: 35px;
-    vertical-align: middle;
-    background-size: contain;
-}
-.pass-form::before {
-    content: "";
-    background-image: url("/img/lock.svg");
-    display: inline-block;
-    height: 35px;
-    width: 35px;
-    vertical-align: middle;
-    background-size: contain;
-}
-.login-form-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-}
-.login-form-footer span {
-    display: inline-block;
-    color: red;
-}
-.login-form-footer button {
-    display: inline-block;
-    border: none;
-    background-color: #2f60ff;
-    color: #ffffff;
-    padding: 7px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: auto;
-}
-.login-form-footer button:disabled {
-    cursor: default;
-    background-color: #cfcfcf;
-    color: #999999;
-}
-.email-error,
-.pass-error {
-    height: 20px;
-}
-.error-message {
-    color: red;
-    display: inline-block;
-    padding-left: 50px;
+.adminLogin {
+    background-color: #9a2fff;
 }
 </style>
