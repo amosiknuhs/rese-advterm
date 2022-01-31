@@ -29,7 +29,7 @@ axios.interceptors.response.use(
     (error) => {
         if (error.response.status == 401) {
             store.commit("setLogout");
-            router.push("/login");
+            router.push("/login/user");
         }
         return Promise.reject(error);
     }

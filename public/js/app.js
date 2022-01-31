@@ -7132,7 +7132,7 @@ axios__WEBPACK_IMPORTED_MODULE_2___default().interceptors.response.use(function 
 }, function (error) {
   if (error.response.status == 401) {
     _store__WEBPACK_IMPORTED_MODULE_1__["default"].commit("setLogout");
-    _router__WEBPACK_IMPORTED_MODULE_0__["default"].push("/login");
+    _router__WEBPACK_IMPORTED_MODULE_0__["default"].push("/login/user");
   }
 
   return Promise.reject(error);
