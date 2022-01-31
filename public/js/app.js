@@ -6413,8 +6413,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    tabSwitch: function tabSwitch() {
-      this.isActive = !this.isActive;
+    tabSwitchRsv: function tabSwitchRsv() {
+      this.isActive = true;
+    },
+    tabSwitchFav: function tabSwitchFav() {
+      this.isActive = false;
     }
   },
   mounted: function mounted() {
@@ -37889,7 +37892,7 @@ var render = function () {
               attrs: { to: { name: "reservation" } },
               nativeOn: {
                 click: function ($event) {
-                  return _vm.tabSwitch.apply(null, arguments)
+                  return _vm.tabSwitchRsv.apply(null, arguments)
                 },
               },
             },
@@ -37904,7 +37907,7 @@ var render = function () {
               attrs: { to: { name: "favorite" } },
               nativeOn: {
                 click: function ($event) {
-                  return _vm.tabSwitch.apply(null, arguments)
+                  return _vm.tabSwitchFav.apply(null, arguments)
                 },
               },
             },
