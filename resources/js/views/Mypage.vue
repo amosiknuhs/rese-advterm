@@ -6,14 +6,14 @@
                 v-bind:to="{ name: 'reservation' }"
                 class="reserve-title"
                 :class="{ active: isActive }"
-                @click.native="tabSwitch"
+                @click.native="tabSwitchRsv"
                 >予約状況</router-link
             >
             <router-link
                 v-bind:to="{ name: 'favorite' }"
                 class="favorite-title"
                 :class="{ active: !isActive }"
-                @click.native="tabSwitch"
+                @click.native="tabSwitchFav"
                 >お気に入り店舗</router-link
             >
         </div>
@@ -35,8 +35,11 @@ export default {
                 this.user = response.data;
             });
         },
-        tabSwitch() {
-            this.isActive = !this.isActive;
+        tabSwitchRsv() {
+            this.isActive = true;
+        },
+        tabSwitchFav() {
+            this.isActive = false;
         },
     },
     mounted() {
