@@ -13,6 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
-storage/debugbar/*.json
+/storage/debugbar/*
 /public/js
 /public/css
