@@ -2,7 +2,7 @@
     <div class="thanks-content">
         <form class="thanks-message">
             <p>会員登録ありがとうございます</p>
-            <router-link v-bind:to="{ name: 'login' }" class="toLogin"
+            <router-link v-bind:to="{ name: 'user' }" class="toLogin"
                 >ログインする</router-link
             >
         </form>
