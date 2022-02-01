@@ -247,6 +247,7 @@ export default {
 }
 .shop-name {
     margin-bottom: 30px;
+    height: 30px;
     font-size: 30px;
     font-weight: bold;
 }
