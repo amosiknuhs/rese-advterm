@@ -17,6 +17,7 @@ import Favorite from "./views/Favorite.vue";
 import userLogin from "./views/userLogin.vue";
 import ownerLogin from "./views/ownerLogin.vue";
 import adminLogin from "./views/adminLogin.vue";
+import ConfirmReserve from "./views/ConfirmReserve.vue";
 
 const router = new Router({
     mode: "history",
@@ -35,6 +36,13 @@ const router = new Router({
             path: "/detail/:shop_id",
             name: "detail",
             component: Detail,
+            children: [
+                {
+                    path: "confirm-reserve",
+                    name: "confirm-reserve",
+                    component: ConfirmReserve,
+                },
+            ],
         },
         {
             path: "/login",
@@ -116,6 +124,14 @@ const router = new Router({
             component: Done,
         },
     ],
+    // 画面遷移時のスクロール位置制御
+    scrollBehavior(to, from, savedPosition) {
+        if (savedPosition) {
+            return savedPosition;
+        } else if (to.name == "detail") {
+            return { x: 0, y: 0 };
+        }
+    },
 });
 
 function isLoggedIn() {
