@@ -1,145 +1,151 @@
 <template>
-    <div class="detail-content">
-        <div class="shop-detail">
-            <p class="shop-name">{{ shopDetail.name }}</p>
-            <div class="shop-img">
-                <img :src="shopDetail.img_url" alt="" />
-            </div>
-            <div class="star">
-                <star-rating
-                    :rating="averageRate"
-                    :increment="0.01"
-                    :read-only="true"
-                    :star-size="20"
-                >
-                </star-rating>
-                <p class="review-count">（{{ arr.length }}件）</p>
-            </div>
-            <div class="tag">
-                <span class="area-tag" v-if="shopDetail"
-                    >#{{ shopDetail.area.name }}</span
-                >
-                <span class="genre-tag" v-if="shopDetail"
-                    >#{{ shopDetail.genre.name }}</span
-                >
-            </div>
-            <p class="shop-content">{{ shopDetail.content }}</p>
-        </div>
-        <validation-observer v-slot="{ invalid }" class="reserve-form">
-            <form @submit.prevent="createRsv">
-                <div class="reserve-content">
-                    <p class="form-title">予約</p>
-                    <validation-provider
-                        rules="selectRequired"
-                        v-slot="{ errors }"
-                        class="reserve-date"
+    <div>
+        <p class="shop-name">{{ shopDetail.name }}</p>
+        <div class="detail-content">
+            <div class="shop-detail">
+                <div class="shop-img">
+                    <img :src="shopDetail.img_url" alt="" />
+                </div>
+                <div class="star">
+                    <star-rating
+                        :rating="averageRate"
+                        :increment="0.01"
+                        :read-only="true"
+                        :star-size="20"
                     >
-                        <input
-                            name="来店日"
-                            type="date"
-                            :min="minDate"
-                            v-model="date"
-                        />
-                        <span
-                            class="error-message"
-                            v-if="dateMessage && !errors[0]"
-                            >{{ dateMessage[0] }}</span
-                        >
-                        <span class="error-message">{{ errors[0] }}</span>
-                    </validation-provider>
-                    <validation-provider
-                        rules="selectRequired"
-                        v-slot="{ errors }"
-                        class="reserve-time"
+                    </star-rating>
+                    <p class="review-count">（{{ arr.length }}件）</p>
+                </div>
+                <div class="tag">
+                    <span class="area-tag" v-if="shopDetail"
+                        >#{{ shopDetail.area.name }}</span
                     >
-                        <select v-model="time" name="時間">
-                            <option disabled selected value>
-                                ーーー 予約時間を選択してください ーーー
-                            </option>
-                            <option value="11:00">11:00</option>
-                            <option value="11:30">11:30</option>
-                            <option value="12:00">12:00</option>
-                            <option value="12:30">12:30</option>
-                            <option value="13:00">13:00</option>
-                            <option value="13:30">13:30</option>
-                            <option value="14:00">14:00</option>
-                            <option value="14:30">14:30</option>
-                            <option value="15:00">15:00</option>
-                            <option value="17:00">17:00</option>
-                            <option value="17:30">17:30</option>
-                            <option value="18:00">18:00</option>
-                            <option value="18:30">18:30</option>
-                            <option value="19:00">19:00</option>
-                            <option value="19:30">19:30</option>
-                            <option value="20:00">20:00</option>
-                            <option value="20:30">20:30</option>
-                            <option value="21:00">21:00</option>
-                            <option value="21:30">21:30</option>
-                            <option value="22:00">22:00</option>
-                            <option value="22:30">22:30</option>
-                        </select>
-                        <span
-                            class="error-message"
-                            v-if="timeMessage && !errors[0]"
-                            >{{ timeMessage[0] }}</span
-                        >
-                        <span class="error-message">{{ errors[0] }}</span>
-                    </validation-provider>
-                    <validation-provider
-                        rules="selectRequired"
-                        v-slot="{ errors }"
-                        class="reserve-number"
+                    <span class="genre-tag" v-if="shopDetail"
+                        >#{{ shopDetail.genre.name }}</span
                     >
-                        <select v-model="number" name="人数">
-                            <option disabled selected value>
-                                ーーー 予約人数を選択してください ーーー
-                            </option>
-                            <option value="1">1人</option>
-                            <option value="2">2人</option>
-                            <option value="3">3人</option>
-                            <option value="4">4人</option>
-                            <option value="5">5人</option>
-                            <option value="6">6人</option>
-                            <option value="7">7人</option>
-                            <option value="8">8人</option>
-                            <option value="9">9人</option>
-                            <option value="10">10人</option>
-                        </select>
-                        <span
-                            class="error-message"
-                            v-if="numMessage && !errors[0]"
-                            >{{ numMessage[0] }}</span
-                        >
-                        <span class="error-message">{{ errors[0] }}</span>
-                    </validation-provider>
-                    <div class="reserve-confirm">
-                        <table>
-                            <tr>
-                                <th>店名</th>
-                                <td>{{ shopDetail.name }}</td>
-                            </tr>
-                            <tr>
-                                <th>日付</th>
-                                <td id="reserveDate">{{ date }}</td>
-                            </tr>
-                            <tr>
-                                <th>時間</th>
-                                <td id="reserveTime">{{ time }}</td>
-                            </tr>
-                            <tr>
-                                <th>人数</th>
-                                <td id="reserveNumber">
-                                    {{ numUnit }}
-                                </td>
-                            </tr>
-                        </table>
+                </div>
+                <p class="shop-content">{{ shopDetail.content }}</p>
+            </div>
+            <div class="reserve-bar">
+                <validation-observer v-slot="{ invalid }">
+                    <div class="reserve-form">
+                        <p class="form-title">ネット予約</p>
+                        <div class="reserve-content">
+                            <validation-provider
+                                rules="selectRequired"
+                                v-slot="{ errors }"
+                                class="reserve-date"
+                                tag="div"
+                            >
+                                <label for="date">来店日：</label>
+                                <input
+                                    name="来店日"
+                                    id="date"
+                                    type="date"
+                                    :min="minDate"
+                                    v-model="date"
+                                />
+                                <div class="error-message">
+                                    <span>{{ errors[0] }}</span>
+                                    <span v-if="dateMessage && !errors[0]">{{
+                                        dateMessage[0]
+                                    }}</span>
+                                </div>
+                            </validation-provider>
+                            <validation-provider
+                                rules="selectRequired"
+                                v-slot="{ errors }"
+                                class="reserve-time"
+                                tag="div"
+                            >
+                                <label for="time">時間　：</label>
+                                <select v-model="time" name="時間" id="time">
+                                    <option disabled selected value>
+                                        予約時間を選択してください
+                                    </option>
+                                    <option value="11:00">11:00</option>
+                                    <option value="11:30">11:30</option>
+                                    <option value="12:00">12:00</option>
+                                    <option value="12:30">12:30</option>
+                                    <option value="13:00">13:00</option>
+                                    <option value="13:30">13:30</option>
+                                    <option value="14:00">14:00</option>
+                                    <option value="14:30">14:30</option>
+                                    <option value="15:00">15:00</option>
+                                    <option value="17:00">17:00</option>
+                                    <option value="17:30">17:30</option>
+                                    <option value="18:00">18:00</option>
+                                    <option value="18:30">18:30</option>
+                                    <option value="19:00">19:00</option>
+                                    <option value="19:30">19:30</option>
+                                    <option value="20:00">20:00</option>
+                                    <option value="20:30">20:30</option>
+                                    <option value="21:00">21:00</option>
+                                    <option value="21:30">21:30</option>
+                                    <option value="22:00">22:00</option>
+                                    <option value="22:30">22:30</option>
+                                </select>
+                                <div class="error-message">
+                                    <span>{{ errors[0] }}</span>
+                                    <span v-if="timeMessage && !errors[0]">{{
+                                        timeMessage[0]
+                                    }}</span>
+                                </div>
+                            </validation-provider>
+                            <validation-provider
+                                rules="selectRequired"
+                                v-slot="{ errors }"
+                                class="reserve-number"
+                            >
+                                <label for="number">人数　：</label>
+                                <select
+                                    v-model="number"
+                                    name="人数"
+                                    id="number"
+                                    tag="div"
+                                >
+                                    <option disabled selected value>
+                                        予約人数を選択してください
+                                    </option>
+                                    <option value="1">1人</option>
+                                    <option value="2">2人</option>
+                                    <option value="3">3人</option>
+                                    <option value="4">4人</option>
+                                    <option value="5">5人</option>
+                                    <option value="6">6人</option>
+                                    <option value="7">7人</option>
+                                    <option value="8">8人</option>
+                                    <option value="9">9人</option>
+                                    <option value="10">10人</option>
+                                </select>
+                                <div class="error-message">
+                                    <span>{{ errors[0] }}</span>
+                                    <span v-if="numMessage && !errors[0]">{{
+                                        numMessage[0]
+                                    }}</span>
+                                </div>
+                            </validation-provider>
+                            <router-link
+                                v-bind:to="{
+                                    name: 'confirm-reserve',
+                                    params: {
+                                        shop_id: id,
+                                        shop_name: shopDetail.name,
+                                        date: date,
+                                        time: time,
+                                        number: number,
+                                    },
+                                }"
+                                class="reserve-footer"
+                            >
+                                <button :disabled="invalid">確認する</button>
+                            </router-link>
+                        </div>
                     </div>
-                </div>
-                <div class="reserve-footer">
-                    <button type="submit" :disabled="invalid">予約する</button>
-                </div>
-            </form>
-        </validation-observer>
+                </validation-observer>
+            </div>
+        </div>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -237,25 +243,22 @@ export default {
 <style scoped>
 .detail-content {
     display: flex;
-    gap: 0 8%;
-    height: 80vh;
-    width: 100%;
-}
-
-/* ----------shop---------- */
-
-.shop-detail {
-    height: 800px;
-    width: 50%;
+    justify-content: space-between;
 }
 .shop-name {
-    margin: 30px 0;
+    margin-bottom: 30px;
     font-size: 30px;
     font-weight: bold;
 }
+
+/* ----------shop-detail---------- */
+.shop-detail {
+    height: 2000px;
+    width: 63%;
+}
 .shop-img {
     width: 100%;
-    height: 60%;
+    height: 500px;
 }
 .shop-img img {
     width: 100%;
@@ -269,64 +272,72 @@ export default {
     font-size: 18px;
     line-height: 35px;
 }
+.star {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+.review-count {
+    color: #999;
+}
 
-/* ----------reserve---------- */
-
+/* ----------reserve-form---------- */
+.reserve-bar {
+    height: 100%;
+    width: 440px;
+    position: sticky;
+    top: 100px;
+}
 .reserve-form {
-    height: 800px;
-    width: 50%;
-    background-color: #2f60ff;
+    background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 2px 2px 4px gray;
 }
 .reserve-content {
-    padding: 50px 40px;
-    height: 92%;
+    padding: 30px;
+    height: 350px;
+}
+.form-title {
+    font-size: 25px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #2f60ff;
+    height: 60px;
+    line-height: 60px;
+    padding-left: 20px;
+}
+.reserve-content label {
+    display: inline-block;
+    line-height: 40px;
+    vertical-align: middle;
+    color: #2f60ff;
+    font-weight: bold;
 }
 .reserve-date input,
 .reserve-time select,
 .reserve-number select {
     display: inline-block;
-    width: 50%;
+    width: 80%;
     height: 40px;
     border: none;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-.form-title {
-    font-size: 30px;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 50px;
-}
-.reserve-confirm {
-    height: 250px;
-    width: 100%;
-    background-color: #6f91ff;
-    border-radius: 10px;
-    padding: 40px 40px;
-    margin-top: 30px;
-}
-.reserve-confirm table {
-    color: #ffffff;
-    width: 50%;
-    height: 100%;
-    text-align: left;
+    outline: none;
+    border-bottom: 1px solid #d1d5db;
 }
 .reserve-footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
+    text-decoration: none;
 }
 .reserve-footer button {
     border: none;
     background-color: #003cff;
     color: #ffffff;
-    height: 65px;
     cursor: pointer;
-    font-size: 18px;
-    padding: 7px 40px;
+    padding: 10px 0;
+    width: 100%;
     border-radius: 5px;
 }
 .reserve-footer button:disabled {
@@ -335,17 +346,8 @@ export default {
     color: #999999;
 }
 .error-message {
-    vertical-align: middle;
-    display: inline-block;
-    height: 40px;
-    color: #fff;
-}
-.star {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
-}
-.review-count {
-    color: #999;
+    height: 30px;
+    color: red;
+    margin-left: 70px;
 }
 </style>
