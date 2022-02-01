@@ -25,6 +25,7 @@ class EvaluationFactory extends Factory
             'user_id' => $this->faker->numberBetween(2, 2),
             'shop_id' => $this->faker->numberBetween(1, 20),
             'rating' => $this->faker->randomFloat(1, 2, 4.5),
+            'comment' => 'ユーザーの口コミを表示する。ユーザーの口コミを表示する。ユーザーの口コミを表示する。ユーザーの口コミを表示する。ユーザーの口コミを表示する。ユーザーの口コミを表示する。ユーザーの口コミを表示する。ユーザーの口コミを表示する。ユーザーの口コミを表示する。ユーザーの口コミを表示する。',
         ];
     }
 }
