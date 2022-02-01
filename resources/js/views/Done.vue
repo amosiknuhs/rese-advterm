@@ -11,8 +11,10 @@
 
 <style scoped>
 .done-content {
+    height: 80vh;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .done-message {
     background-color: #ffffff;

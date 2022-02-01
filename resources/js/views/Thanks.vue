@@ -11,8 +11,10 @@
 
 <style scoped>
 .thanks-content {
+    height: 80vh;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .thanks-message {
     background-color: #ffffff;
