@@ -4,8 +4,7 @@
             <router-link v-bind:to="{ name: 'home' }" class="header-title"
                 >Rese</router-link
             >
-            <p class="nav-link logout" @click="logout()">Logout</p>
-
+            <!-- <p class="nav-link logout" @click="logout()">Logout</p> -->
             <div v-if="isLogin" class="nav-block">
                 <router-link v-bind:to="{ name: 'home' }" class="nav-link"
                     >HOME</router-link

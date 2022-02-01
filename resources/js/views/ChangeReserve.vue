@@ -8,7 +8,7 @@
                 </div>
                 <div class="content">
                     <div class="date">
-                        <label for="date">日付：</label>
+                        <label for="date">来店日：</label>
                         <input
                             id="date"
                             type="date"
@@ -17,10 +17,10 @@
                         />
                     </div>
                     <div class="time">
-                        <label for="time">時間：</label>
+                        <label for="time">時間　：</label>
                         <select id="time" v-model="time">
                             <option disabled selected value>
-                                ーーー 予約時間を選択してください ーーー
+                                予約時間を選択してください
                             </option>
                             <option value="11:00">11:00</option>
                             <option value="11:30">11:30</option>
@@ -46,10 +46,10 @@
                         </select>
                     </div>
                     <div class="number">
-                        <label for="number">人数：</label>
+                        <label for="number">人数　：</label>
                         <select id="number" v-model="number">
                             <option disabled selected value>
-                                ーーー 予約人数を選択してください ーーー
+                                予約人数を選択してください
                             </option>
                             <option value="1">1人</option>
                             <option value="2">2人</option>
@@ -84,18 +84,6 @@ export default {
             time: "",
             number: this.$route.params.reserve_number,
         };
-    },
-    filters: {
-        jsonTime: function (value) {
-            let tenHour = parseInt(value.substring(11, 12), 10);
-            let oneHour = parseInt(value.substring(12, 13), 10);
-            let min = value.substring(14, 16);
-            if (tenHour == 0) {
-                return oneHour + 9 + ":" + min;
-            } else {
-                return oneHour + 19 + ":" + min;
-            }
-        },
     },
     methods: {
         async updateReserve() {
