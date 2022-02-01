@@ -1,8 +1,10 @@
 <template>
     <div>
         <p class="shop-name">{{ shopDetail.name }}</p>
+        <hr />
         <div class="detail-content">
             <div class="shop-detail">
+                <h2>店舗詳細</h2>
                 <div class="shop-img">
                     <img :src="shopDetail.img_url" alt="" />
                 </div>
@@ -25,6 +27,22 @@
                     >
                 </div>
                 <p class="shop-content">{{ shopDetail.content }}</p>
+                <hr />
+                <h2>口コミ</h2>
+                <div
+                    class="evaluation-card"
+                    v-for="(evaluation, index) in evaluations"
+                    :key="index"
+                >
+                    <p>{{ evaluation.comment }}</p>
+                    <star-rating
+                        :rating="evaluation.rating"
+                        :increment="0.01"
+                        :read-only="true"
+                        :star-size="20"
+                    >
+                    </star-rating>
+                </div>
             </div>
             <div class="reserve-bar">
                 <validation-observer v-slot="{ invalid }">
@@ -163,6 +181,7 @@ export default {
             numMessage: "",
             arr: [],
             minDate: "",
+            evaluations: [],
         };
     },
     computed: {
@@ -190,6 +209,7 @@ export default {
         async getShopDetail() {
             await axios.get("/api/detail/" + this.id).then((response) => {
                 this.shopDetail = response.data;
+                this.evaluations = response.data.evaluations;
                 this.arr = this.shopDetail.evaluations.map(
                     (star) => star["rating"]
                 );
@@ -257,6 +277,10 @@ export default {
     height: 2000px;
     width: 63%;
 }
+.shop-detail h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
 .shop-img {
     width: 100%;
     height: 500px;
@@ -281,7 +305,13 @@ export default {
 .review-count {
     color: #999;
 }
-
+.evaluation-card {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
 /* ----------reserve-form---------- */
 .reserve-bar {
     height: 100%;
