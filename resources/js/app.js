@@ -8,15 +8,14 @@ import axios from "axios";
 import HeaderComponent from "./components/HeaderComponent.vue";
 import StarRating from "vue-star-rating";
 import "./plugins/veevalidate";
-
-// import AnimateCss from "animate.css";
+import AnimateCss from "animate.css";
 
 Vue.config.productionTip = false;
 
 window.Vue = Vue;
 
 Vue.use(VueRouter);
-// Vue.use(AnimateCss);
+Vue.use(AnimateCss);
 
 Vue.component("header-component", HeaderComponent);
 Vue.component("star-rating", StarRating);

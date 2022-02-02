@@ -1,10 +1,10 @@
 <template>
-    <div class="modal">
-        <div class="modal-content">
+    <div class="modal" :class="fadeAnimation">
+        <div class="modal-content" :class="zoomAnimation">
             <div class="modal-content-inner">
                 <div class="header">
                     <p>予約の変更</p>
-                    <button class="back" @click="$router.go(-1)"></button>
+                    <button class="back" @click="leaveWithAnimation"></button>
                 </div>
                 <div class="content">
                     <div class="date">
@@ -83,6 +83,8 @@ export default {
             minDate: "",
             time: "",
             number: this.$route.params.reserve_number,
+            fadeAnimation: "animate__animated animate__fadeIn",
+            zoomAnimation: "animate__animated animate__zoomIn",
         };
     },
     methods: {
@@ -127,6 +129,13 @@ export default {
                 this.time = oneHour + 19 + ":" + min;
             }
         },
+        leaveWithAnimation() {
+            this.fadeAnimation = "animate__animated animate__fadeOut";
+            this.zoomAnimation = "animate__animated animate__zoomOut";
+            setTimeout(() => {
+                this.$router.go(-1);
+            }, 300);
+        },
     },
     mounted() {
         this.setToday();
@@ -144,12 +153,17 @@ export default {
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 5;
+    animation-duration: 0.3s;
 }
 .modal-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    animation-duration: 0.2s;
+}
+.animate__animated.animate__zoomOut {
+    animation-duration: 0.5s;
 }
 .modal-content-inner {
     border-radius: 10px;

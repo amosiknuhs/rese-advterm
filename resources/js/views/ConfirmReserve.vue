@@ -1,6 +1,6 @@
 <template>
-    <div class="modal">
-        <div class="modal-content">
+    <div class="modal" :class="fadeAnimation">
+        <div class="modal-content" :class="zoomAnimation">
             <div class="modal-content-inner">
                 <div class="header">
                     <p>予約内容の確認</p>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="footer">
-                        <button class="change" @click="$router.go(-1)">
+                        <button class="change" @click="leaveWithAnimation">
                             修正する
                         </button>
                         <button class="change" @click="createRsv">
@@ -49,6 +49,8 @@ export default {
             date: this.$route.params.date,
             time: this.$route.params.time,
             number: this.$route.params.number,
+            fadeAnimation: "animate__animated animate__fadeIn",
+            zoomAnimation: "animate__animated animate__zoomIn",
         };
     },
     computed: {
@@ -71,6 +73,13 @@ export default {
                     this.$router.push("/done");
                 });
         },
+        leaveWithAnimation() {
+            this.fadeAnimation = "animate__animated animate__fadeOut";
+            this.zoomAnimation = "animate__animated animate__zoomOut";
+            setTimeout(() => {
+                this.$router.go(-1);
+            }, 300);
+        },
     },
 };
 </script>
@@ -84,12 +93,17 @@ export default {
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 5;
+    animation-duration: 0.3s;
 }
 .modal-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    animation-duration: 0.2s;
+}
+.animate__animated.animate__zoomOut {
+    animation-duration: 0.5s;
 }
 .modal-content-inner {
     border-radius: 10px;

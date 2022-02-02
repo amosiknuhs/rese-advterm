@@ -1,10 +1,10 @@
 <template>
-    <div class="modal">
-        <div class="modal-content">
+    <div class="modal" :class="fadeAnimation">
+        <div class="modal-content" :class="zoomAnimation">
             <div class="modal-content-inner">
                 <div class="header">
                     <p>評価</p>
-                    <button class="back" @click="$router.go(-1)"></button>
+                    <button class="back" @click="leaveWithAnimation"></button>
                 </div>
                 <div class="content">
                     <star-rating v-model="rating" :increment="0.1">
@@ -36,7 +36,8 @@ export default {
             comment: "",
             shop_id: this.$route.params.shop_id,
             errorMessage: "",
-            innerClass: "modal-content-inner animate__animated animate__zoomIn",
+            fadeAnimation: "animate__animated animate__fadeIn",
+            zoomAnimation: "animate__animated animate__zoomIn",
         };
     },
     methods: {
@@ -54,6 +55,13 @@ export default {
                     this.errorMessage = err.response.data.errors.comment;
                 });
         },
+        leaveWithAnimation() {
+            this.fadeAnimation = "animate__animated animate__fadeOut";
+            this.zoomAnimation = "animate__animated animate__zoomOut";
+            setTimeout(() => {
+                this.$router.go(-1);
+            }, 300);
+        },
     },
 };
 </script>
@@ -67,12 +75,17 @@ export default {
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 5;
+    animation-duration: 0.3s;
 }
 .modal-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    animation-duration: 0.2s;
+}
+.animate__animated.animate__zoomOut {
+    animation-duration: 0.5s;
 }
 .modal-content-inner {
     border-radius: 10px;

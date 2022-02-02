@@ -1,6 +1,6 @@
 <template>
-    <div class="modal">
-        <div class="modal-content">
+    <div class="modal" :class="fadeAnimation">
+        <div class="modal-content" :class="zoomAnimation">
             <div class="modal-content-inner">
                 <p v-if="processType == 'change'">予約を変更しました</p>
                 <p v-else-if="processType == 'evaluation'">
@@ -9,9 +9,7 @@
                 <p v-else-if="processType == 'cancel'">
                     予約をキャンセルしました
                 </p>
-                <router-link v-bind:to="{ name: 'reservation' }">
-                    <button class="back">戻る</button>
-                </router-link>
+                <button class="back" @click="leaveWithAnimation">戻る</button>
             </div>
         </div>
     </div>
@@ -26,10 +24,20 @@ export default {
         },
     },
     data: function () {
-        return {};
+        return {
+            fadeAnimation: "animate__animated animate__fadeIn",
+            zoomAnimation: "animate__animated animate__zoomIn",
+        };
     },
-    methods: {},
-    mounted() {},
+    methods: {
+        leaveWithAnimation() {
+            this.fadeAnimation = "animate__animated animate__fadeOut";
+            this.zoomAnimation = "animate__animated animate__zoomOut";
+            setTimeout(() => {
+                this.$router.push("/mypage/reservation");
+            }, 300);
+        },
+    },
 };
 </script>
 
@@ -42,12 +50,17 @@ export default {
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 5;
+    animation-duration: 0.3s;
 }
 .modal-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    animation-duration: 0.2s;
+}
+.animate__animated.animate__zoomOut {
+    animation-duration: 0.5s;
 }
 .modal-content-inner {
     border: 5px solid #2f60ff;

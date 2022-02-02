@@ -1,11 +1,11 @@
 <template>
-    <div class="modal">
-        <div class="modal-content">
+    <div class="modal" :class="fadeAnimation">
+        <div class="modal-content" :class="zoomAnimation">
             <div class="modal-content-inner">
                 <p>この予約をキャンセルしてよろしいですか？</p>
                 <div class="footer">
                     <button @click="cancelRsv(reserve_id)">はい</button>
-                    <button @click="$router.go(-1)">いいえ</button>
+                    <button @click="leaveWithAnimation">いいえ</button>
                 </div>
             </div>
         </div>
@@ -17,6 +17,8 @@ export default {
     data: function () {
         return {
             reserve_id: this.$route.params.reserve_id,
+            fadeAnimation: "animate__animated animate__fadeIn",
+            zoomAnimation: "animate__animated animate__zoomIn",
         };
     },
     methods: {
@@ -24,6 +26,13 @@ export default {
             await axios.post("/api/cancel", { reserveId }).then((response) => {
                 this.$router.push("/mypage/reservation/dialog");
             });
+        },
+        leaveWithAnimation() {
+            this.fadeAnimation = "animate__animated animate__fadeOut";
+            this.zoomAnimation = "animate__animated animate__zoomOut";
+            setTimeout(() => {
+                this.$router.go(-1);
+            }, 300);
         },
     },
 };
@@ -38,12 +47,17 @@ export default {
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 5;
+    animation-duration: 0.3s;
 }
 .modal-content {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    animation-duration: 0.2s;
+}
+.animate__animated.animate__zoomOut {
+    animation-duration: 0.5s;
 }
 .modal-content-inner {
     border: 5px solid #2f60ff;
@@ -74,23 +88,5 @@ export default {
     border-radius: 5px;
     cursor: pointer;
     width: 80px;
-}
-
-.bounce-enter-active {
-    animation: bounce-in 0.5s;
-}
-.bounce-leave-active {
-    animation: bounce-in 0.5s reverse;
-}
-@keyframes bounce-in {
-    0% {
-        transform: scale(0);
-    }
-    50% {
-        transform: scale(1.5);
-    }
-    100% {
-        transform: scale(1);
-    }
 }
 </style>
