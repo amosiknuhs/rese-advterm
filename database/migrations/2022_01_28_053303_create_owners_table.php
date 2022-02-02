@@ -15,6 +15,7 @@ class CreateOwnersTable extends Migration
     {
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('shop_id')->constrained('shops')->unique();
             $table->string('name');
             $table->string('email')->unique();
             // $table->timestamp('email_verified_at')->nullable();
