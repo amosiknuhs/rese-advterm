@@ -78,8 +78,8 @@ export default {
                     })
                     .then((response) => {
                         this.setLogin();
-                        this.$router.push("/mypage/reservation");
-                        // this.$router.push("/owner");
+                        // this.$router.push("/mypage/reservation");
+                        this.$router.push("/owner");
                     })
                     .catch((err) => {
                         this.emailMessage = err.response.data.errors.email;
@@ -91,6 +91,7 @@ export default {
         },
         setLogin() {
             this.$store.commit("setLogin");
+            this.$store.commit("setRole", "owner");
         },
     },
 };

@@ -2,13 +2,19 @@
     <div class="login-content">
         <div class="login-box">
             <div class="role-tab">
-                <router-link v-bind:to="{ name: 'user' }" class="userLogin"
+                <router-link
+                    v-bind:to="{ name: 'user-login' }"
+                    class="userLogin"
                     >ユーザー</router-link
                 >
-                <router-link v-bind:to="{ name: 'owner' }" class="ownerLogin"
+                <router-link
+                    v-bind:to="{ name: 'owner-login' }"
+                    class="ownerLogin"
                     >店舗オーナー</router-link
                 >
-                <router-link v-bind:to="{ name: 'admin' }" class="adminLogin"
+                <router-link
+                    v-bind:to="{ name: 'admin-login' }"
+                    class="adminLogin"
                     >管理者</router-link
                 >
             </div>

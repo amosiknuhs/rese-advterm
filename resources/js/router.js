@@ -14,10 +14,13 @@ import MypageDialog from "./views/MypageDialog.vue";
 import Cancel from "./views/Cancel.vue";
 import Reservation from "./views/Reservation.vue";
 import Favorite from "./views/Favorite.vue";
-import userLogin from "./views/userLogin.vue";
-import ownerLogin from "./views/ownerLogin.vue";
-import adminLogin from "./views/adminLogin.vue";
+import UserLogin from "./views/UserLogin.vue";
+import OwnerLogin from "./views/OwnerLogin.vue";
+import AdminLogin from "./views/AdminLogin.vue";
 import ConfirmReserve from "./views/ConfirmReserve.vue";
+import Owner from "./views/Owner.vue";
+import Admin from "./views/Admin.vue";
+import UserReservations from "./views/UserReservations.vue";
 
 const router = new Router({
     mode: "history",
@@ -51,19 +54,19 @@ const router = new Router({
             meta: { guestOnly: true },
             children: [
                 {
-                    path: "user",
-                    name: "user",
-                    component: userLogin,
+                    path: "user-login",
+                    name: "user-login",
+                    component: UserLogin,
                 },
                 {
-                    path: "owner",
-                    name: "owner",
-                    component: ownerLogin,
+                    path: "owner-login",
+                    name: "owner-login",
+                    component: OwnerLogin,
                 },
                 {
-                    path: "admin",
-                    name: "admin",
-                    component: adminLogin,
+                    path: "admin-login",
+                    name: "admin-login",
+                    component: AdminLogin,
                 },
             ],
         },
@@ -123,6 +126,30 @@ const router = new Router({
             name: "done",
             component: Done,
         },
+        {
+            path: "/owner",
+            name: "owner",
+            component: Owner,
+            meta: { ownerOnly: true },
+            children: [
+                {
+                    path: "",
+                    name: "",
+                    component: UserReservations,
+                },
+                // {
+                //     path: "",
+                //     name: "",
+                //     component: ,
+                // },
+            ],
+        },
+        {
+            path: "/admin",
+            name: "admin",
+            component: Admin,
+            meta: { adminOnly: true },
+        },
     ],
     // 画面遷移時のスクロール位置制御
     scrollBehavior(to, from, savedPosition) {
@@ -141,7 +168,7 @@ function isLoggedIn() {
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.authOnly)) {
         if (!isLoggedIn()) {
-            next("/login/user");
+            next("/login/user-login");
         } else {
             next();
         }
