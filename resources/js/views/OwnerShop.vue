@@ -1,28 +1,41 @@
 <template>
-    <div class="shop-edit">
+    <div>
         <div class="shop-img">
             <img :src="shopData.img_url" alt="" />
         </div>
-        <div class="shop-name">
-            <p>店名</p>
-            <p>{{ shopData.name }}</p>
+        <div class="shop-edit">
+            <div class="shop-name">
+                <p>店名</p>
+                <p>{{ shopData.name }}</p>
+            </div>
+            <div class="shop-content">
+                <p>店舗説明</p>
+                <p>{{ shopData.content }}</p>
+            </div>
+            <div class="shop-area">
+                <p>エリア</p>
+                <p>{{ shopData.area.name }}</p>
+            </div>
+            <div class="shop-genre">
+                <p>ジャンル</p>
+                <p>{{ shopData.genre.name }}</p>
+            </div>
         </div>
-        <div class="shop-content">
-            <p>店舗説明</p>
-            <p>{{ shopData.content }}</p>
-        </div>
-        <div class="shop-area">
-            <p>エリア</p>
-            <p>{{ shopData.area.name }}</p>
-        </div>
-        <div class="shop-genre">
-            <p>ジャンル</p>
-            <p>{{ shopData.genre.name }}</p>
-        </div>
-        <div class="footer">
+        <router-link
+            v-bind:to="{
+                name: 'shop-edit',
+                params: {
+                    shop_name: shopData.name,
+                    shop_content: shopData.content,
+                    shop_area: shopData.area.id,
+                    shop_genre: shopData.genre.id,
+                },
+            }"
+            class="footer"
+        >
             <button>編集</button>
-        </div>
-        <!-- <router-view></router-view> -->
+        </router-link>
+        <router-view :shop-id="shopData.id"></router-view>
     </div>
 </template>
 
@@ -33,21 +46,16 @@ export default {
             type: Object,
         },
     },
-    mounted() {
-        console.log(this.shopData);
-    },
 };
 </script>
 
 <style scoped>
-.shop-edit {
-}
 .shop-edit > div:not(.shop-img, .shop-genre, .footer) {
-    padding: 30px 0;
+    padding: 30px 20px;
     border-bottom: 1px solid #d1d5db;
 }
 .shop-genre {
-    padding: 30px 0;
+    padding: 30px 20px;
 }
 .shop-edit > div > p:first-of-type {
     font-weight: bold;
@@ -64,6 +72,9 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.shop-content > p {
+    padding-bottom: 10px;
 }
 .footer {
     display: flex;

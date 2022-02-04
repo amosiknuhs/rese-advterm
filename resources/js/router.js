@@ -22,6 +22,8 @@ import Owner from "./views/Owner.vue";
 import Admin from "./views/Admin.vue";
 import UserReservations from "./views/UserReservations.vue";
 import OwnerShop from "./views/OwnerShop.vue";
+import OwnerShopEdit from "./views/OwnerShopEdit.vue";
+import OwnerDialog from "./views/OwnerDialog.vue";
 
 const router = new Router({
     mode: "history",
@@ -139,9 +141,21 @@ const router = new Router({
                     component: UserReservations,
                 },
                 {
-                    path: "owner-shop",
+                    path: "shop",
                     name: "owner-shop",
                     component: OwnerShop,
+                    children: [
+                        {
+                            path: "edit",
+                            name: "shop-edit",
+                            component: OwnerShopEdit,
+                        },
+                        {
+                            path: "complete",
+                            name: "owner-dialog",
+                            component: OwnerDialog,
+                        },
+                    ],
                 },
             ],
         },

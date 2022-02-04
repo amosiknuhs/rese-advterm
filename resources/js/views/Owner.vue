@@ -53,6 +53,13 @@ export default {
     beforeUpdate() {
         this.show = true;
     },
+    beforeRouteUpdate(to, from, next) {
+        if (from.name == "owner-dialog") {
+            this.getOwnerData();
+            next();
+        }
+        next();
+    },
 };
 </script>
 
