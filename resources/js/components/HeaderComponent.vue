@@ -1,31 +1,81 @@
 <template>
-    <div class="rese-header">
-        <div class="header-content">
-            <router-link v-bind:to="{ name: 'home' }" class="header-title"
-                >Rese</router-link
-            >
-            <!-- <p class="nav-link logout" @click="logout()">Logout</p> -->
-            <div v-if="isLogin" class="nav-block">
-                <router-link v-bind:to="{ name: 'home' }" class="nav-link"
-                    >HOME</router-link
-                >
-                <router-link
-                    v-bind:to="{ name: 'reservation' }"
-                    class="nav-link"
-                    >Mypage</router-link
-                >
-                <p class="nav-link logout" @click="logout()">Logout</p>
+    <div>
+        <div v-if="isLogin">
+            <div v-if="isRole == 'user'" class="rese-header" id="user">
+                <div class="header-content">
+                    <router-link
+                        v-bind:to="{ name: 'home' }"
+                        class="header-title"
+                        >Rese</router-link
+                    >
+                    <div class="nav-block">
+                        <router-link
+                            v-bind:to="{ name: 'home' }"
+                            class="nav-link"
+                            >HOME</router-link
+                        >
+                        <router-link
+                            v-bind:to="{ name: 'reservation' }"
+                            class="nav-link"
+                            >Mypage</router-link
+                        >
+                        <p class="nav-link logout" @click="logout()">Logout</p>
+                    </div>
+                </div>
             </div>
-            <div v-else-if="!isLogin" class="nav-block">
-                <router-link v-bind:to="{ name: 'home' }" class="nav-link"
-                    >HOME</router-link
+            <div v-if="isRole == 'owner'" class="rese-header" id="owner">
+                <div class="header-content">
+                    <div class="header-title">Rese</div>
+                    <div class="nav-block">
+                        <!-- <router-link v-bind:to="{ name: 'home' }" class="nav-link"
+                        >HOME</router-link
+                    >
+                    <router-link
+                        v-bind:to="{ name: 'reservation' }"
+                        class="nav-link"
+                        >Mypage</router-link
+                    > -->
+                        <p class="nav-link logout" @click="logout()">Logout</p>
+                    </div>
+                </div>
+            </div>
+            <div v-if="isRole == 'admin'" class="rese-header" id="admin">
+                <div class="header-content">
+                    <div class="header-title">Rese</div>
+                    <div class="nav-block">
+                        <!-- <router-link v-bind:to="{ name: 'home' }" class="nav-link"
+                        >HOME</router-link
+                    >
+                    <router-link
+                        v-bind:to="{ name: 'reservation' }"
+                        class="nav-link"
+                        >Mypage</router-link
+                    > -->
+                        <p class="nav-link logout" @click="logout()">Logout</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-else-if="!isLogin" class="rese-header">
+            <div class="header-content">
+                <router-link v-bind:to="{ name: 'home' }" class="header-title"
+                    >Rese</router-link
                 >
-                <router-link v-bind:to="{ name: 'register' }" class="nav-link"
-                    >Register</router-link
-                >
-                <router-link v-bind:to="{ name: 'user' }" class="nav-link"
-                    >Login</router-link
-                >
+                <div class="nav-block">
+                    <router-link v-bind:to="{ name: 'home' }" class="nav-link"
+                        >HOME</router-link
+                    >
+                    <router-link
+                        v-bind:to="{ name: 'register' }"
+                        class="nav-link"
+                        >Register</router-link
+                    >
+                    <router-link
+                        v-bind:to="{ name: 'user-login' }"
+                        class="nav-link"
+                        >Login</router-link
+                    >
+                </div>
             </div>
         </div>
     </div>
@@ -40,12 +90,15 @@ export default {
         isLogin() {
             return this.$store.state.isLogin;
         },
+        isRole() {
+            return this.$store.state.role;
+        },
     },
     methods: {
         async logout() {
             await axios.post("/api/logout").then((response) => {
                 this.setLogout();
-                this.$router.push("/login/user");
+                this.$router.push("/login/user-login");
             });
         },
         setLogout() {
@@ -64,6 +117,15 @@ export default {
     left: 0;
     background-color: #2f60ff;
     box-shadow: 0px 2px 4px gray;
+}
+.rese-header#user {
+    background-color: #2f60ff;
+}
+.rese-header#owner {
+    background-color: #552fff;
+}
+.rese-header#admin {
+    background-color: #9a2fff;
 }
 .header-content {
     height: 100%;

@@ -31,4 +31,9 @@ class Reserve extends Model
   {
     return $this->belongsTo('App\Models\Shop');
   }
+
+  public function user()
+  {
+    return $this->belongsTo('App\Models\User');
+  }
 }

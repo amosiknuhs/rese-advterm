@@ -9,10 +9,12 @@ use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\OwnerController;
 
 Route::middleware('auth:user,owner,admin')->group(function () {
     // ユーザー情報取得
     Route::get('/user', [UserController::class, "user"]);
+    Route::get('/owner', [OwnerController::class, "owner"]);
     // マイページで予約情報を取得
     Route::get('/mypage/reserves', [MypageController::class, "getReserves"]);
     // マイページでお気に入り情報を取得
@@ -52,3 +54,6 @@ Route::post('/logout', [AuthController::class, "logout"]);
 Route::get('/', [ShopController::class, "home"]);
 // 飲食店詳細取得
 Route::get('/detail/{shop}', [ShopController::class, "detail"]);
+
+Route::get('/owner/reservations', [OwnerController::class, "getUserReservations"]);
+// Route::get('/owner/shop', [OwnerController::class, "getOwnerShopData"]);

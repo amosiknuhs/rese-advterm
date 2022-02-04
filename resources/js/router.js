@@ -21,6 +21,7 @@ import ConfirmReserve from "./views/ConfirmReserve.vue";
 import Owner from "./views/Owner.vue";
 import Admin from "./views/Admin.vue";
 import UserReservations from "./views/UserReservations.vue";
+import OwnerShop from "./views/OwnerShop.vue";
 
 const router = new Router({
     mode: "history",
@@ -133,15 +134,15 @@ const router = new Router({
             meta: { ownerOnly: true },
             children: [
                 {
-                    path: "",
-                    name: "",
+                    path: "user-reservations",
+                    name: "user-reservations",
                     component: UserReservations,
                 },
-                // {
-                //     path: "",
-                //     name: "",
-                //     component: ,
-                // },
+                {
+                    path: "owner-shop",
+                    name: "owner-shop",
+                    component: OwnerShop,
+                },
             ],
         },
         {

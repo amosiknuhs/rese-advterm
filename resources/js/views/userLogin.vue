@@ -90,6 +90,7 @@ export default {
         },
         setLogin() {
             this.$store.commit("setLogin");
+            this.$store.commit("setRole", "user");
         },
     },
 };

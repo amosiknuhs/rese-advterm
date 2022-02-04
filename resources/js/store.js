@@ -4,14 +4,10 @@ import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
-// const initialState = {
-//     isLogin: false,
-// };
-
 export default new Vuex.Store({
-    // state: initialState,
     state: {
         isLogin: false,
+        role: "",
     },
     getters: {},
     mutations: {
@@ -20,6 +16,10 @@ export default new Vuex.Store({
         },
         setLogout(state) {
             state.isLogin = false;
+            state.role = "";
+        },
+        setRole(state, role) {
+            state.role = role;
         },
     },
     plugins: [createPersistedState()],

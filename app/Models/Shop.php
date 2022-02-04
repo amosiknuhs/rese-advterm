@@ -32,4 +32,8 @@ class Shop extends Model
   {
     return $this->hasMany('App\Models\Evaluation');
   }
+  public function reservations()
+  {
+    return $this->hasMany('App\Models\Reserve');
+  }
 }
