@@ -78,8 +78,7 @@ export default {
                     })
                     .then((response) => {
                         this.setLogin();
-                        // this.$router.push("/mypage/reservation");
-                        this.$router.push("/admin");
+                        this.$router.push("/admin/owner-list");
                     })
                     .catch((err) => {
                         this.emailMessage = err.response.data.errors.email;
@@ -151,7 +150,7 @@ export default {
 .login-form-footer button {
     display: inline-block;
     border: none;
-    background-color: #2f60ff;
+    background-color: #9a2fff;
     color: #ffffff;
     padding: 7px 20px;
     border-radius: 5px;

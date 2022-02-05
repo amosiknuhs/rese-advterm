@@ -16,6 +16,7 @@ class Owner extends Authenticatable
         'name',
         'email',
         'password',
+        'shop_id',
     ];
 
     protected $hidden = [

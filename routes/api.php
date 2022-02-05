@@ -10,6 +10,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\AdminController;
 
 Route::middleware('auth:user')->group(function () {
     // ユーザー情報取得
@@ -34,9 +35,11 @@ Route::middleware('auth:owner')->group(function () {
     Route::post('/shop/edit', [OwnerController::class, "ownerShopUpdate"]);
 });
 
-// Route::middleware('auth:admin')->group(function () {
-//     Route::get('/user', [UserController::class, "user"]);
-// });
+Route::middleware('auth:admin')->group(function () {
+    Route::get('/admin', [AdminController::class, "admin"]);
+    Route::get('/owner-list', [AdminController::class, "getOwnerList"]);
+    Route::post('/owner-register', [AdminController::class, "ownerCreate"]);
+});
 
 // ユーザー登録機能
 Route::post('/register', [UserController::class, "create"]);

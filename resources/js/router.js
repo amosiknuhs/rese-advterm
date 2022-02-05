@@ -19,11 +19,14 @@ import OwnerLogin from "./views/OwnerLogin.vue";
 import AdminLogin from "./views/AdminLogin.vue";
 import ConfirmReserve from "./views/ConfirmReserve.vue";
 import Owner from "./views/Owner.vue";
-import Admin from "./views/Admin.vue";
 import UserReservations from "./views/UserReservations.vue";
 import OwnerShop from "./views/OwnerShop.vue";
 import OwnerShopEdit from "./views/OwnerShopEdit.vue";
 import OwnerDialog from "./views/OwnerDialog.vue";
+import Admin from "./views/Admin.vue";
+import OwnerList from "./views/OwnerList.vue";
+import OwnerRegister from "./views/OwnerRegister.vue";
+import AdminDialog from "./views/AdminDialog.vue";
 
 const router = new Router({
     mode: "history",
@@ -164,6 +167,25 @@ const router = new Router({
             name: "admin",
             component: Admin,
             meta: { adminOnly: true },
+            children: [
+                {
+                    path: "owner-list",
+                    name: "owner-list",
+                    component: OwnerList,
+                    children: [
+                        {
+                            path: "owner-register",
+                            name: "owner-register",
+                            component: OwnerRegister,
+                        },
+                        {
+                            path: "complete",
+                            name: "admin-dialog",
+                            component: AdminDialog,
+                        },
+                    ],
+                },
+            ],
         },
     ],
     // 画面遷移時のスクロール位置制御
