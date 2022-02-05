@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div class="list-header">
+            <p class="list-title">予約一覧</p>
+        </div>
         <div class="reserve-content">
             <table class="reserve-table">
                 <tr>
@@ -21,6 +24,9 @@
                     <td>{{ reserve.number | numUnit }}</td>
                 </tr>
             </table>
+        </div>
+        <div v-if="shopData.reservations.length == 0" class="noReserve">
+            ※現在予約はありません
         </div>
         <!-- <router-view :process-type="processType"></router-view> -->
     </div>
@@ -50,6 +56,24 @@ export default {
 };
 </script>
 <style scoped>
+.list-header {
+    height: 70px;
+    width: 100%;
+    background-color: #552fff;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 30px;
+}
+.list-title {
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 70px;
+    color: #fff;
+    padding-left: 30px;
+}
 .reserve-content {
     display: flex;
     justify-content: center;
@@ -59,12 +83,17 @@ export default {
     text-align: center;
 }
 .reserve-table th {
-    background-color: #552fff;
+    background-color: #afafaf;
     color: #fff;
     padding: 20px 0;
 }
-.reserve-table td {
-    border-bottom: 1px solid #d1d5db;
+.reserve-table td:not(:last-of-type) {
     padding: 20px 0;
+}
+.reserve-table tr:not(:last-of-type) {
+    border-bottom: 1px solid #d1d5db;
+}
+.noReserve {
+    padding: 50px 30px;
 }
 </style>

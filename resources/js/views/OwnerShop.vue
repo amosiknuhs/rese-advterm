@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div class="list-header">
+            <p class="list-title">店舗情報</p>
+        </div>
         <div class="shop-img">
             <img :src="shopData.img_url" alt="" />
         </div>
@@ -50,6 +53,24 @@ export default {
 </script>
 
 <style scoped>
+.list-header {
+    height: 70px;
+    width: 100%;
+    background-color: #552fff;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 30px;
+}
+.list-title {
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 70px;
+    color: #fff;
+    padding-left: 30px;
+}
 .shop-edit > div:not(.shop-img, .shop-genre, .footer) {
     padding: 30px 20px;
     border-bottom: 1px solid #d1d5db;

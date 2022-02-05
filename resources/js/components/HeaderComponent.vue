@@ -27,14 +27,16 @@
                 <div class="header-content">
                     <div class="header-title">Rese</div>
                     <div class="nav-block">
-                        <!-- <router-link v-bind:to="{ name: 'home' }" class="nav-link"
-                        >HOME</router-link
-                    >
-                    <router-link
-                        v-bind:to="{ name: 'reservation' }"
-                        class="nav-link"
-                        >Mypage</router-link
-                    > -->
+                        <router-link
+                            v-bind:to="{ name: 'user-reservations' }"
+                            class="nav-link"
+                            >Reservation</router-link
+                        >
+                        <router-link
+                            v-bind:to="{ name: 'owner-shop' }"
+                            class="nav-link"
+                            >ShopData</router-link
+                        >
                         <p class="nav-link logout" @click="logout()">Logout</p>
                     </div>
                 </div>
