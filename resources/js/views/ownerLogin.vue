@@ -150,7 +150,7 @@ export default {
 .login-form-footer button {
     display: inline-block;
     border: none;
-    background-color: #2f60ff;
+    background-color: #552fff;
     color: #ffffff;
     padding: 7px 20px;
     border-radius: 5px;

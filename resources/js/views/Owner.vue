@@ -1,6 +1,6 @@
 <template>
     <div class="mypage-content">
-        <p class="owner-name">{{ owner.name }}さん</p>
+        <p class="owner-name">{{ owner.name }}用ページ</p>
         <div class="mypage-title">
             <router-link
                 v-bind:to="{ name: 'user-reservations' }"
