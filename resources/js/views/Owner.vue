@@ -4,6 +4,7 @@
         <router-view
             class="owner-content"
             :shop-data="owner.shop"
+            v-if="isShow"
         ></router-view>
     </div>
 </template>
@@ -13,6 +14,7 @@ export default {
     data: function () {
         return {
             owner: "",
+            isShow: false,
         };
     },
     methods: {
@@ -24,6 +26,9 @@ export default {
     },
     mounted() {
         this.getOwnerData();
+    },
+    beforeUpdate() {
+        this.isShow = true;
     },
     beforeRouteUpdate(to, from, next) {
         if (from.name == "owner-dialog") {
