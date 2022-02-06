@@ -25,8 +25,12 @@ import OwnerShopEdit from "./views/OwnerShopEdit.vue";
 import OwnerDialog from "./views/OwnerDialog.vue";
 import Admin from "./views/Admin.vue";
 import OwnerList from "./views/OwnerList.vue";
+import UserList from "./views/UserList.vue";
+import ShopList from "./views/ShopList.vue";
 import OwnerRegister from "./views/OwnerRegister.vue";
+import ShopRegister from "./views/ShopRegister.vue";
 import AdminDialog from "./views/AdminDialog.vue";
+import Email from "./views/Email.vue";
 
 const router = new Router({
     mode: "history",
@@ -180,10 +184,37 @@ const router = new Router({
                         },
                         {
                             path: "complete",
-                            name: "admin-dialog",
+                            name: "owner-register-dialog",
                             component: AdminDialog,
                         },
                     ],
+                },
+                {
+                    path: "user-list",
+                    name: "user-list",
+                    component: UserList,
+                },
+                {
+                    path: "shop-list",
+                    name: "shop-list",
+                    component: ShopList,
+                    children: [
+                        {
+                            path: "shop-register",
+                            name: "shop-register",
+                            component: ShopRegister,
+                        },
+                        {
+                            path: "complete",
+                            name: "shop-register-dialog",
+                            component: AdminDialog,
+                        },
+                    ],
+                },
+                {
+                    path: "email",
+                    name: "email",
+                    component: Email,
                 },
             ],
         },

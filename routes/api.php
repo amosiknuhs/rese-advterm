@@ -38,6 +38,8 @@ Route::middleware('auth:owner')->group(function () {
 Route::middleware('auth:admin')->group(function () {
     Route::get('/admin', [AdminController::class, "admin"]);
     Route::get('/owner-list', [AdminController::class, "getOwnerList"]);
+    Route::get('/user-list', [AdminController::class, "getUserList"]);
+    Route::get('/shop-list', [AdminController::class, "getShopList"]);
     Route::post('/owner-register', [AdminController::class, "ownerCreate"]);
 });
 
