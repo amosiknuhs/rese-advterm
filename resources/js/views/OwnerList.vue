@@ -12,17 +12,24 @@
             </router-link>
         </div>
         <table class="owners-table">
+            <colgroup span="1" class="owner-id"></colgroup>
+            <colgroup span="1" class="owner-name"></colgroup>
+            <colgroup span="1" class="owner-email"></colgroup>
+            <colgroup span="1" class="owner-shop-name"></colgroup>
+            <colgroup span="1" class="owner-button"></colgroup>
             <tr>
                 <th>オーナーID</th>
                 <th>名前</th>
                 <th>メールアドレス</th>
                 <th>店舗名</th>
+                <th></th>
             </tr>
             <tr class="" v-for="(owner, index) in owners" :key="index">
                 <td>{{ owner.id }}</td>
                 <td>{{ owner.name }}</td>
                 <td>{{ owner.email }}</td>
                 <td>{{ owner.shop.name }}</td>
+                <td>削除・変更ボタン</td>
             </tr>
         </table>
         <router-view></router-view>
@@ -46,7 +53,7 @@ export default {
         this.getOwnerList();
     },
     beforeRouteUpdate(to, from, next) {
-        if (from.name == "admin-dialog") {
+        if (from.name == "owner-register-dialog") {
             this.getOwnerList();
             next();
         }
@@ -99,10 +106,25 @@ export default {
     color: #fff;
     padding: 20px 0;
 }
-.owners-table td:not(:last-of-type) {
+.owners-table td {
     padding: 20px 0;
 }
 .owners-table tr:not(:last-of-type) {
     border-bottom: 1px solid #d1d5db;
+}
+.owner-id {
+    width: 10%;
+}
+.owner-name {
+    width: 20%;
+}
+.owner-email {
+    width: 20%;
+}
+.owner-shop-name {
+    width: 20%;
+}
+.owner-button {
+    width: 30%;
 }
 </style>
