@@ -46,14 +46,14 @@
                     <div class="header-title">Rese</div>
                     <div class="nav-block">
                         <router-link
-                            v-bind:to="{ name: 'owner-list' }"
-                            class="nav-link"
-                            >ShopList</router-link
-                        >
-                        <router-link
-                            v-bind:to="{ name: 'owner-list' }"
+                            v-bind:to="{ name: 'user-list' }"
                             class="nav-link"
                             >UserList</router-link
+                        >
+                        <router-link
+                            v-bind:to="{ name: 'shop-list' }"
+                            class="nav-link"
+                            >ShopList</router-link
                         >
                         <router-link
                             v-bind:to="{ name: 'owner-list' }"
@@ -61,7 +61,7 @@
                             >OwnerList</router-link
                         >
                         <router-link
-                            v-bind:to="{ name: 'owner-list' }"
+                            v-bind:to="{ name: 'email' }"
                             class="nav-link"
                             >Email</router-link
                         >
