@@ -72,11 +72,11 @@ export default {
     padding-left: 30px;
 }
 .shop-edit > div:not(.shop-img, .shop-genre, .footer) {
-    padding: 30px 20px;
+    padding: 30px 50px;
     border-bottom: 1px solid #d1d5db;
 }
 .shop-genre {
-    padding: 30px 20px;
+    padding: 30px 50px;
 }
 .shop-edit > div > p:first-of-type {
     font-weight: bold;

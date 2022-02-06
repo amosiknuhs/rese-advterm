@@ -5,12 +5,19 @@
         </div>
         <div class="reserve-content">
             <table class="reserve-table">
+                <colgroup span="1" class="reserve-id"></colgroup>
+                <colgroup span="1" class="reserve-name"></colgroup>
+                <colgroup span="1" class="reserve-date"></colgroup>
+                <colgroup span="1" class="reserve-time"></colgroup>
+                <colgroup span="1" class="reserve-number"></colgroup>
+                <colgroup span="1" class="reserve-button"></colgroup>
                 <tr>
                     <th>予約番号</th>
                     <th>予約者名</th>
                     <th>来店日</th>
                     <th>来店時間</th>
                     <th>来店人数</th>
+                    <th></th>
                 </tr>
                 <tr
                     class=""
@@ -22,6 +29,7 @@
                     <td>{{ reserve.date }}</td>
                     <td>{{ reserve.time | jsonTime }}</td>
                     <td>{{ reserve.number | numUnit }}</td>
+                    <td>ボタン置く</td>
                 </tr>
             </table>
         </div>
@@ -95,5 +103,23 @@ export default {
 }
 .noReserve {
     padding: 50px 30px;
+}
+.reserve-id {
+    width: 10%;
+}
+.reserve-name {
+    width: 20%;
+}
+.reserve-date {
+    width: 20%;
+}
+.reserve-time {
+    width: 15%;
+}
+.reserve-number {
+    width: 15%;
+}
+.reserve-button {
+    width: 20%;
 }
 </style>
