@@ -3,13 +3,13 @@
         <div class="list-header">
             <p class="list-title">Eメール送信</p>
         </div>
-        <validation-observer v-slot="{ invalid }">
+        <validation-observer ref="observer" v-slot="{ invalid }">
             <div class="email-form">
                 <form @submit.prevent="sendEmail">
                     <validation-provider
                         rules="selectRequired"
                         v-slot="{ errors }"
-                        mode="eager"
+                        mode="lazy"
                     >
                         <label for="user_email">宛先：</label>
                         <select
@@ -36,7 +36,6 @@
                                 </option>
                             </optgroup>
                         </select>
-
                         <div class="error">
                             <span
                                 class="error-message"
@@ -118,7 +117,6 @@ export default {
                     subject: this.subject,
                     content: this.content,
                 })
-                // .then((response) => {})
                 .catch((err) => {
                     this.userEmailMessage = err.response.data.errors.user_email;
                     this.subjectMessage = err.response.data.errors.subject;
@@ -139,6 +137,17 @@ export default {
     mounted() {
         this.getUserList();
         this.getOwnerList();
+    },
+    beforeRouteUpdate(to, from, next) {
+        if (from.name == "email-dialog") {
+            this.user_email = "";
+            this.subject = "";
+            this.content = "";
+            // フォームをクリアした時にVeeValidateが発火しないように制御
+            this.$refs.observer.reset();
+            next();
+        }
+        next();
     },
 };
 </script>
