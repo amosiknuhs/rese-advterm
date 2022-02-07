@@ -5,74 +5,93 @@
         </div>
         <validation-observer v-slot="{ invalid }">
             <div class="email-form">
-                <form @submit.prevent="emailUser">
+                <form @submit.prevent="sendEmail">
                     <validation-provider
-                        rules="required|max:128"
+                        rules="selectRequired"
                         v-slot="{ errors }"
-                        class="name-form"
                         mode="eager"
                     >
+                        <label for="user_email">宛先：</label>
+                        <select
+                            name="宛先"
+                            id="user_email"
+                            v-model="user_email"
+                        >
+                            <optgroup label="ユーザー">
+                                <option
+                                    v-for="(user, index) in userList"
+                                    :key="index"
+                                    :value="user.email"
+                                >
+                                    {{ user.name }}
+                                </option>
+                            </optgroup>
+                            <optgroup label="店舗オーナー">
+                                <option
+                                    v-for="(owner, index) in ownerList"
+                                    :key="index"
+                                    :value="owner.email"
+                                >
+                                    {{ owner.name }}
+                                </option>
+                            </optgroup>
+                        </select>
+
+                        <div class="error">
+                            <span
+                                class="error-message"
+                                v-if="userEmailMessage && !errors[0]"
+                                >{{ userEmailMessage[0] }}</span
+                            >
+                            <span class="error-message">{{ errors[0] }}</span>
+                        </div>
+                    </validation-provider>
+                    <validation-provider
+                        rules="required|max:50"
+                        v-slot="{ errors }"
+                        mode="eager"
+                    >
+                        <label for="subject">件名：</label>
                         <input
-                            name="氏名"
                             type="text"
-                            v-model="name"
-                            placeholder="Username"
+                            name="件名"
+                            id="subject"
+                            v-model="subject"
                         />
-                        <div class="name-error">
+                        <div class="error">
                             <span
                                 class="error-message"
-                                v-if="nameMessage && !errors[0]"
-                                >{{ nameMessage[0] }}</span
+                                v-if="subjectMessage && !errors[0]"
+                                >{{ subjectMessage[0] }}</span
                             >
                             <span class="error-message">{{ errors[0] }}</span>
                         </div>
                     </validation-provider>
                     <validation-provider
-                        rules="required|email|max:128"
+                        rules="required"
                         v-slot="{ errors }"
-                        class="email-to"
                         mode="eager"
                     >
-                        <input
-                            name="メールアドレス"
-                            type="text"
-                            v-model="email"
-                            placeholder="Email"
-                        />
-                        <div class="email-error">
+                        <label for="content">本文：</label>
+                        <textarea
+                            name="本文"
+                            id="content"
+                            v-model="content"
+                        ></textarea>
+                        <div class="error">
                             <span
                                 class="error-message"
-                                v-if="emailMessage && !errors[0]"
-                                >{{ emailMessage[0] }}</span
+                                v-if="contentMessage && !errors[0]"
+                                >{{ contentMessage[0] }}</span
                             >
                             <span class="error-message">{{ errors[0] }}</span>
                         </div>
                     </validation-provider>
-                    <validation-provider
-                        rules="required|alpha_num|min:8|max:128"
-                        v-slot="{ errors }"
-                        class="pass-form"
-                        mode="eager"
-                    >
-                        <input
-                            name="パスワード"
-                            type="password"
-                            v-model="password"
-                            placeholder="Password"
-                        />
-                        <div class="pass-error">
-                            <span
-                                class="error-message"
-                                v-if="passMessage && !errors[0]"
-                                >{{ passMessage[0] }}</span
-                            >
-                            <span class="error-message">{{ errors[0] }}</span>
-                        </div>
-                    </validation-provider>
-                    <button type="submit" :disabled="invalid">登録</button>
+                    <button type="submit" :disabled="invalid">送信</button>
                 </form>
             </div>
         </validation-observer>
+        <router-view></router-view>
     </div>
 </template>
 
@@ -80,31 +99,46 @@
 export default {
     data: function () {
         return {
-            name: "",
-            email: "",
-            password: "",
-            nameMessage: "",
-            emailMessage: "",
-            passMessage: "",
+            user_email: "",
+            subject: "",
+            content: "",
+            userEmailMessage: "",
+            subjectMessage: "",
+            contentMessage: "",
+            userList: "",
+            ownerList: "",
         };
     },
     methods: {
-        emailUser() {
-            axios
+        async sendEmail() {
+            this.$router.push("/admin/email/complete");
+            await axios
                 .post("/api/email", {
-                    name: this.name,
-                    email: this.email,
-                    password: this.password,
+                    user_email: this.user_email,
+                    subject: this.subject,
+                    content: this.content,
                 })
-                .then((response) => {
-                    this.$router.push("/thanks");
-                })
+                // .then((response) => {})
                 .catch((err) => {
-                    this.nameMessage = err.response.data.errors.name;
-                    this.emailMessage = err.response.data.errors.email;
-                    this.passMessage = err.response.data.errors.password;
+                    this.userEmailMessage = err.response.data.errors.user_email;
+                    this.subjectMessage = err.response.data.errors.subject;
+                    this.contentMessage = err.response.data.errors.content;
                 });
         },
+        async getUserList() {
+            await axios.get("/api/user-list").then((response) => {
+                this.userList = response.data;
+            });
+        },
+        async getOwnerList() {
+            await axios.get("/api/owner-list").then((response) => {
+                this.ownerList = response.data;
+            });
+        },
+    },
+    mounted() {
+        this.getUserList();
+        this.getOwnerList();
     },
 };
 </script>
@@ -134,40 +168,28 @@ export default {
     border-radius: 0 0 10px 10px;
     overflow: hidden;
 }
+.email-form label {
+    color: #9a2fff;
+    font-weight: bold;
+}
+.email-form select,
 .email-form input {
-    width: 89%;
+    width: 94%;
     height: 35px;
     margin-left: 10px;
     border: none;
     outline: 0;
     border-bottom: 1px solid #d1d5db;
 }
-.name-form::before {
-    content: "";
-    background-image: url("/img/person.svg");
-    display: inline-block;
-    height: 35px;
-    width: 35px;
-    vertical-align: middle;
-    background-size: contain;
-}
-.email-to::before {
-    content: "";
-    background-image: url("/img/email.svg");
-    display: inline-block;
-    height: 35px;
-    width: 35px;
-    vertical-align: middle;
-    background-size: contain;
-}
-.pass-form::before {
-    content: "";
-    background-image: url("/img/lock.svg");
-    display: inline-block;
-    height: 35px;
-    width: 35px;
-    vertical-align: middle;
-    background-size: contain;
+.email-form textarea {
+    height: 100px;
+    width: 94%;
+    vertical-align: top;
+    outline: 0;
+    border: 1px solid #d1d5db;
+    resize: none;
+    margin-left: 10px;
+    border-radius: 5px;
 }
 .email-form button {
     display: block;
@@ -184,14 +206,12 @@ export default {
     background-color: #cfcfcf;
     color: #999999;
 }
-.name-error,
-.email-error,
-.pass-error {
+.error {
     height: 20px;
 }
 .error-message {
     color: red;
     display: inline-block;
-    padding-left: 50px;
+    padding-left: 65px;
 }
 </style>

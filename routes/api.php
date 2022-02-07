@@ -41,6 +41,7 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('/user-list', [AdminController::class, "getUserList"]);
     Route::get('/shop-list', [AdminController::class, "getShopList"]);
     Route::post('/owner-register', [AdminController::class, "ownerCreate"]);
+    Route::post('/email', [AdminController::class, "sendMail"]);
 });
 
 // ユーザー登録機能
