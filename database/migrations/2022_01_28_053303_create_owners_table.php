@@ -18,7 +18,6 @@ class CreateOwnersTable extends Migration
             $table->foreignId('shop_id')->constrained('shops')->unique();
             $table->string('name');
             $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
