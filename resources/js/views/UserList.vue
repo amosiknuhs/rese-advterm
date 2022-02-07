@@ -11,7 +11,7 @@
                 <button>ユーザー新規登録</button>
             </router-link> -->
         </div>
-        <table class="owners-table">
+        <table class="user-table">
             <colgroup span="1" class="user-id"></colgroup>
             <colgroup span="1" class="user-name"></colgroup>
             <colgroup span="1" class="user-email"></colgroup>
@@ -91,22 +91,22 @@ export default {
     color: #fff;
     padding-left: 30px;
 }
-.owners-table {
+.user-table {
     width: 100%;
     text-align: center;
     background-color: #fff;
     border-radius: 0 0 10px 10px;
     overflow: hidden;
 }
-.owners-table th {
+.user-table th {
     background-color: #afafaf;
     color: #fff;
     padding: 20px 0;
 }
-.owners-table td {
+.user-table td {
     padding: 20px 0;
 }
-.owners-table tr:not(:last-of-type) {
+.user-table tr:not(:last-of-type) {
     border-bottom: 1px solid #d1d5db;
 }
 .user-id {
