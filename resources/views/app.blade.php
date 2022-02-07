@@ -16,10 +16,6 @@
 <body>
     <div id="app">
         <header-component></header-component>
-        {{-- @if (Auth::guard('admin')->check())
-        @elseif (Auth::guard('owner')->check())
-        @else
-        @endif --}}
         <router-view></router-view>
     </div>
     </div>
