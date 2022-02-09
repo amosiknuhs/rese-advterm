@@ -7,6 +7,8 @@ use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 // use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
+
 
 
 class UserController extends Controller
@@ -20,6 +22,9 @@ class UserController extends Controller
     {
         $user = $request->all();
         $user['password'] = Hash::make($user['password']);
-        User::create($user);
+        $created = User::create($user);
+        event(new Registered($created));
+        // User::create($user);
+        // event(new Registered(User::where('email', $user['email'])->first()));
     }
 }

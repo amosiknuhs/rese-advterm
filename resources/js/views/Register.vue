@@ -98,15 +98,15 @@ export default {
     },
     methods: {
         registerUser() {
+            this.$router.push("/thanks");
             axios
                 .post("/api/register", {
                     name: this.name,
                     email: this.email,
                     password: this.password,
                 })
-                .then((response) => {
-                    this.$router.push("/thanks");
-                })
+                // .then((response) => {
+                // })
                 .catch((err) => {
                     this.nameMessage = err.response.data.errors.name;
                     this.emailMessage = err.response.data.errors.email;
