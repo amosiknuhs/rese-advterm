@@ -97,7 +97,7 @@ export default {
                     number: this.number,
                 })
                 .then((response) => {
-                    this.$router.push("/mypage/reservation/dialog");
+                    this.$router.push("/rese/mypage/reservation/dialog");
                 });
         },
         setToday() {

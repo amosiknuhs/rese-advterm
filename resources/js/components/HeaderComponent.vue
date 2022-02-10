@@ -112,7 +112,7 @@ export default {
         async logout() {
             await axios.post("/api/logout").then((response) => {
                 this.setLogout();
-                this.$router.push("/login/user-login");
+                this.$router.push("/rese/login/user-login");
             });
         },
         setLogout() {

@@ -224,7 +224,7 @@ export default {
                     number: this.number,
                 })
                 .then((response) => {
-                    this.$router.push("/done");
+                    this.$router.push("/rese/done");
                 })
                 .catch((err) => {
                     if (err.response.status == 422) {

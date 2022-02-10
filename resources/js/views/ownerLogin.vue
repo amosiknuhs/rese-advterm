@@ -78,7 +78,7 @@ export default {
                     })
                     .then((response) => {
                         this.setLogin();
-                        this.$router.push("/owner/user-reservations");
+                        this.$router.push("/rese/owner/user-reservations");
                     })
                     .catch((err) => {
                         this.emailMessage = err.response.data.errors.email;

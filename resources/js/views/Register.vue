@@ -98,7 +98,7 @@ export default {
     },
     methods: {
         registerUser() {
-            this.$router.push("/thanks");
+            this.$router.push("/rese/thanks");
             axios
                 .post("/api/register", {
                     name: this.name,

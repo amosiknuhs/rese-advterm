@@ -72,7 +72,7 @@ export default {
                     genre_id: this.genre,
                 })
                 .then((response) => {
-                    this.$router.push("/owner/shop/complete");
+                    this.$router.push("/rese/owner/shop/complete");
                 });
         },
         leaveWithAnimation() {

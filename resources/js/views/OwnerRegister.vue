@@ -145,7 +145,7 @@ export default {
                     shop_id: this.shop_id,
                 })
                 .then((response) => {
-                    this.$router.push("/admin/owner-list/complete");
+                    this.$router.push("/rese/admin/owner-list/complete");
                 })
                 .catch((err) => {
                     this.nameMessage = err.response.data.errors.name;

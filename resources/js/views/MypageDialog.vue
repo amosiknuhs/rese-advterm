@@ -34,7 +34,7 @@ export default {
             this.fadeAnimation = "animate__animated animate__fadeOut";
             this.zoomAnimation = "animate__animated animate__zoomOut";
             setTimeout(() => {
-                this.$router.push("/mypage/reservation");
+                this.$router.push("/rese/mypage/reservation");
             }, 300);
         },
     },

@@ -22,7 +22,7 @@ export default {
             this.fadeAnimation = "animate__animated animate__fadeOut";
             this.zoomAnimation = "animate__animated animate__zoomOut";
             setTimeout(() => {
-                this.$router.push("/admin/owner-list");
+                this.$router.push("/rese/admin/owner-list");
             }, 300);
         },
     },

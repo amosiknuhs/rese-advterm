@@ -49,7 +49,7 @@ export default {
                     comment: this.comment,
                 })
                 .then((response) => {
-                    this.$router.push("/mypage/reservation/dialog");
+                    this.$router.push("/rese/mypage/reservation/dialog");
                 })
                 .catch((err) => {
                     this.errorMessage = err.response.data.errors.comment;

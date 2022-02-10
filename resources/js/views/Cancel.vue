@@ -24,7 +24,7 @@ export default {
     methods: {
         async cancelRsv(reserveId) {
             await axios.post("/api/cancel", { reserveId }).then((response) => {
-                this.$router.push("/mypage/reservation/dialog");
+                this.$router.push("/rese/mypage/reservation/dialog");
             });
         },
         leaveWithAnimation() {

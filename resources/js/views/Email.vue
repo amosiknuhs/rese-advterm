@@ -110,7 +110,7 @@ export default {
     },
     methods: {
         async sendEmail() {
-            this.$router.push("/admin/email/complete");
+            this.$router.push("/rese/admin/email/complete");
             await axios
                 .post("/api/email", {
                     user_email: this.user_email,

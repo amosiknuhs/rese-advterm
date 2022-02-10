@@ -7,6 +7,7 @@ import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Mypage from "./views/Mypage.vue";
 import Thanks from "./views/Thanks.vue";
+import ThanksMailVerify from "./views/ThanksMailVerify.vue";
 import Done from "./views/Done.vue";
 import ChangeReserve from "./views/ChangeReserve.vue";
 import Evaluation from "./views/Evaluation.vue";
@@ -42,12 +43,12 @@ const router = new Router({
             component: NotFound,
         },
         {
-            path: "/",
+            path: "/rese/home",
             name: "home",
             component: Home,
         },
         {
-            path: "/detail/:shop_id",
+            path: "/rese/detail/:shop_id",
             name: "detail",
             component: Detail,
             children: [
@@ -59,7 +60,7 @@ const router = new Router({
             ],
         },
         {
-            path: "/login",
+            path: "/rese/login",
             name: "login",
             component: Login,
             meta: { guestOnly: true },
@@ -82,13 +83,13 @@ const router = new Router({
             ],
         },
         {
-            path: "/register",
+            path: "/rese/register",
             name: "register",
             component: Register,
             meta: { guestOnly: true },
         },
         {
-            path: "/mypage",
+            path: "/rese/mypage",
             name: "mypage",
             component: Mypage,
             meta: { authOnly: true },
@@ -128,17 +129,22 @@ const router = new Router({
             ],
         },
         {
-            path: "/thanks",
+            path: "/rese/thanks",
             name: "thanks",
             component: Thanks,
         },
         {
-            path: "/done",
+            path: "/rese/thanks-mail-verify",
+            name: "thanks-mail-verify",
+            component: ThanksMailVerify,
+        },
+        {
+            path: "/rese/done",
             name: "done",
             component: Done,
         },
         {
-            path: "/owner",
+            path: "/rese/owner",
             name: "owner",
             component: Owner,
             meta: { ownerOnly: true },
@@ -168,7 +174,7 @@ const router = new Router({
             ],
         },
         {
-            path: "/admin",
+            path: "/rese/admin",
             name: "admin",
             component: Admin,
             meta: { adminOnly: true },
@@ -239,13 +245,13 @@ function isLoggedIn() {
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.authOnly)) {
         if (!isLoggedIn()) {
-            next("/login/user-login");
+            next("/rese/login/user-login");
         } else {
             next();
         }
     } else if (to.matched.some((record) => record.meta.guestOnly)) {
         if (isLoggedIn()) {
-            next("/mypage/reservation");
+            next("/rese/mypage/reservation");
         } else {
             next();
         }

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AuthController;
@@ -56,18 +55,3 @@ Route::post('/logout', [AuthController::class, "logout"]);
 Route::get('/', [ShopController::class, "home"]);
 // 飲食店詳細取得
 Route::get('/detail/{shop}', [ShopController::class, "detail"]);
-
-// ユーザー登録時メール確認機能
-
-// 新規登録後のメール確認依頼画面（不要予定）
-// Route::get('/email/verify', function () {
-//     return view('auth.verify-email');
-// })->middleware('auth')->name('verification.notice');
-
-// 送られてきたメール確認リンクをクリックした後の挙動
-// use Illuminate\Foundation\Auth\EmailVerificationRequest;
-
-// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-//     $request->fulfill();
-//     // return redirect('/');
-// })->middleware(['auth', 'signed'])->name('verification.verify');
