@@ -1,13 +1,16 @@
 <template>
     <div class="thanks-content">
         <form class="thanks-message">
-            <p>仮会員登録ありがとうございます</p>
-            <span
-                >ご入力いただいたメールアドレスに、"メールアドレスの確認"メールを送信いたします。</span
-            >
-            <span
-                >ログイン後、メール本文中の"メールアドレスの確認"のリンクをクリックし、アカウント<br />の本登録を完了してください。</span
-            >
+            <p>本会員登録をお願いいたします</p>
+            <div>
+                <span
+                    >ご入力いただいたメールアドレスに、"メールアドレスの確認"メールを送信しております。</span
+                >
+                <span
+                    >ログインした上で、メール本文中の"メールアドレスの確認"のリンクをクリックし、</span
+                >
+                <span>アカウントの本登録を完了してください。</span>
+            </div>
             <router-link v-bind:to="{ name: 'user-login' }" class="toLogin"
                 >ログインする</router-link
             >
@@ -33,12 +36,16 @@
     flex-flow: column;
     justify-content: center;
 }
+.thanks-message div {
+    align-items: left;
+}
 .thanks-message p {
     font-size: 25px;
     margin-bottom: 40px;
 }
 .thanks-message span {
-    display: inline-block;
+    display: block;
+    width: 100%;
 }
 .thanks-message span:last-of-type {
     margin-bottom: 40px;

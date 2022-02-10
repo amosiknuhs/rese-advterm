@@ -7,8 +7,8 @@ Route::get('/rese/{any}', function () {
 })->where('any', '.*');
 
 // メール認証機能実装に伴う設定
-Route::get('/rese/login/user-login', function () {
-    return redirect('/rese/login/user-login');
+Route::get('/rese/verify-notice', function () {
+    return redirect('/rese/verify-notice');
 })->name('login');
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;

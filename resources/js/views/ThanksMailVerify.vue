@@ -3,8 +3,8 @@
         <form class="thanks-message">
             <p>メール認証が成功しました</p>
             <p>本会員登録ありがとうございます</p>
-            <router-link v-bind:to="{ name: 'user-login' }" class="toLogin"
-                >ログインする</router-link
+            <router-link v-bind:to="{ name: 'home' }" class="to-home"
+                >HOMEへ戻る</router-link
             >
         </form>
     </div>
@@ -32,7 +32,7 @@
 .thanks-message p {
     font-size: 25px;
 }
-.toLogin {
+.to-home {
     text-decoration: none;
     background-color: #2f60ff;
     color: #ffffff;

@@ -33,6 +33,7 @@ import OwnerRegisterDialog from "./views/OwnerRegisterDialog.vue";
 import ShopRegister from "./views/ShopRegister.vue";
 import Email from "./views/Email.vue";
 import EmailDialog from "./views/EmailDialog.vue";
+import VerifyNotice from "./views/VerifyNotice.vue";
 
 const router = new Router({
     mode: "history",
@@ -137,6 +138,11 @@ const router = new Router({
             path: "/rese/thanks-mail-verify",
             name: "thanks-mail-verify",
             component: ThanksMailVerify,
+        },
+        {
+            path: "/rese/verify-notice",
+            name: "verify-notice",
+            component: VerifyNotice,
         },
         {
             path: "/rese/done",
