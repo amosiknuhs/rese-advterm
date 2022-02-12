@@ -185,4 +185,13 @@ export default {
 .logout {
     cursor: pointer;
 }
+/* ------- タブレットデザイン -------- */
+@media screen and (max-width: 768px) {
+    .header-content {
+        max-width: 700px;
+    }
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+}
 </style>

@@ -120,7 +120,7 @@ export default {
 }
 .reserve-card {
     height: 300px;
-    width: 70%;
+    width: 80%;
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -153,7 +153,7 @@ export default {
     gap: 0 30px;
 }
 .rsvCard-img {
-    width: 300px;
+    width: 35%;
     height: 230px;
     overflow: hidden;
 }
@@ -196,5 +196,20 @@ export default {
     cursor: pointer;
     width: 120px;
     margin-right: 30px;
+}
+/* ------- タブレットデザイン -------- */
+@media screen and (max-width: 768px) {
+    .reserve-button {
+        width: 100px;
+        margin-left: 0;
+    }
+    .reserve-button button {
+        width: 100px;
+        padding: 7px 10px;
+        margin-right: 10px;
+    }
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
 }
 </style>

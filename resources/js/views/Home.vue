@@ -236,6 +236,7 @@ export default {
 
 .shop-list {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px 20px;
 }
@@ -309,5 +310,20 @@ export default {
 }
 >>> .vue-star-rating-rating-text {
     font-size: 14px;
+}
+/* ------- タブレットデザイン -------- */
+@media screen and (max-width: 768px) {
+    .search-box {
+        max-width: 700px;
+    }
+    .search-name {
+        width: 40vw;
+    }
+    .card {
+        width: 48%;
+    }
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
 }
 </style>

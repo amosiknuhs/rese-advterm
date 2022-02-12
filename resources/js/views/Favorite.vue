@@ -95,6 +95,7 @@ export default {
 <style scoped>
 .favorite-content {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 20px 20px;
 }
@@ -161,5 +162,14 @@ export default {
 }
 >>> .vue-star-rating-rating-text {
     font-size: 14px;
+}
+/* ------- タブレットデザイン -------- */
+@media screen and (max-width: 768px) {
+    .favorite-card {
+        width: 45%;
+    }
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
 }
 </style>

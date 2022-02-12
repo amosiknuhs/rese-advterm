@@ -2,6 +2,120 @@
     <div>
         <p class="shop-name">{{ shopDetail.name }}</p>
         <hr />
+        <div class="reserve-box">
+            <validation-observer v-slot="{ invalid }">
+                <div class="reserve-form">
+                    <p class="form-title">ネット予約</p>
+                    <div class="reserve-content">
+                        <validation-provider
+                            rules="selectRequired"
+                            v-slot="{ errors }"
+                            class="reserve-date"
+                            tag="div"
+                        >
+                            <label for="date">来店日：</label>
+                            <input
+                                name="来店日"
+                                id="date"
+                                type="date"
+                                :min="minDate"
+                                v-model="date"
+                            />
+                            <div class="error-message">
+                                <span>{{ errors[0] }}</span>
+                                <span v-if="dateMessage && !errors[0]">{{
+                                    dateMessage[0]
+                                }}</span>
+                            </div>
+                        </validation-provider>
+                        <validation-provider
+                            rules="selectRequired"
+                            v-slot="{ errors }"
+                            class="reserve-time"
+                            tag="div"
+                        >
+                            <label for="time">時間：</label>
+                            <select v-model="time" name="時間" id="time">
+                                <option disabled selected value>
+                                    予約時間を選択してください
+                                </option>
+                                <option value="11:00">11:00</option>
+                                <option value="11:30">11:30</option>
+                                <option value="12:00">12:00</option>
+                                <option value="12:30">12:30</option>
+                                <option value="13:00">13:00</option>
+                                <option value="13:30">13:30</option>
+                                <option value="14:00">14:00</option>
+                                <option value="14:30">14:30</option>
+                                <option value="15:00">15:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="17:30">17:30</option>
+                                <option value="18:00">18:00</option>
+                                <option value="18:30">18:30</option>
+                                <option value="19:00">19:00</option>
+                                <option value="19:30">19:30</option>
+                                <option value="20:00">20:00</option>
+                                <option value="20:30">20:30</option>
+                                <option value="21:00">21:00</option>
+                                <option value="21:30">21:30</option>
+                                <option value="22:00">22:00</option>
+                                <option value="22:30">22:30</option>
+                            </select>
+                            <div class="error-message">
+                                <span>{{ errors[0] }}</span>
+                                <span v-if="timeMessage && !errors[0]">{{
+                                    timeMessage[0]
+                                }}</span>
+                            </div>
+                        </validation-provider>
+                        <validation-provider
+                            rules="selectRequired"
+                            v-slot="{ errors }"
+                            class="reserve-number"
+                            tag="div"
+                        >
+                            <label for="number">人数：</label>
+                            <select v-model="number" name="人数" id="number">
+                                <option disabled selected value>
+                                    予約人数を選択してください
+                                </option>
+                                <option value="1">1人</option>
+                                <option value="2">2人</option>
+                                <option value="3">3人</option>
+                                <option value="4">4人</option>
+                                <option value="5">5人</option>
+                                <option value="6">6人</option>
+                                <option value="7">7人</option>
+                                <option value="8">8人</option>
+                                <option value="9">9人</option>
+                                <option value="10">10人</option>
+                            </select>
+                            <div class="error-message">
+                                <span>{{ errors[0] }}</span>
+                                <span v-if="numMessage && !errors[0]">{{
+                                    numMessage[0]
+                                }}</span>
+                            </div>
+                        </validation-provider>
+                    </div>
+                    <router-link
+                        v-bind:to="{
+                            name: 'confirm-reserve',
+                            params: {
+                                shop_id: id,
+                                shop_name: shopDetail.name,
+                                date: date,
+                                time: time,
+                                number: number,
+                            },
+                        }"
+                        class="reserve-footer"
+                    >
+                        <button :disabled="invalid">確認する</button>
+                    </router-link>
+                </div>
+            </validation-observer>
+        </div>
         <div class="detail-content">
             <div class="shop-detail">
                 <h2>店舗詳細</h2>
@@ -313,6 +427,9 @@ export default {
     margin-bottom: 10px;
 }
 /* ----------reserve-form---------- */
+.reserve-box {
+    display: none;
+}
 .reserve-bar {
     height: 100%;
     width: 440px;
@@ -380,5 +497,61 @@ export default {
     height: 30px;
     color: red;
     margin-left: 70px;
+}
+/* ------- タブレットデザイン -------- */
+@media screen and (max-width: 768px) {
+    .form-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #2f60ff;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 20px;
+    }
+    .reserve-bar {
+        display: none;
+    }
+    .shop-detail {
+        width: 100%;
+    }
+    .reserve-box {
+        display: block;
+        margin-bottom: 20px;
+    }
+    .reserve-content {
+        padding: 30px;
+        height: 80px;
+    }
+    .reserve-content label {
+        line-height: 20px;
+    }
+    .reserve-date input,
+    .reserve-time select,
+    .reserve-number select {
+        width: 100%;
+        height: 20px;
+    }
+    .error-message {
+        height: 20px;
+        margin-left: 0px;
+    }
+    .reserve-date,
+    .reserve-time,
+    .reserve-number {
+        display: inline-block;
+        width: 30%;
+    }
+    .reserve-content {
+        display: flex;
+        justify-content: space-between;
+    }
+    .reserve-footer button {
+        border-radius: 0 0 5px 5px;
+        height: 40px;
+    }
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
 }
 </style>
