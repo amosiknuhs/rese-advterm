@@ -4,34 +4,64 @@
             <p class="list-title">予約一覧</p>
         </div>
         <div class="reserve-content">
-            <table class="reserve-table">
-                <colgroup span="1" class="reserve-id"></colgroup>
-                <colgroup span="1" class="reserve-name"></colgroup>
-                <colgroup span="1" class="reserve-date"></colgroup>
-                <colgroup span="1" class="reserve-time"></colgroup>
-                <colgroup span="1" class="reserve-number"></colgroup>
-                <colgroup span="1" class="reserve-button"></colgroup>
-                <tr>
-                    <th>予約番号</th>
-                    <th>予約者名</th>
-                    <th>来店日</th>
-                    <th>来店時間</th>
-                    <th>来店人数</th>
-                    <th></th>
-                </tr>
-                <tr
-                    class=""
+            <div class="desktop">
+                <table class="reserve-table">
+                    <colgroup span="1" class="reserve-id"></colgroup>
+                    <colgroup span="1" class="reserve-name"></colgroup>
+                    <colgroup span="1" class="reserve-date"></colgroup>
+                    <colgroup span="1" class="reserve-time"></colgroup>
+                    <colgroup span="1" class="reserve-number"></colgroup>
+                    <colgroup span="1" class="reserve-button"></colgroup>
+                    <tr>
+                        <th>予約番号</th>
+                        <th>予約者名</th>
+                        <th>来店日</th>
+                        <th>来店時間</th>
+                        <th>来店人数</th>
+                        <th></th>
+                    </tr>
+                    <tr
+                        class=""
+                        v-for="(reserve, index) in shopData.reservations"
+                        :key="index"
+                    >
+                        <td>{{ reserve.id }}</td>
+                        <td>{{ reserve.user.name }}</td>
+                        <td>{{ reserve.date }}</td>
+                        <td>{{ reserve.time | jsonTime }}</td>
+                        <td>{{ reserve.number | numUnit }}</td>
+                        <td>ボタン置く</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="mobile">
+                <table
+                    class="reserve-table"
                     v-for="(reserve, index) in shopData.reservations"
                     :key="index"
                 >
-                    <td>{{ reserve.id }}</td>
-                    <td>{{ reserve.user.name }}</td>
-                    <td>{{ reserve.date }}</td>
-                    <td>{{ reserve.time | jsonTime }}</td>
-                    <td>{{ reserve.number | numUnit }}</td>
-                    <td>ボタン置く</td>
-                </tr>
-            </table>
+                    <tr>
+                        <th>予約番号</th>
+                        <td>{{ reserve.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>予約者名</th>
+                        <td>{{ reserve.user.name }}</td>
+                    </tr>
+                    <tr>
+                        <th>来店日</th>
+                        <td>{{ reserve.date }}</td>
+                    </tr>
+                    <tr>
+                        <th>来店時間</th>
+                        <td>{{ reserve.time | jsonTime }}</td>
+                    </tr>
+                    <tr>
+                        <th>来店人数</th>
+                        <td>{{ reserve.number | numUnit }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div v-if="shopData.reservations.length == 0" class="noReserve">
             ※現在予約はありません
@@ -86,6 +116,9 @@ export default {
     display: flex;
     justify-content: center;
 }
+.desktop {
+    width: 100%;
+}
 .reserve-table {
     width: 100%;
     text-align: center;
@@ -121,5 +154,29 @@ export default {
 }
 .reserve-button {
     width: 20%;
+}
+.mobile {
+    display: none;
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: initial;
+    }
+    .reserve-content {
+        display: initial;
+    }
+    .reserve-table th {
+        padding: 10px 0;
+    }
+    .reserve-table tr:not(:last-of-type) {
+        border-bottom: none;
+    }
+    .reserve-table:not(:last-of-type) {
+        border-bottom: 1px solid #d1d5db;
+    }
 }
 </style>

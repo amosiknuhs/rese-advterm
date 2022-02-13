@@ -181,4 +181,13 @@ export default {
     cursor: pointer;
     width: 120px;
 }
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .name input,
+    .area select,
+    .genre select,
+    .content textarea {
+        width: 70%;
+    }
+}
 </style>

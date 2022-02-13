@@ -49,5 +49,6 @@ export default {
 .owner-content {
     background-color: #fff;
     border-radius: 0 0 10px 10px;
+    overflow: hidden;
 }
 </style>

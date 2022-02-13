@@ -110,4 +110,10 @@ export default {
     width: 100%;
     border-radius: 0 0 10px 10px;
 }
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .shop-edit > div > p:first-of-type {
+        width: 30%;
+    }
+}
 </style>
