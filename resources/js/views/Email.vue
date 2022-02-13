@@ -233,5 +233,10 @@ export default {
 }
 /* ------ スマートフォンデザイン ------ */
 @media screen and (max-width: 480px) {
+    .email-form select,
+    .email-form input,
+    .email-form textarea {
+        width: 80%;
+    }
 }
 </style>

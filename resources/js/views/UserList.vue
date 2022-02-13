@@ -11,24 +11,48 @@
                 <button>ユーザー新規登録</button>
             </router-link> -->
         </div>
-        <table class="user-table">
-            <colgroup span="1" class="user-id"></colgroup>
-            <colgroup span="1" class="user-name"></colgroup>
-            <colgroup span="1" class="user-email"></colgroup>
-            <colgroup span="1" class="user-button"></colgroup>
-            <tr>
-                <th>ID</th>
-                <th>名前</th>
-                <th>メールアドレス</th>
-                <th></th>
-            </tr>
-            <tr class="" v-for="(user, index) in users" :key="index">
-                <td>{{ user.id }}</td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.email }}</td>
-                <td>削除ボタン</td>
-            </tr>
-        </table>
+        <div class="desktop">
+            <table class="user-table">
+                <colgroup span="1" class="user-id"></colgroup>
+                <colgroup span="1" class="user-name"></colgroup>
+                <colgroup span="1" class="user-email"></colgroup>
+                <colgroup span="1" class="user-button"></colgroup>
+                <tr>
+                    <th>ID</th>
+                    <th>名前</th>
+                    <th>メールアドレス</th>
+                    <th></th>
+                </tr>
+                <tr class="" v-for="(user, index) in users" :key="index">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>削除ボタン</td>
+                </tr>
+            </table>
+        </div>
+        <div class="mobile">
+            <table
+                class="user-table"
+                v-for="(user, index) in users"
+                :key="index"
+            >
+                <colgroup span="1" class="title"></colgroup>
+                <colgroup span="1" class="content"></colgroup>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <th>名前</th>
+                    <td>{{ user.name }}</td>
+                </tr>
+                <tr>
+                    <th>メールアドレス</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+            </table>
+        </div>
         <router-view></router-view>
     </div>
 </template>
@@ -120,5 +144,36 @@ export default {
 }
 .user-button {
     width: 30%;
+}
+.mobile {
+    display: none;
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: initial;
+    }
+    .user-table th,
+    .user-table td {
+        padding: 10px 0;
+    }
+    .title {
+        width: 35%;
+    }
+    .content {
+        width: 65%;
+    }
+    .user-table:not(:last-of-type) {
+        border-radius: 0;
+    }
+    .user-table tr:not(:last-of-type) {
+        border-bottom: none;
+    }
+    .user-table:not(:last-of-type) {
+        border-bottom: 1px solid #d1d5db;
+    }
 }
 </style>

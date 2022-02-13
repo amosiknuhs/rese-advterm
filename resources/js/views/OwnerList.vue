@@ -11,27 +11,55 @@
                 <button>オーナー新規登録</button>
             </router-link>
         </div>
-        <table class="owners-table">
-            <colgroup span="1" class="owner-id"></colgroup>
-            <colgroup span="1" class="owner-name"></colgroup>
-            <colgroup span="1" class="owner-email"></colgroup>
-            <colgroup span="1" class="owner-shop-name"></colgroup>
-            <colgroup span="1" class="owner-button"></colgroup>
-            <tr>
-                <th>ID</th>
-                <th>名前</th>
-                <th>メールアドレス</th>
-                <th>店舗名</th>
-                <th></th>
-            </tr>
-            <tr class="" v-for="(owner, index) in owners" :key="index">
-                <td>{{ owner.id }}</td>
-                <td>{{ owner.name }}</td>
-                <td>{{ owner.email }}</td>
-                <td>{{ owner.shop.name }}</td>
-                <td>削除・変更ボタン</td>
-            </tr>
-        </table>
+        <div class="desktop">
+            <table class="owners-table">
+                <colgroup span="1" class="owner-id"></colgroup>
+                <colgroup span="1" class="owner-name"></colgroup>
+                <colgroup span="1" class="owner-email"></colgroup>
+                <colgroup span="1" class="owner-shop-name"></colgroup>
+                <colgroup span="1" class="owner-button"></colgroup>
+                <tr>
+                    <th>ID</th>
+                    <th>名前</th>
+                    <th>メールアドレス</th>
+                    <th>店舗名</th>
+                    <th></th>
+                </tr>
+                <tr class="" v-for="(owner, index) in owners" :key="index">
+                    <td>{{ owner.id }}</td>
+                    <td>{{ owner.name }}</td>
+                    <td>{{ owner.email }}</td>
+                    <td>{{ owner.shop.name }}</td>
+                    <td>削除・変更ボタン</td>
+                </tr>
+            </table>
+        </div>
+        <div class="mobile">
+            <table
+                class="owners-table"
+                v-for="(owner, index) in owners"
+                :key="index"
+            >
+                <colgroup span="1" class="title"></colgroup>
+                <colgroup span="1" class="content"></colgroup>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ owner.id }}</td>
+                </tr>
+                <tr>
+                    <th>名前</th>
+                    <td>{{ owner.name }}</td>
+                </tr>
+                <tr>
+                    <th>メールアドレス</th>
+                    <td>{{ owner.email }}</td>
+                </tr>
+                <tr>
+                    <th>店舗名</th>
+                    <td>{{ owner.shop.name }}</td>
+                </tr>
+            </table>
+        </div>
         <router-view></router-view>
     </div>
 </template>
@@ -126,5 +154,43 @@ export default {
 }
 .owner-button {
     width: 30%;
+}
+.mobile {
+    display: none;
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .list-header {
+        padding-right: 20px;
+    }
+    .owner-register button {
+        width: 100px;
+        padding: 0 15px;
+    }
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: initial;
+    }
+    .owners-table th,
+    .owners-table td {
+        padding: 10px 0;
+    }
+    .title {
+        width: 35%;
+    }
+    .content {
+        width: 65%;
+    }
+    .owners-table:not(:last-of-type) {
+        border-radius: 0;
+    }
+    .owners-table tr:not(:last-of-type) {
+        border-bottom: none;
+    }
+    .owners-table:not(:last-of-type) {
+        border-bottom: 1px solid #d1d5db;
+    }
 }
 </style>

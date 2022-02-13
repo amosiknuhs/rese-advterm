@@ -11,27 +11,59 @@
                 <button>飲食店新規登録</button>
             </router-link> -->
         </div>
-        <table class="shops-table">
-            <colgroup span="1" class="shop-id"></colgroup>
-            <colgroup span="1" class="shop-name"></colgroup>
-            <colgroup span="1" class="shop-area"></colgroup>
-            <colgroup span="1" class="shop-genre"></colgroup>
-            <colgroup span="1" class="shop-content"></colgroup>
-            <tr>
-                <th>ID</th>
-                <th>店名</th>
-                <th>エリア</th>
-                <th>ジャンル</th>
-                <th>店舗説明</th>
-            </tr>
-            <tr class="" v-for="(shop, index) in shops" :key="index">
-                <td>{{ shop.id }}</td>
-                <td>{{ shop.name }}</td>
-                <td>{{ shop.area.name }}</td>
-                <td>{{ shop.genre.name }}</td>
-                <td class="content">{{ shop.content }}</td>
-            </tr>
-        </table>
+        <div class="desktop">
+            <table class="shops-table">
+                <colgroup span="1" class="shop-id"></colgroup>
+                <colgroup span="1" class="shop-name"></colgroup>
+                <colgroup span="1" class="shop-area"></colgroup>
+                <colgroup span="1" class="shop-genre"></colgroup>
+                <colgroup span="1" class="shop-content"></colgroup>
+                <tr>
+                    <th>ID</th>
+                    <th>店名</th>
+                    <th>エリア</th>
+                    <th>ジャンル</th>
+                    <th>店舗説明</th>
+                </tr>
+                <tr class="" v-for="(shop, index) in shops" :key="index">
+                    <td>{{ shop.id }}</td>
+                    <td>{{ shop.name }}</td>
+                    <td>{{ shop.area.name }}</td>
+                    <td>{{ shop.genre.name }}</td>
+                    <td class="content">{{ shop.content }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="mobile">
+            <table
+                class="shops-table"
+                v-for="(shop, index) in shops"
+                :key="index"
+            >
+                <colgroup span="1" class="title"></colgroup>
+                <colgroup span="1" class="desc"></colgroup>
+                <tr>
+                    <th>ID</th>
+                    <td>{{ shop.id }}</td>
+                </tr>
+                <tr>
+                    <th>店名</th>
+                    <td>{{ shop.name }}</td>
+                </tr>
+                <tr>
+                    <th>エリア</th>
+                    <td>{{ shop.area.name }}</td>
+                </tr>
+                <tr>
+                    <th>ジャンル</th>
+                    <td>{{ shop.genre.name }}</td>
+                </tr>
+                <tr>
+                    <th>店舗説明</th>
+                    <td class="content">{{ shop.content }}</td>
+                </tr>
+            </table>
+        </div>
         <router-view></router-view>
     </div>
 </template>
@@ -52,13 +84,6 @@ export default {
     mounted() {
         this.getShopList();
     },
-    // beforeRouteUpdate(to, from, next) {
-    //     if (from.name == "admin-dialog") {
-    //         this.getShopList();
-    //         next();
-    //     }
-    //     next();
-    // },
 };
 </script>
 <style scoped>
@@ -136,6 +161,9 @@ export default {
     text-overflow: ellipsis;
     margin: 0 auto;
 }
+.mobile {
+    display: none;
+}
 /* ------- タブレットデザイン -------- */
 @media screen and (max-width: 768px) {
     .content {
@@ -149,5 +177,33 @@ export default {
 }
 /* ------ スマートフォンデザイン ------ */
 @media screen and (max-width: 480px) {
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: initial;
+    }
+    .shops-table th,
+    .shops-table td {
+        padding: 10px 0;
+    }
+    .title {
+        width: 25%;
+    }
+    .desc {
+        width: 75%;
+    }
+    .content {
+        width: 250px;
+    }
+    .shops-table:not(:last-of-type) {
+        border-radius: 0;
+    }
+    .shops-table tr:not(:last-of-type) {
+        border-bottom: none;
+    }
+    .shops-table:not(:last-of-type) {
+        border-bottom: 1px solid #d1d5db;
+    }
 }
 </style>
