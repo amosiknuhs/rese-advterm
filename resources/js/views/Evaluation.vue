@@ -146,4 +146,10 @@ export default {
     color: red;
     display: inline-block;
 }
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .content textarea {
+        width: 80%;
+    }
+}
 </style>
