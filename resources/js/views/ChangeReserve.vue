@@ -152,7 +152,6 @@ export default {
     height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.3);
-    z-index: 5;
     animation-duration: 0.3s;
 }
 .modal-content {
