@@ -28,6 +28,7 @@
     "dependencies": {
         "animate.css": "^4.1.1",
         "vee-validate": "^3.4.14",
+        "vue-burger-menu": "^2.0.5",
         "vue-router": "^3.5.3",
         "vue-star-rating": "^1.7.0",
         "vuex": "^3.6.2",

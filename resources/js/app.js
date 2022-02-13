@@ -9,6 +9,7 @@ import HeaderComponent from "./components/HeaderComponent.vue";
 import StarRating from "vue-star-rating";
 import "./plugins/veevalidate";
 import AnimateCss from "animate.css";
+import { Slide } from "vue-burger-menu";
 
 Vue.config.productionTip = false;
 
@@ -19,6 +20,7 @@ Vue.use(AnimateCss);
 
 Vue.component("header-component", HeaderComponent);
 Vue.component("star-rating", StarRating);
+Vue.component("slide-menu", Slide);
 
 // エラーハンドリング共通化;
 axios.interceptors.response.use(

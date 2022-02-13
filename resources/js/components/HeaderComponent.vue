@@ -1,7 +1,83 @@
 <template>
     <div>
-        <div v-if="isLogin">
-            <div v-if="isRole == 'user'" class="rese-header" id="user">
+        <div class="desktop">
+            <div v-if="isLogin">
+                <div v-if="isRole == 'user'" class="rese-header" id="user">
+                    <div class="header-content">
+                        <router-link
+                            v-bind:to="{ name: 'home' }"
+                            class="header-title"
+                            >Rese</router-link
+                        >
+                        <div class="nav-block">
+                            <router-link
+                                v-bind:to="{ name: 'home' }"
+                                class="nav-link"
+                                >HOME</router-link
+                            >
+                            <router-link
+                                v-bind:to="{ name: 'reservation' }"
+                                class="nav-link"
+                                >Mypage</router-link
+                            >
+                            <p class="nav-link logout" @click="logout()">
+                                Logout
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="isRole == 'owner'" class="rese-header" id="owner">
+                    <div class="header-content">
+                        <div class="header-title">Rese</div>
+                        <div class="nav-block">
+                            <router-link
+                                v-bind:to="{ name: 'user-reservations' }"
+                                class="nav-link"
+                                >Reservation</router-link
+                            >
+                            <router-link
+                                v-bind:to="{ name: 'owner-shop' }"
+                                class="nav-link"
+                                >ShopData</router-link
+                            >
+                            <p class="nav-link logout" @click="logout()">
+                                Logout
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="isRole == 'admin'" class="rese-header" id="admin">
+                    <div class="header-content">
+                        <div class="header-title">Rese</div>
+                        <div class="nav-block">
+                            <router-link
+                                v-bind:to="{ name: 'user-list' }"
+                                class="nav-link"
+                                >UserList</router-link
+                            >
+                            <router-link
+                                v-bind:to="{ name: 'shop-list' }"
+                                class="nav-link"
+                                >ShopList</router-link
+                            >
+                            <router-link
+                                v-bind:to="{ name: 'owner-list' }"
+                                class="nav-link"
+                                >OwnerList</router-link
+                            >
+                            <router-link
+                                v-bind:to="{ name: 'email' }"
+                                class="nav-link"
+                                >Email</router-link
+                            >
+                            <p class="nav-link logout" @click="logout()">
+                                Logout
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="!isLogin" class="rese-header">
                 <div class="header-content">
                     <router-link
                         v-bind:to="{ name: 'home' }"
@@ -15,80 +91,128 @@
                             >HOME</router-link
                         >
                         <router-link
-                            v-bind:to="{ name: 'reservation' }"
+                            v-bind:to="{ name: 'register' }"
                             class="nav-link"
-                            >Mypage</router-link
-                        >
-                        <p class="nav-link logout" @click="logout()">Logout</p>
-                    </div>
-                </div>
-            </div>
-            <div v-if="isRole == 'owner'" class="rese-header" id="owner">
-                <div class="header-content">
-                    <div class="header-title">Rese</div>
-                    <div class="nav-block">
-                        <router-link
-                            v-bind:to="{ name: 'user-reservations' }"
-                            class="nav-link"
-                            >Reservation</router-link
+                            >Register</router-link
                         >
                         <router-link
-                            v-bind:to="{ name: 'owner-shop' }"
+                            v-bind:to="{ name: 'user-login' }"
                             class="nav-link"
-                            >ShopData</router-link
+                            >Login</router-link
                         >
-                        <p class="nav-link logout" @click="logout()">Logout</p>
-                    </div>
-                </div>
-            </div>
-            <div v-if="isRole == 'admin'" class="rese-header" id="admin">
-                <div class="header-content">
-                    <div class="header-title">Rese</div>
-                    <div class="nav-block">
-                        <router-link
-                            v-bind:to="{ name: 'user-list' }"
-                            class="nav-link"
-                            >UserList</router-link
-                        >
-                        <router-link
-                            v-bind:to="{ name: 'shop-list' }"
-                            class="nav-link"
-                            >ShopList</router-link
-                        >
-                        <router-link
-                            v-bind:to="{ name: 'owner-list' }"
-                            class="nav-link"
-                            >OwnerList</router-link
-                        >
-                        <router-link
-                            v-bind:to="{ name: 'email' }"
-                            class="nav-link"
-                            >Email</router-link
-                        >
-                        <p class="nav-link logout" @click="logout()">Logout</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div v-else-if="!isLogin" class="rese-header">
-            <div class="header-content">
-                <router-link v-bind:to="{ name: 'home' }" class="header-title"
-                    >Rese</router-link
-                >
-                <div class="nav-block">
-                    <router-link v-bind:to="{ name: 'home' }" class="nav-link"
-                        >HOME</router-link
-                    >
+
+        <div class="mobile">
+            <div v-if="isLogin">
+                <div v-if="isRole == 'user'" class="rese-header" id="user">
+                    <div class="header-content">
+                        <router-link
+                            v-bind:to="{ name: 'home' }"
+                            class="header-title"
+                            >Rese</router-link
+                        >
+                        <slide-menu noOverlay right width="250">
+                            <router-link
+                                v-bind:to="{ name: 'home' }"
+                                class="nav-link"
+                                >HOME</router-link
+                            >
+                            <router-link
+                                v-bind:to="{ name: 'reservation' }"
+                                class="nav-link"
+                                >Mypage</router-link
+                            >
+                            <p class="nav-link logout" @click="logout()">
+                                Logout
+                            </p>
+                        </slide-menu>
+                        <!-- <div class="nav-block">
+                        </div> -->
+                    </div>
+                </div>
+                <div v-if="isRole == 'owner'" class="rese-header" id="owner">
+                    <div class="header-content">
+                        <div class="header-title">Rese</div>
+                        <slide-menu noOverlay right width="250">
+                            <router-link
+                                v-bind:to="{ name: 'user-reservations' }"
+                                class="nav-link"
+                                >Reservation</router-link
+                            >
+                            <router-link
+                                v-bind:to="{ name: 'owner-shop' }"
+                                class="nav-link"
+                                >ShopData</router-link
+                            >
+                            <p class="nav-link logout" @click="logout()">
+                                Logout
+                            </p>
+                        </slide-menu>
+                        <!-- <di class="nav-block">
+                        </di> -->
+                    </div>
+                </div>
+                <div v-if="isRole == 'admin'" class="rese-header" id="admin">
+                    <div class="header-content">
+                        <div class="header-title">Rese</div>
+                        <slide-menu noOverlay right width="250">
+                            <router-link
+                                v-bind:to="{ name: 'user-list' }"
+                                class="nav-link"
+                                >UserList</router-link
+                            >
+                            <router-link
+                                v-bind:to="{ name: 'shop-list' }"
+                                class="nav-link"
+                                >ShopList</router-link
+                            >
+                            <router-link
+                                v-bind:to="{ name: 'owner-list' }"
+                                class="nav-link"
+                                >OwnerList</router-link
+                            >
+                            <router-link
+                                v-bind:to="{ name: 'email' }"
+                                class="nav-link"
+                                >Email</router-link
+                            >
+                            <p class="nav-link logout" @click="logout()">
+                                Logout
+                            </p>
+                        </slide-menu>
+                        <!-- <di class="nav-block">
+                        </di> -->
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="!isLogin" class="rese-header">
+                <div class="header-content">
                     <router-link
-                        v-bind:to="{ name: 'register' }"
-                        class="nav-link"
-                        >Register</router-link
+                        v-bind:to="{ name: 'home' }"
+                        class="header-title"
+                        >Rese</router-link
                     >
-                    <router-link
-                        v-bind:to="{ name: 'user-login' }"
-                        class="nav-link"
-                        >Login</router-link
-                    >
+                    <slide-menu noOverlay right width="250">
+                        <router-link
+                            v-bind:to="{ name: 'home' }"
+                            class="nav-link"
+                            >HOME</router-link
+                        >
+                        <router-link
+                            v-bind:to="{ name: 'register' }"
+                            class="nav-link"
+                            >Register</router-link
+                        >
+                        <router-link
+                            v-bind:to="{ name: 'user-login' }"
+                            class="nav-link"
+                            >Login</router-link
+                        >
+                        <!-- <div class="nav-block"></div> -->
+                    </slide-menu>
                 </div>
             </div>
         </div>
@@ -185,13 +309,41 @@ export default {
 .logout {
     cursor: pointer;
 }
+.mobile {
+    display: none;
+}
 /* ------- タブレットデザイン -------- */
 @media screen and (max-width: 768px) {
     .header-content {
         max-width: 700px;
     }
+    .desktop {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
 }
 /* ------ スマートフォンデザイン ------ */
 @media screen and (max-width: 480px) {
+}
+/* ------- メニューデザイン調整 ------- */
+>>> .bm-menu {
+    background-color: #afafaf;
+}
+>>> .bm-burger-button {
+    top: 20px;
+}
+>>> .bm-burger-bars {
+    background-color: #afafaf;
+}
+>>> .bm-cross {
+    background-color: #fff;
+    height: 25px !important;
+    width: 5px !important;
+}
+>>> .cross-style {
+    right: 190px !important;
+    top: 22px;
 }
 </style>
