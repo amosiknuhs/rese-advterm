@@ -18,7 +18,7 @@
             <colgroup span="1" class="shop-genre"></colgroup>
             <colgroup span="1" class="shop-content"></colgroup>
             <tr>
-                <th>飲食店ID</th>
+                <th>ID</th>
                 <th>店名</th>
                 <th>エリア</th>
                 <th>ジャンル</th>
@@ -135,5 +135,19 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0 auto;
+}
+/* ------- タブレットデザイン -------- */
+@media screen and (max-width: 768px) {
+    .content {
+        display: block;
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0 auto;
+    }
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
 }
 </style>

@@ -17,7 +17,7 @@
             <colgroup span="1" class="user-email"></colgroup>
             <colgroup span="1" class="user-button"></colgroup>
             <tr>
-                <th>ユーザーID</th>
+                <th>ID</th>
                 <th>名前</th>
                 <th>メールアドレス</th>
                 <th></th>

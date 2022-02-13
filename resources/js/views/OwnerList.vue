@@ -18,7 +18,7 @@
             <colgroup span="1" class="owner-shop-name"></colgroup>
             <colgroup span="1" class="owner-button"></colgroup>
             <tr>
-                <th>オーナーID</th>
+                <th>ID</th>
                 <th>名前</th>
                 <th>メールアドレス</th>
                 <th>店舗名</th>

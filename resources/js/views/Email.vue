@@ -223,4 +223,15 @@ export default {
     display: inline-block;
     padding-left: 65px;
 }
+/* ------- タブレットデザイン -------- */
+@media screen and (max-width: 768px) {
+    .email-form select,
+    .email-form input,
+    .email-form textarea {
+        width: 85%;
+    }
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+}
 </style>
