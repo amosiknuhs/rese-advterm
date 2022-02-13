@@ -104,7 +104,6 @@
                 </div>
             </div>
         </div>
-
         <div class="mobile">
             <div v-if="isLogin">
                 <div v-if="isRole == 'user'" class="rese-header" id="user">
@@ -129,8 +128,6 @@
                                 Logout
                             </p>
                         </slide-menu>
-                        <!-- <div class="nav-block">
-                        </div> -->
                     </div>
                 </div>
                 <div v-if="isRole == 'owner'" class="rese-header" id="owner">
@@ -151,8 +148,6 @@
                                 Logout
                             </p>
                         </slide-menu>
-                        <!-- <di class="nav-block">
-                        </di> -->
                     </div>
                 </div>
                 <div v-if="isRole == 'admin'" class="rese-header" id="admin">
@@ -183,8 +178,6 @@
                                 Logout
                             </p>
                         </slide-menu>
-                        <!-- <di class="nav-block">
-                        </di> -->
                     </div>
                 </div>
             </div>
@@ -211,7 +204,6 @@
                             class="nav-link"
                             >Login</router-link
                         >
-                        <!-- <div class="nav-block"></div> -->
                     </slide-menu>
                 </div>
             </div>
@@ -312,7 +304,7 @@ export default {
 .mobile {
     display: none;
 }
-/* ------- タブレットデザイン -------- */
+/* ------- レスポンシブデザイン -------- */
 @media screen and (max-width: 768px) {
     .header-content {
         max-width: 700px;
@@ -323,9 +315,9 @@ export default {
     .mobile {
         display: block;
     }
-}
-/* ------ スマートフォンデザイン ------ */
-@media screen and (max-width: 480px) {
+    .header-title {
+        padding-left: 10px;
+    }
 }
 /* ------- メニューデザイン調整 ------- */
 >>> .bm-menu {

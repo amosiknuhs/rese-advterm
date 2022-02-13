@@ -36,9 +36,6 @@
                         >
                             <label for="time">時間：</label>
                             <select v-model="time" name="時間" id="time">
-                                <option disabled selected value>
-                                    予約時間を選択してください
-                                </option>
                                 <option value="11:00">11:00</option>
                                 <option value="11:30">11:30</option>
                                 <option value="12:00">12:00</option>
@@ -76,9 +73,6 @@
                         >
                             <label for="number">人数：</label>
                             <select v-model="number" name="人数" id="number">
-                                <option disabled selected value>
-                                    予約人数を選択してください
-                                </option>
                                 <option value="1">1人</option>
                                 <option value="2">2人</option>
                                 <option value="3">3人</option>
@@ -520,8 +514,8 @@ export default {
         margin-bottom: 20px;
     }
     .reserve-content {
-        padding: 30px;
-        height: 80px;
+        padding: 10px;
+        height: 60px;
     }
     .reserve-content label {
         line-height: 20px;
@@ -536,11 +530,14 @@ export default {
         height: 20px;
         margin-left: 0px;
     }
-    .reserve-date,
+    .reserve-date {
+        display: inline-block;
+        width: 40%;
+    }
     .reserve-time,
     .reserve-number {
         display: inline-block;
-        width: 30%;
+        width: 28%;
     }
     .reserve-content {
         display: flex;
@@ -553,5 +550,11 @@ export default {
 }
 /* ------ スマートフォンデザイン ------ */
 @media screen and (max-width: 480px) {
+    .shop-img {
+        height: 300px;
+    }
+    .error-message {
+        font-size: 13px;
+    }
 }
 </style>

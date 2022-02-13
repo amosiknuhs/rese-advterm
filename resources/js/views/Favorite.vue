@@ -171,5 +171,24 @@ export default {
 }
 /* ------ スマートフォンデザイン ------ */
 @media screen and (max-width: 480px) {
+    .favorite-card {
+        width: 95%;
+        height: 230px;
+    }
+    .card-img {
+        height: 40%;
+    }
+    .card-content {
+        padding: 10px;
+    }
+    .tag {
+        margin: 5px 0;
+    }
+    .star {
+        margin: 5px 0;
+    }
+    .card-footer {
+        margin-top: 10px;
+    }
 }
 </style>

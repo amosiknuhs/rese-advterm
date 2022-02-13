@@ -83,4 +83,10 @@ export default {
 .active {
     background-color: #2f60ff;
 }
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .mypage-title > * {
+        font-size: 1.2rem;
+    }
+}
 </style>

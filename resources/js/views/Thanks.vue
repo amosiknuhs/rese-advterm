@@ -52,4 +52,10 @@
     border-radius: 5px;
     cursor: pointer;
 }
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .thanks-message {
+        padding: 0 10px;
+    }
+}
 </style>

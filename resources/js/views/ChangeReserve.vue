@@ -229,4 +229,12 @@ export default {
     cursor: pointer;
     width: 120px;
 }
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .date input,
+    .time select,
+    .number select {
+        width: 75%;
+    }
+}
 </style>

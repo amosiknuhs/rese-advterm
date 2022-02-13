@@ -88,4 +88,10 @@ export default {
     cursor: pointer;
     width: 80px;
 }
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .modal-content-inner p {
+        font-size: 18px;
+    }
+}
 </style>

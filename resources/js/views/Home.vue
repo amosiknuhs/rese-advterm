@@ -314,7 +314,7 @@ export default {
 /* ------- タブレットデザイン -------- */
 @media screen and (max-width: 768px) {
     .search-box {
-        max-width: 700px;
+        max-width: 100%;
     }
     .search-name {
         width: 40vw;
@@ -325,5 +325,26 @@ export default {
 }
 /* ------ スマートフォンデザイン ------ */
 @media screen and (max-width: 480px) {
+    .search-area {
+        width: 30%;
+    }
+    .search-genre {
+        width: 30%;
+    }
+    .search-name {
+        width: 30%;
+        border-left: 1px solid #dfdfdf;
+        padding-left: 10px;
+    }
+    .img-container {
+        display: none;
+    }
+    .card {
+        width: 100%;
+    }
+    .search-reset {
+        font-size: 15px;
+        width: 18%;
+    }
 }
 </style>

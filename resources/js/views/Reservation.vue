@@ -211,5 +211,37 @@ export default {
 }
 /* ------ スマートフォンデザイン ------ */
 @media screen and (max-width: 480px) {
+    .reserve-card {
+        width: 95%;
+        height: 290px;
+    }
+    .reserve-header {
+        padding: 10px;
+        height: 55px;
+    }
+    .reserve-confirm {
+        display: block;
+    }
+    .rsvCard-img {
+        width: 100%;
+        height: 80px;
+    }
+    .reserve-detail {
+        padding: 10px;
+    }
+    .reserve-detail p {
+        margin-bottom: 5px;
+    }
+    .reserve-button {
+        flex-flow: initial;
+        width: 100%;
+    }
+    .reserve-button button {
+        display: inline-block;
+        width: 80px;
+    }
+    .cancel {
+        font-size: 12px;
+    }
 }
 </style>
