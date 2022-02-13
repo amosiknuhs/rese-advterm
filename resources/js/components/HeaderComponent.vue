@@ -113,7 +113,12 @@
                             class="header-title"
                             >Rese</router-link
                         >
-                        <slide-menu noOverlay right width="250">
+                        <slide-menu
+                            noOverlay
+                            right
+                            width="250"
+                            :closeOnNavigation="true"
+                        >
                             <router-link
                                 v-bind:to="{ name: 'home' }"
                                 class="nav-link"
@@ -133,7 +138,12 @@
                 <div v-if="isRole == 'owner'" class="rese-header" id="owner">
                     <div class="header-content">
                         <div class="header-title">Rese</div>
-                        <slide-menu noOverlay right width="250">
+                        <slide-menu
+                            noOverlay
+                            right
+                            width="250"
+                            :closeOnNavigation="true"
+                        >
                             <router-link
                                 v-bind:to="{ name: 'user-reservations' }"
                                 class="nav-link"
@@ -153,7 +163,12 @@
                 <div v-if="isRole == 'admin'" class="rese-header" id="admin">
                     <div class="header-content">
                         <div class="header-title">Rese</div>
-                        <slide-menu noOverlay right width="250">
+                        <slide-menu
+                            noOverlay
+                            right
+                            width="250"
+                            :closeOnNavigation="true"
+                        >
                             <router-link
                                 v-bind:to="{ name: 'user-list' }"
                                 class="nav-link"
@@ -188,7 +203,12 @@
                         class="header-title"
                         >Rese</router-link
                     >
-                    <slide-menu noOverlay right width="250">
+                    <slide-menu
+                        noOverlay
+                        right
+                        width="250"
+                        :closeOnNavigation="true"
+                    >
                         <router-link
                             v-bind:to="{ name: 'home' }"
                             class="nav-link"
