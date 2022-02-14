@@ -319,7 +319,7 @@ export default {
         width: 40vw;
     }
     .card {
-        width: 48%;
+        width: 48.5%;
     }
 }
 /* ------ スマートフォンデザイン ------ */

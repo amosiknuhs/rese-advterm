@@ -116,11 +116,11 @@ export default {
     margin: auto 20px;
 }
 .content {
-    height: 300px;
     display: flex;
     flex-flow: column;
     justify-content: center;
     gap: 20px 0;
+    padding: 30px 0;
 }
 .content > * {
     margin: 0 auto;

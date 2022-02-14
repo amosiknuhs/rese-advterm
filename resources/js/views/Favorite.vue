@@ -168,14 +168,17 @@ export default {
 }
 /* ------- タブレットデザイン -------- */
 @media screen and (max-width: 768px) {
+    .favorite-content {
+        padding: 0 10px;
+    }
     .favorite-card {
-        width: 45%;
+        width: 48.5%;
     }
 }
 /* ------ スマートフォンデザイン ------ */
 @media screen and (max-width: 480px) {
     .favorite-card {
-        width: 95%;
+        width: 100%;
         height: 230px;
     }
     .card-img {

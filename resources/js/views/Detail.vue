@@ -112,7 +112,6 @@
         </div>
         <div class="detail-content">
             <div class="shop-detail">
-                <h2>店舗詳細</h2>
                 <div class="shop-img">
                     <img :src="shopDetail.img_url" alt="" />
                 </div>
@@ -438,7 +437,6 @@ export default {
 }
 .reserve-content {
     padding: 30px;
-    height: 350px;
 }
 .form-title {
     font-size: 25px;
@@ -460,7 +458,7 @@ export default {
 .reserve-time select,
 .reserve-number select {
     display: inline-block;
-    width: 80%;
+    width: 75%;
     height: 40px;
     border: none;
     outline: none;

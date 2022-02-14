@@ -193,4 +193,9 @@ export default {
         border-bottom: 1px solid #d1d5db;
     }
 }
+@media screen and (max-width: 400px) {
+    .list-title {
+        font-size: 15px;
+    }
+}
 </style>

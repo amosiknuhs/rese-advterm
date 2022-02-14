@@ -326,7 +326,7 @@ export default {
 }
 @media screen and (max-width: 1260px) {
     .header-content {
-        padding: 0 50px;
+        padding: 0 40px;
     }
 }
 /* ------- レスポンシブデザイン -------- */

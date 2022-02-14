@@ -124,7 +124,6 @@ export default {
     font-size: 20px;
 }
 .shop-content {
-    height: 400px;
     padding: 30px;
 }
 .shop-content label {

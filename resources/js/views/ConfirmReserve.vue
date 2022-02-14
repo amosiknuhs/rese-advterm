@@ -120,7 +120,6 @@ export default {
     font-size: 20px;
 }
 .content {
-    height: 300px;
     padding: 30px;
 }
 .reserve-content {
