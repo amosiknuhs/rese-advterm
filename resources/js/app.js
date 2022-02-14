@@ -11,6 +11,7 @@ import "./plugins/veevalidate";
 import AnimateCss from "animate.css";
 import { Slide } from "vue-burger-menu";
 import VueQrcode from "@chenfengyuan/vue-qrcode";
+import { StripeCheckout } from "@vue-stripe/vue-stripe";
 
 Vue.config.productionTip = false;
 
@@ -22,6 +23,7 @@ Vue.use(AnimateCss);
 Vue.component("header-component", HeaderComponent);
 Vue.component("star-rating", StarRating);
 Vue.component("slide-menu", Slide);
+Vue.component("stripe-checkout", StripeCheckout);
 Vue.component(VueQrcode.name, VueQrcode);
 
 // エラーハンドリング共通化;

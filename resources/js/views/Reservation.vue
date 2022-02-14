@@ -57,6 +57,17 @@
                         </router-link>
                         <router-link
                             v-bind:to="{
+                                name: 'confirm-payment',
+                                params: {
+                                    shop_name: reserve.shop.name,
+                                    reserve_number: reserve.number,
+                                },
+                            }"
+                        >
+                            <button class="evaluation">支払い</button>
+                        </router-link>
+                        <router-link
+                            v-bind:to="{
                                 name: 'cancel',
                                 params: { reserve_id: reserve.id },
                             }"

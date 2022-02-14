@@ -23,6 +23,8 @@ Route::middleware('auth:user')->group(function () {
     Route::post('/change', [ReserveController::class, "change"]);
     // 予約削除機能
     Route::post('/cancel', [ReserveController::class, "cancel"]);
+    // 事前支払い機能
+    Route::post('/checkout', [ReserveController::class, "checkout"]);
     // お気に入り登録・解除機能
     Route::post('/favorite', [FavoriteController::class, "favorite"]);
     // 評価登録機能

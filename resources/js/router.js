@@ -35,6 +35,9 @@ import Email from "./views/Email.vue";
 import EmailDialog from "./views/EmailDialog.vue";
 import VerifyNotice from "./views/VerifyNotice.vue";
 import ReserveCode from "./views/ReserveCode.vue";
+import ConfirmPayment from "./views/ConfirmPayment.vue";
+import PaymentSuccess from "./views/PaymentSuccess.vue";
+import PaymentCancel from "./views/PaymentCancel.vue";
 
 const router = new Router({
     mode: "history",
@@ -112,6 +115,11 @@ const router = new Router({
                             component: Evaluation,
                         },
                         {
+                            path: "confirm-payment",
+                            name: "confirm-payment",
+                            component: ConfirmPayment,
+                        },
+                        {
                             path: "cancel",
                             name: "cancel",
                             component: Cancel,
@@ -154,6 +162,16 @@ const router = new Router({
             path: "/rese/done",
             name: "done",
             component: Done,
+        },
+        {
+            path: "/rese/payment-success",
+            name: "payment-success",
+            component: PaymentSuccess,
+        },
+        {
+            path: "/rese/payment-cancel",
+            name: "payment-cancel",
+            component: PaymentCancel,
         },
         {
             path: "/rese/owner",
