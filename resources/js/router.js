@@ -34,6 +34,7 @@ import ShopRegister from "./views/ShopRegister.vue";
 import Email from "./views/Email.vue";
 import EmailDialog from "./views/EmailDialog.vue";
 import VerifyNotice from "./views/VerifyNotice.vue";
+import ReserveCode from "./views/ReserveCode.vue";
 
 const router = new Router({
     mode: "history",
@@ -119,6 +120,11 @@ const router = new Router({
                             path: "dialog",
                             name: "dialog",
                             component: MypageDialog,
+                        },
+                        {
+                            path: "reserve-code",
+                            name: "reserve-code",
+                            component: ReserveCode,
                         },
                     ],
                 },

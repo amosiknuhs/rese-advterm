@@ -8,6 +8,20 @@
             >
                 <div class="reserve-header">
                     <p class="reserve-name">予約{{ index + 1 }}</p>
+                    <router-link
+                        v-bind:to="{
+                            name: 'reserve-code',
+                            params: {
+                                reserve_name: reserve.user.name,
+                                reserve_date: reserve.date,
+                                reserve_time: reserve.time,
+                                reserve_number: reserve.number,
+                            },
+                        }"
+                        class="reserve-code"
+                    >
+                        <button>QRコード</button>
+                    </router-link>
                 </div>
                 <div class="reserve-confirm">
                     <div class="rsvCard-img">
@@ -197,6 +211,16 @@ export default {
     width: 120px;
     margin-right: 30px;
 }
+.reserve-code button {
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+    padding: 5px 0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+    display: none;
+}
 /* ------- タブレットデザイン -------- */
 @media screen and (max-width: 768px) {
     .reserve-button {
@@ -208,16 +232,24 @@ export default {
         padding: 7px 10px;
         margin-right: 10px;
     }
+    .reserve-code button {
+        display: inline-block;
+    }
 }
 /* ------ スマートフォンデザイン ------ */
 @media screen and (max-width: 480px) {
     .reserve-card {
         width: 95%;
-        height: 290px;
+        height: 280px;
     }
     .reserve-header {
         padding: 10px;
-        height: 55px;
+        height: 50px;
+    }
+    .reserve-name::before {
+        height: 30px;
+        width: 30px;
+        vertical-align: top;
     }
     .reserve-confirm {
         display: block;
