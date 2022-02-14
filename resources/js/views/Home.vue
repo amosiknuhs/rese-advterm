@@ -236,7 +236,6 @@ export default {
 
 .shop-list {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 20px 20px;
 }

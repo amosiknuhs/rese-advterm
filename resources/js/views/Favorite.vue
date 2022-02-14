@@ -1,47 +1,51 @@
 <template>
-    <div class="favorite-content">
-        <div
-            class="favorite-card"
-            v-for="(favorite, index) in favorites"
-            :key="index"
-        >
-            <div class="card-img">
-                <img :src="favorite.shop.img_url" alt="" />
-            </div>
-            <div class="card-content">
-                <p class="shop-name">{{ favorite.shop.name }}</p>
-                <div class="tag">
-                    <span class="area-tag">#{{ favorite.shop.area.name }}</span>
-                    <span class="genre-tag"
-                        >#{{ favorite.shop.genre.name }}</span
-                    >
+    <div>
+        <div class="favorite-content">
+            <div
+                class="favorite-card"
+                v-for="(favorite, index) in favorites"
+                :key="index"
+            >
+                <div class="card-img">
+                    <img :src="favorite.shop.img_url" alt="" />
                 </div>
-                <div class="star">
-                    <star-rating
-                        :rating="favorite.shop.star"
-                        :increment="0.01"
-                        :read-only="true"
-                        :star-size="15"
-                    >
-                    </star-rating>
-                    <p class="review-count">
-                        （{{ favorite.shop.reviewCount }}件）
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <router-link
-                        v-bind:to="{
-                            name: 'detail',
-                            params: { shop_id: favorite.shop_id },
-                        }"
-                    >
-                        <button class="detail">詳しく見る</button>
-                    </router-link>
-                    <button
-                        type="submit"
-                        class="favorite"
-                        @click="changeFav(1, favorite.shop_id)"
-                    ></button>
+                <div class="card-content">
+                    <p class="shop-name">{{ favorite.shop.name }}</p>
+                    <div class="tag">
+                        <span class="area-tag"
+                            >#{{ favorite.shop.area.name }}</span
+                        >
+                        <span class="genre-tag"
+                            >#{{ favorite.shop.genre.name }}</span
+                        >
+                    </div>
+                    <div class="star">
+                        <star-rating
+                            :rating="favorite.shop.star"
+                            :increment="0.01"
+                            :read-only="true"
+                            :star-size="15"
+                        >
+                        </star-rating>
+                        <p class="review-count">
+                            （{{ favorite.shop.reviewCount }}件）
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <router-link
+                            v-bind:to="{
+                                name: 'detail',
+                                params: { shop_id: favorite.shop_id },
+                            }"
+                        >
+                            <button class="detail">詳しく見る</button>
+                        </router-link>
+                        <button
+                            type="submit"
+                            class="favorite"
+                            @click="changeFav(1, favorite.shop_id)"
+                        ></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -95,7 +99,6 @@ export default {
 <style scoped>
 .favorite-content {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 20px 20px;
 }
