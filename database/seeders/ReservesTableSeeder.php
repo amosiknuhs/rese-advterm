@@ -25,6 +25,38 @@ class ReservesTableSeeder extends Seeder
     DB::table('reserves')->insert($param);
     $param = [
       'user_id' => 1,
+      'shop_id' => 1,
+      'date' => '2022-01-02',
+      'time' => '12:00:00',
+      'number' => 2,
+    ];
+    DB::table('reserves')->insert($param);
+    $param = [
+      'user_id' => 1,
+      'shop_id' => 1,
+      'date' => '2022-01-03',
+      'time' => '13:00:00',
+      'number' => 3,
+    ];
+    DB::table('reserves')->insert($param);
+    $param = [
+      'user_id' => 1,
+      'shop_id' => 1,
+      'date' => '2022-01-04',
+      'time' => '14:00:00',
+      'number' => 4,
+    ];
+    DB::table('reserves')->insert($param);
+    $param = [
+      'user_id' => 1,
+      'shop_id' => 1,
+      'date' => '2022-01-05',
+      'time' => '15:00:00',
+      'number' => 5,
+    ];
+    DB::table('reserves')->insert($param);
+    $param = [
+      'user_id' => 1,
       'shop_id' => 4,
       'date' => '2022-02-01',
       'time' => '12:30:00',
