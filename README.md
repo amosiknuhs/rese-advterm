@@ -50,9 +50,9 @@
 
 バックエンド
 
--   PHP 7.3
--   Laravel 8.12
--   Mysql 8.0.23
+-   PHP 8.0.14
+-   Laravel 8.78.0
+-   Mysql 5.7.34
 
 インフラ
 
