@@ -48,7 +48,9 @@
                     </validation-provider>
                     <p class="login-error">{{ loginMessage[0] }}</p>
                     <div class="login-form-footer">
-                        <button @click="guestAdminLogin">ゲストログイン</button>
+                        <form @submit.prevent="guestAdminLogin">
+                            <button type="submit">ゲストログイン</button>
+                        </form>
                         <button type="submit" :disabled="invalid">
                             ログイン
                         </button>
