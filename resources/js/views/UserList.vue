@@ -2,14 +2,6 @@
     <div>
         <div class="list-header">
             <p class="list-title">ユーザーリスト</p>
-            <!-- <router-link
-                v-bind:to="{
-                    name: 'owner-register',
-                }"
-                class="owner-register"
-            >
-                <button>ユーザー新規登録</button>
-            </router-link> -->
         </div>
         <div class="desktop">
             <table class="user-table">
@@ -27,7 +19,7 @@
                     <td>{{ user.id }}</td>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
-                    <td>削除ボタン</td>
+                    <td><button>ユーザー詳細</button></td>
                 </tr>
             </table>
         </div>
@@ -51,9 +43,12 @@
                     <th>メールアドレス</th>
                     <td>{{ user.email }}</td>
                 </tr>
+                <tr>
+                    <th></th>
+                    <td><button>ユーザー詳細</button></td>
+                </tr>
             </table>
         </div>
-        <router-view></router-view>
     </div>
 </template>
 <script>
@@ -133,6 +128,15 @@ export default {
 .user-table tr:not(:last-of-type) {
     border-bottom: 1px solid #d1d5db;
 }
+.user-table button {
+    display: inline-block;
+    border: none;
+    background-color: #9a2fff;
+    color: #ffffff;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 .user-id {
     width: 10%;
 }
@@ -174,6 +178,9 @@ export default {
     }
     .user-table:not(:last-of-type) {
         border-bottom: 1px solid #d1d5db;
+    }
+    .user-table button {
+        margin: 5px 0;
     }
 }
 </style>

@@ -30,7 +30,7 @@
                     <td>{{ owner.name }}</td>
                     <td>{{ owner.email }}</td>
                     <td>{{ owner.shop.name }}</td>
-                    <td>削除・変更ボタン</td>
+                    <td><button>オーナー詳細</button></td>
                 </tr>
             </table>
         </div>
@@ -57,6 +57,10 @@
                 <tr>
                     <th>店舗名</th>
                     <td>{{ owner.shop.name }}</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><button>オーナー詳細</button></td>
                 </tr>
             </table>
         </div>
@@ -140,6 +144,15 @@ export default {
 .owners-table tr:not(:last-of-type) {
     border-bottom: 1px solid #d1d5db;
 }
+.owners-table button {
+    display: inline-block;
+    border: none;
+    background-color: #9a2fff;
+    color: #ffffff;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 .owner-id {
     width: 10%;
 }
@@ -191,6 +204,9 @@ export default {
     }
     .owners-table:not(:last-of-type) {
         border-bottom: 1px solid #d1d5db;
+    }
+    .owners-table button {
+        margin: 5px 0;
     }
 }
 @media screen and (max-width: 400px) {

@@ -30,7 +30,7 @@
                         <td>{{ reserve.date }}</td>
                         <td>{{ reserve.time | jsonTime }}</td>
                         <td>{{ reserve.number | numUnit }}</td>
-                        <td>ボタン置く</td>
+                        <td><button>予約詳細</button></td>
                     </tr>
                 </table>
             </div>
@@ -60,13 +60,16 @@
                         <th>来店人数</th>
                         <td>{{ reserve.number | numUnit }}</td>
                     </tr>
+                    <tr>
+                        <th></th>
+                        <td><button>予約詳細</button></td>
+                    </tr>
                 </table>
             </div>
         </div>
         <div v-if="shopData.reservations.length == 0" class="noReserve">
             ※現在予約はありません
         </div>
-        <!-- <router-view :process-type="processType"></router-view> -->
     </div>
 </template>
 <script>
@@ -134,6 +137,15 @@ export default {
 .reserve-table tr:not(:last-of-type) {
     border-bottom: 1px solid #d1d5db;
 }
+.reserve-table button {
+    display: inline-block;
+    border: none;
+    background-color: #552fff;
+    color: #ffffff;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 .noReserve {
     padding: 50px 30px;
 }
@@ -177,6 +189,9 @@ export default {
     }
     .reserve-table:not(:last-of-type) {
         border-bottom: 1px solid #d1d5db;
+    }
+    .reserve-table button {
+        margin: 10px 0;
     }
 }
 </style>
