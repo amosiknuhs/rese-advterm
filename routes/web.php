@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/rese/{any}', function () {
     return view('app');
@@ -9,9 +10,7 @@ Route::get('/rese/{any}', function () {
 // メール認証機能実装に伴う設定
 Route::get('/rese/verify-notice', function () {
     return redirect('/rese/verify-notice');
-})->name('login');
-
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+})->name('verification.notice');
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();

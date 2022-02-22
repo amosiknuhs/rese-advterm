@@ -11,8 +11,8 @@
                 >
                 <span>アカウントの本登録を完了してください。</span>
             </div>
-            <router-link v-bind:to="{ name: 'user-login' }" class="toLogin"
-                >ログインする</router-link
+            <router-link v-bind:to="{ name: 'home' }" class="backHome"
+                >HOMEへ戻る</router-link
             >
         </form>
     </div>
@@ -50,7 +50,7 @@
 .thanks-message span:last-of-type {
     margin-bottom: 40px;
 }
-.toLogin {
+.backHome {
     text-decoration: none;
     background-color: #2f60ff;
     color: #ffffff;
