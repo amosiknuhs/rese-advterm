@@ -8,10 +8,6 @@ Route::get('/rese/{any}', function () {
 })->where('any', '.*');
 
 // メール認証機能実装に伴う設定
-Route::get('/rese/verify-notice', function () {
-    return redirect('/rese/verify-notice');
-})->name('verification.notice');
-
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
     return redirect('/rese/thanks-mail-verify');

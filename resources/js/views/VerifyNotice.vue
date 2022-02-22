@@ -2,14 +2,13 @@
     <div class="thanks-content">
         <form class="thanks-message">
             <p>本会員登録をお願いいたします</p>
-            <div>
+            <div class="sentence">
                 <span
-                    >ご入力いただいたメールアドレスに、"メールアドレスの確認"メールを送信しております。</span
+                    >ご登録いただいたメールアドレスに、"メールアドレスの確認"メールを送信しております。</span
                 >
                 <span
-                    >ログインした上で、メール本文中の"メールアドレスの確認"のリンクをクリックし、</span
+                    >ログインした上で、メール本文中の"メールアドレスの確認"のリンクをクリックし、アカウントの本登録を完了してください。</span
                 >
-                <span>アカウントの本登録を完了してください。</span>
             </div>
             <router-link v-bind:to="{ name: 'home' }" class="backHome"
                 >HOMEへ戻る</router-link
@@ -35,20 +34,15 @@
     align-items: center;
     flex-flow: column;
     justify-content: center;
-}
-.thanks-message div {
-    align-items: left;
+    gap: 40px;
+    padding: 0 30px;
 }
 .thanks-message p {
     font-size: 25px;
-    margin-bottom: 40px;
 }
-.thanks-message span {
-    display: block;
-    width: 100%;
-}
-.thanks-message span:last-of-type {
-    margin-bottom: 40px;
+.sentence span {
+    display: inline-block;
+    line-height: 25px;
 }
 .backHome {
     text-decoration: none;

@@ -18,17 +18,20 @@ Route::middleware('auth:user')->group(function () {
     Route::get('/mypage/reserves', [MypageController::class, "getReserves"]);
     // マイページでお気に入り情報を取得
     Route::get('/mypage/favorites', [MypageController::class, "getFavorites"]);
-    // 予約登録・変更機能
-    Route::post('/reserve', [ReserveController::class, "reserve"]);
-    Route::post('/change', [ReserveController::class, "change"]);
-    // 予約削除機能
-    Route::post('/cancel', [ReserveController::class, "cancel"]);
-    // 事前支払い機能
-    Route::post('/checkout', [ReserveController::class, "checkout"]);
-    // お気に入り登録・解除機能
-    Route::post('/favorite', [FavoriteController::class, "favorite"]);
-    // 評価登録機能
-    Route::post('/evaluate', [EvaluationController::class, "evaluate"]);
+
+    Route::middleware('verified')->group(function () {
+        // 予約登録・変更機能
+        Route::post('/reserve', [ReserveController::class, "reserve"]);
+        Route::post('/change', [ReserveController::class, "change"]);
+        // 予約削除機能
+        Route::post('/cancel', [ReserveController::class, "cancel"]);
+        // 事前支払い機能
+        Route::post('/checkout', [ReserveController::class, "checkout"]);
+        // お気に入り登録・解除機能
+        Route::post('/favorite', [FavoriteController::class, "favorite"]);
+        // 評価登録機能
+        Route::post('/evaluate', [EvaluationController::class, "evaluate"]);
+    });
 });
 
 Route::middleware('auth:owner')->group(function () {
