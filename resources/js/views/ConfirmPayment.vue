@@ -185,4 +185,10 @@ export default {
     align-items: center;
     height: 200px;
 }
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .reserve-content span:last-of-type {
+        width: initial;
+    }
+}
 </style>
