@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Database\Seeders\AreasTableSeeder;
 use Database\Seeders\GenresTableSeeder;
@@ -12,8 +11,13 @@ use Tests\TestCase;
 
 class ReserveTest extends TestCase
 {
-    use RefreshDatabase;
     use WithoutMiddleware;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->artisan('migrate:fresh');
+    }
 
     public function testReserve()
     {

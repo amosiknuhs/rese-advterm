@@ -11,8 +11,14 @@ use Tests\TestCase;
 
 class AdminTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
     use WithoutMiddleware;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->artisan('migrate:fresh');
+    }
 
     public function testOwnerCreate()
     {

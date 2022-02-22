@@ -16,8 +16,14 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
     use WithoutMiddleware;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->artisan('migrate:fresh');
+    }
 
     public function testUserLogin()
     {
