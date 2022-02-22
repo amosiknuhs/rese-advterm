@@ -34,7 +34,6 @@
     box-shadow: 2px 2px 4px gray;
     border-radius: 5px;
     width: 500px;
-    height: 330px;
     overflow: hidden;
 }
 .role-tab {

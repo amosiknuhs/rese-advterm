@@ -46,8 +46,9 @@
                             <span class="error-message">{{ errors[0] }}</span>
                         </div>
                     </validation-provider>
+                    <p class="login-error">{{ loginMessage[0] }}</p>
                     <div class="login-form-footer">
-                        <span v-if="loginMessage">{{ loginMessage[0] }}</span>
+                        <button @click="guestOwnerLogin">ゲストログイン</button>
                         <button type="submit" :disabled="invalid">
                             ログイン
                         </button>
@@ -88,6 +89,25 @@ export default {
                     });
             });
         },
+        guestOwnerLogin() {
+            axios.get("/sanctum/csrf-cookie").then((response) => {
+                axios
+                    .post("/api/owner/login", {
+                        email: "sennin@owner.com",
+                        password: "password",
+                    })
+                    .then((response) => {
+                        this.setLogin();
+                        this.$router.push("/rese/owner/user-reservations");
+                    })
+                    .catch((err) => {
+                        this.emailMessage = err.response.data.errors.email;
+                        this.passMessage = err.response.data.errors.password;
+                        this.loginMessage =
+                            err.response.data.errors.login_error;
+                    });
+            });
+        },
         setLogin() {
             this.$store.commit("setLogin");
             this.$store.commit("setRole", "owner");
@@ -109,7 +129,7 @@ export default {
     text-decoration: none;
 }
 .login-form {
-    padding: 20px 40px;
+    padding: 20px 40px 30px;
 }
 .login-form input {
     width: 89%;
@@ -139,13 +159,8 @@ export default {
 }
 .login-form-footer {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
-}
-.login-form-footer span {
-    display: inline-block;
-    color: red;
+    justify-content: flex-end;
+    gap: 10px;
 }
 .login-form-footer button {
     display: inline-block;
@@ -155,7 +170,6 @@ export default {
     padding: 7px 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: auto;
 }
 .login-form-footer button:disabled {
     cursor: default;
@@ -170,5 +184,9 @@ export default {
     color: red;
     display: inline-block;
     padding-left: 50px;
+}
+.login-error {
+    height: 20px;
+    color: red;
 }
 </style>
