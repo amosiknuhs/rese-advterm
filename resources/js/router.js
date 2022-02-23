@@ -1,5 +1,6 @@
 import Router from "vue-router";
 import store from "./store";
+// views
 import NotFound from "./views/NotFound.vue";
 import Home from "./views/Home.vue";
 import Detail from "./views/Detail.vue";
@@ -8,36 +9,38 @@ import Register from "./views/Register.vue";
 import Mypage from "./views/Mypage.vue";
 import Thanks from "./views/Thanks.vue";
 import ThanksMailVerify from "./views/ThanksMailVerify.vue";
-import Done from "./views/Done.vue";
-import ChangeReserve from "./views/ChangeReserve.vue";
-import Evaluation from "./views/Evaluation.vue";
-import MypageDialog from "./views/MypageDialog.vue";
-import Cancel from "./views/Cancel.vue";
-import Reservation from "./views/Reservation.vue";
-import Favorite from "./views/Favorite.vue";
-import UserLogin from "./views/UserLogin.vue";
-import OwnerLogin from "./views/OwnerLogin.vue";
-import AdminLogin from "./views/AdminLogin.vue";
-import ConfirmReserve from "./views/ConfirmReserve.vue";
-import Owner from "./views/Owner.vue";
-import UserReservations from "./views/UserReservations.vue";
-import OwnerShop from "./views/OwnerShop.vue";
-import OwnerShopEdit from "./views/OwnerShopEdit.vue";
-import OwnerDialog from "./views/OwnerDialog.vue";
-import Admin from "./views/Admin.vue";
-import OwnerList from "./views/OwnerList.vue";
-import UserList from "./views/UserList.vue";
-import ShopList from "./views/ShopList.vue";
-import OwnerRegister from "./views/OwnerRegister.vue";
-import OwnerRegisterDialog from "./views/OwnerRegisterDialog.vue";
-import ShopRegister from "./views/ShopRegister.vue";
-import Email from "./views/Email.vue";
-import EmailDialog from "./views/EmailDialog.vue";
 import VerifyNotice from "./views/VerifyNotice.vue";
-import ReserveCode from "./views/ReserveCode.vue";
-import ConfirmPayment from "./views/ConfirmPayment.vue";
+import Done from "./views/Done.vue";
 import PaymentSuccess from "./views/PaymentSuccess.vue";
 import PaymentCancel from "./views/PaymentCancel.vue";
+import Owner from "./views/Owner.vue";
+import Admin from "./views/Admin.vue";
+// components
+import ConfirmReserve from "./components/ConfirmReserve.vue";
+import UserLogin from "./components/UserLogin.vue";
+import OwnerLogin from "./components/OwnerLogin.vue";
+import AdminLogin from "./components/AdminLogin.vue";
+import Reservation from "./components/Reservation.vue";
+import Favorite from "./components/Favorite.vue";
+import UserReservations from "./components/UserReservations.vue";
+import OwnerShop from "./components/OwnerShop.vue";
+import OwnerList from "./components/OwnerList.vue";
+import OwnerRegisterDialog from "./components/OwnerRegisterDialog.vue";
+import UserList from "./components/UserList.vue";
+import ShopList from "./components/ShopList.vue";
+import ShopRegister from "./components/ShopRegister.vue";
+import Email from "./components/Email.vue";
+// modals
+import ChangeReserve from "./modals/ChangeReserve.vue";
+import Evaluation from "./modals/Evaluation.vue";
+import ConfirmPayment from "./modals/ConfirmPayment.vue";
+import Cancel from "./modals/Cancel.vue";
+import MypageDialog from "./modals/MypageDialog.vue";
+import ReserveCode from "./modals/ReserveCode.vue";
+import OwnerShopEdit from "./modals/OwnerShopEdit.vue";
+import OwnerDialog from "./modals/OwnerDialog.vue";
+import OwnerRegister from "./modals/OwnerRegister.vue";
+import EmailDialog from "./modals/EmailDialog.vue";
 
 const router = new Router({
     mode: "history",
