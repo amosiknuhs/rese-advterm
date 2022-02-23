@@ -5,22 +5,13 @@ import {
     email,
     max,
     min,
-    image,
-    regex,
     length,
     alpha_num,
 } from "vee-validate/dist/rules";
-import {
-    extend,
-    ValidationObserver,
-    ValidationProvider,
-    setInteractionMode,
-} from "vee-validate";
+import { extend, ValidationObserver, ValidationProvider } from "vee-validate";
 
 Vue.component("ValidationObserver", ValidationObserver);
 Vue.component("ValidationProvider", ValidationProvider);
-
-// setInteractionMode("aggressive");
 
 extend("required", {
     ...required,
@@ -56,13 +47,3 @@ extend("length", {
     ...length,
     message: "{_field_}は{length}文字で入力してください",
 });
-
-// extend("postCodeRegex", {
-//     ...regex,
-//     message: "ハイフンなしの数字のみで入力してください",
-// });
-
-// extend("image", {
-//     ...image,
-//     message: "画像ファイルを選択してください",
-// });

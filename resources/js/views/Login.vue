@@ -22,6 +22,7 @@
         </div>
     </div>
 </template>
+
 <style scoped>
 .login-content {
     height: 80vh;

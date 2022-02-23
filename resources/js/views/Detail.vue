@@ -378,7 +378,6 @@ export default {
     font-size: 30px;
     font-weight: bold;
 }
-
 /* ----------shop-detail---------- */
 .shop-detail {
     height: 2000px;

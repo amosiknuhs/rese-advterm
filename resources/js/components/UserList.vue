@@ -51,6 +51,7 @@
         </div>
     </div>
 </template>
+
 <script>
 export default {
     data: function () {
@@ -77,6 +78,7 @@ export default {
     },
 };
 </script>
+
 <style scoped>
 .list-header {
     height: 70px;

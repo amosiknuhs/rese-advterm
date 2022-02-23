@@ -172,7 +172,6 @@ export default {
 
 <style scoped>
 /* ---------- 検索ボックス ---------- */
-
 .search-box {
     height: 55px;
     width: 780px;
@@ -231,9 +230,7 @@ export default {
     color: #fff;
     cursor: pointer;
 }
-
 /* ---------- 飲食店一覧表示 ---------- */
-
 .shop-list {
     display: flex;
     flex-wrap: wrap;

@@ -2,14 +2,6 @@
     <div>
         <div class="list-header">
             <p class="list-title">飲食店リスト</p>
-            <!-- <router-link
-                v-bind:to="{
-                    name: 'shop-register',
-                }"
-                class="shop-register"
-            >
-                <button>飲食店新規登録</button>
-            </router-link> -->
         </div>
         <div class="desktop">
             <table class="shops-table">
@@ -64,9 +56,9 @@
                 </tr>
             </table>
         </div>
-        <router-view></router-view>
     </div>
 </template>
+
 <script>
 export default {
     data: function () {
@@ -86,6 +78,7 @@ export default {
     },
 };
 </script>
+
 <style scoped>
 .list-header {
     height: 70px;

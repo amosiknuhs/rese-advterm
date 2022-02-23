@@ -81,6 +81,7 @@
         <router-view :process-type="processType"></router-view>
     </div>
 </template>
+
 <script>
 export default {
     data: function () {
@@ -136,6 +137,7 @@ export default {
     },
 };
 </script>
+
 <style scoped>
 .reserve-content {
     display: flex;

@@ -28,7 +28,6 @@ import OwnerList from "./components/OwnerList.vue";
 import OwnerRegisterDialog from "./components/OwnerRegisterDialog.vue";
 import UserList from "./components/UserList.vue";
 import ShopList from "./components/ShopList.vue";
-import ShopRegister from "./components/ShopRegister.vue";
 import Email from "./components/Email.vue";
 // modals
 import ChangeReserve from "./modals/ChangeReserve.vue";
@@ -238,13 +237,6 @@ const router = new Router({
                     path: "shop-list",
                     name: "shop-list",
                     component: ShopList,
-                    children: [
-                        {
-                            path: "shop-register",
-                            name: "shop-register",
-                            component: ShopRegister,
-                        },
-                    ],
                 },
                 {
                     path: "email",
