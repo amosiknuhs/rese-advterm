@@ -13,6 +13,10 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/rese/thanks-mail-verify');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
+Route::get('/rese/login/user-login', function () {
+    return redirect('/rese/login/user-login');
+})->name('login');
+
 // Stripeでの支払い成功画面とキャンセル後の画面の遷移設定
 Route::get('/rese/payment-success', function () {
     return redirect('/rese/payment-success');
