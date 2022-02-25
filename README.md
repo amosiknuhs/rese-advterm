@@ -3,9 +3,9 @@
 飲食店予約アプリケーションです。飲食店の検索・お気に入り・予約をすることができます。ユーザーの他に飲食店のオーナー、このアプリを管理する管理者のアカウントも用意されています。
 <img width="1336" alt="スクリーンショット 2022-02-23 10 39 39" src="https://user-images.githubusercontent.com/91045911/155248705-f748f513-645d-4c7e-8c68-eb8801915122.png">
 
-## 作成した目的
-
 ## アプリケーション URL
+
+https://rese-app-shun.herokuapp.com/rese/home
 
 ## 機能一覧
 
@@ -37,7 +37,6 @@
 -   レスポンシブ対応（スマートフォン・タブレット・PC）
 -   リアルタイムフォームバリデーション
 -   マルチログイン機能（ユーザー・店舗オーナー・管理者）
--   ユーザーの評価、口コミ表示
 -   予約当日に自動リマインドメール通知
 
 ## 使用技術
@@ -47,7 +46,6 @@
 -   HTML/CSS
 -   JavaScript
 -   Vue.js 2.6.14
--   VeeValidate 3.4.14
 
 バックエンド
 
@@ -58,7 +56,8 @@
 インフラ
 
 -   Heroku
--   Docker
+-   Heroku PostgresSQL
+-   Docker：ローカル環境のみ対応（https://github.com/shun0315/rese-app-docker）
 
 ## ER 図
 
