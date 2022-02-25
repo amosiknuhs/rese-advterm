@@ -56,7 +56,7 @@ https://rese-app-shun.herokuapp.com/rese/home
 インフラ
 
 -   Heroku
--   Heroku PostgresSQL
+-   PostgresSQL(Heroku)
 
 ## ER 図
 
@@ -64,5 +64,4 @@ https://rese-app-shun.herokuapp.com/rese/home
 
 ## 開発環境構築について
 
--   Docker を用いた構築　※ローカル環境のみ対応
-    https://github.com/shun0315/rese-app-docker
+-   Docker を用いた構築 ※ローカル環境のみ対応：https://github.com/shun0315/rese-app-docker
