@@ -36,6 +36,7 @@ Route::middleware('auth:user')->group(function () {
 
 Route::middleware('auth:owner')->group(function () {
     Route::get('/owner', [OwnerController::class, "owner"]);
+    Route::post('/reserve-list', [OwnerController::class, "getReserveList"]);
     Route::post('/shop/edit', [OwnerController::class, "ownerShopUpdate"]);
 });
 

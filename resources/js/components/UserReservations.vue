@@ -22,7 +22,7 @@
                     </tr>
                     <tr
                         class=""
-                        v-for="(reserve, index) in shopData.reservations"
+                        v-for="(reserve, index) in reservations"
                         :key="index"
                     >
                         <td>{{ reserve.id }}</td>
@@ -80,6 +80,20 @@ export default {
             type: Object,
         },
     },
+    data: function () {
+        return {
+            reservations: "",
+        };
+    },
+    methods: {
+        async getReserveList() {
+            await axios
+                .post("/api/reserve-list", { shop_id: this.shopData.id })
+                .then((response) => {
+                    this.reservations = response.data;
+                });
+        },
+    },
     filters: {
         jsonTime: function (value) {
             let tenHour = parseInt(value.substring(11, 12), 10);
@@ -94,6 +108,9 @@ export default {
         numUnit: function (value) {
             return value + "人";
         },
+    },
+    mounted() {
+        this.getReserveList();
     },
 };
 </script>
