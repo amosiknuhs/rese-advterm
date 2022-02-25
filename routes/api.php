@@ -57,6 +57,6 @@ Route::post('/admin/login', [AuthController::class, "login"]);
 // ログアウト機能
 Route::post('/logout', [AuthController::class, "logout"]);
 // 飲食店検索機能
-Route::get('/', [ShopController::class, "home"]);
+Route::get('/home', [ShopController::class, "home"]);
 // 飲食店詳細取得
 Route::get('/detail/{shop}', [ShopController::class, "detail"]);

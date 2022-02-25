@@ -93,7 +93,7 @@ export default {
     filters: {},
     methods: {
         async getShops() {
-            await axios.get("/api/").then((response) => {
+            await axios.get("/api/home").then((response) => {
                 for (let i in response.data) {
                     let shop = response.data[i];
                     let arr = shop.evaluations.map((star) => star["rating"]);
