@@ -21,7 +21,7 @@ class AdminController extends Controller
     }
     public function getOwnerList()
     {
-        return Owner::with('shop')->get();
+        return Owner::with('shop')->orderBy('id', 'asc')->get();
     }
     public function getUserList()
     {
@@ -29,7 +29,7 @@ class AdminController extends Controller
     }
     public function getShopList()
     {
-        return Shop::with('area', 'genre')->get();
+        return Shop::with('area', 'genre')->orderBy('id', 'asc')->get();
     }
 
     public function ownerCreate(AdminRequest $request)
