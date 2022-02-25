@@ -298,6 +298,8 @@ export default {
             }
         },
         averageRate: function () {
+            console.log("if前");
+            console.log(this.arr);
             if (this.arr.length == 0) {
                 return 0;
             } else {
@@ -305,6 +307,11 @@ export default {
                 this.arr.forEach(function (value) {
                     sum += value;
                 });
+                console.log("計算後");
+                console.log(
+                    Math.round((sum / this.arr.length) * Math.pow(10, 2)) /
+                        Math.pow(10, 2)
+                );
                 return (
                     Math.round((sum / this.arr.length) * Math.pow(10, 2)) /
                     Math.pow(10, 2)
