@@ -155,7 +155,7 @@ export default {
                 });
         },
         async getShopList() {
-            await axios.get("/api/").then((response) => {
+            await axios.get("/api/home").then((response) => {
                 this.shopList = response.data;
             });
         },
