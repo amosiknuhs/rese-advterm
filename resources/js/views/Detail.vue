@@ -143,8 +143,8 @@
                 >
                     <p>{{ evaluation.comment }}</p>
                     <star-rating
-                        :rating="evaluation.rating"
-                        :increment="0.01"
+                        :rating="parseFloat(evaluation.rating)"
+                        :increment="0.1"
                         :read-only="true"
                         :star-size="20"
                     >
@@ -324,8 +324,8 @@ export default {
             await axios.get("/api/detail/" + this.id).then((response) => {
                 this.shopDetail = response.data;
                 this.evaluations = response.data.evaluations;
-                this.arr = this.shopDetail.evaluations.map(
-                    (star) => star["rating"]
+                this.arr = this.shopDetail.evaluations.map((star) =>
+                    parseFloat(star["rating"])
                 );
             });
         },
