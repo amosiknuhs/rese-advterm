@@ -96,7 +96,9 @@ export default {
             await axios.get("/api/home").then((response) => {
                 for (let i in response.data) {
                     let shop = response.data[i];
-                    let arr = shop.evaluations.map((star) => star["rating"]);
+                    let arr = shop.evaluations.map((star) =>
+                        parseFloat(star["rating"])
+                    );
                     if (arr.length == 0) {
                         shop["star"] = 0;
                         shop["reviewCount"] = 0;
