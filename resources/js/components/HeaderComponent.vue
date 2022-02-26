@@ -288,7 +288,6 @@ export default {
     color: #afafaf;
     font-weight: bold;
     font-size: 35px;
-    font-family: "Hiragino Sans", "ヒラギノ角ゴシック";
     height: 35px;
     margin: auto 0;
     text-decoration: none;
@@ -316,7 +315,6 @@ export default {
     color: #fff;
     font-size: 25px;
     font-weight: bold;
-    font-family: "Hiragino Sans", "ヒラギノ角ゴシック";
 }
 .logout {
     cursor: pointer;
