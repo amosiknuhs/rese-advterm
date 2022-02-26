@@ -11,6 +11,12 @@ body {
     max-width: 1260px;
     margin: 0 auto;
 }
+select,
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
 /* ------- タブレットデザイン -------- */
 @media screen and (max-width: 768px) {
     #app {
