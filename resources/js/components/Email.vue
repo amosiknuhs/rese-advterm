@@ -17,6 +17,9 @@
                             id="user_email"
                             v-model="user_email"
                         >
+                            <option disabled selected value>
+                                宛先を選択してください
+                            </option>
                             <optgroup label="ユーザー">
                                 <option
                                     v-for="(user, index) in userList"
