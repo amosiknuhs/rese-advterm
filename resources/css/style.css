@@ -16,6 +16,8 @@ input {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    border-radius: 0;
+    background-color: white;
 }
 /* ------- タブレットデザイン -------- */
 @media screen and (max-width: 768px) {
