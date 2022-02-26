@@ -296,4 +296,10 @@ export default {
     background-image: url("/img/delete.svg");
     margin: auto 20px;
 }
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .error-message {
+        padding-left: 0;
+    }
+}
 </style>

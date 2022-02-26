@@ -188,5 +188,8 @@ export default {
     .content textarea {
         width: 68%;
     }
+    .content textarea {
+        border-radius: 0;
+    }
 }
 </style>

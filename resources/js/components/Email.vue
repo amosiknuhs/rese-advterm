@@ -242,4 +242,7 @@ export default {
         width: 95%;
     }
 }
+.error-message {
+    padding-left: 10px;
+}
 </style>

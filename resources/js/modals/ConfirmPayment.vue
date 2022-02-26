@@ -13,7 +13,9 @@
                         </div>
                         <div>
                             <span>コース名：</span>
-                            <span>宴会コース（1名：3,000円）</span>
+                            <span class="course-name"
+                                >宴会コース（1名：3,000円）</span
+                            >
                         </div>
                         <div>
                             <span>人数：</span>
@@ -189,6 +191,9 @@ export default {
 @media screen and (max-width: 480px) {
     .reserve-content span:last-of-type {
         width: initial;
+    }
+    .course-name {
+        font-size: 14px;
     }
 }
 </style>

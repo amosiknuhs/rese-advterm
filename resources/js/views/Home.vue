@@ -23,7 +23,7 @@
                     v-model="search.name"
                     type="text"
                     class="search-name"
-                    placeholder="Shop name …"
+                    placeholder="Shop name"
                 />
             </div>
             <button class="search-reset" @click="searchReset">RESET</button>
@@ -333,7 +333,7 @@ export default {
         width: 30%;
         border-left: 1px solid #dfdfdf;
         padding-left: 10px;
-        font-size: 15px;
+        font-size: 13px;
     }
     .img-container {
         display: none;

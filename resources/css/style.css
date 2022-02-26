@@ -22,7 +22,7 @@ input {
     border-radius: 0;
     background-color: white;
     color: black;
-    line-height: 1.1;
+    line-height: 1.4;
 }
 /* ------- タブレットデザイン -------- */
 @media screen and (max-width: 768px) {
