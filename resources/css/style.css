@@ -24,9 +24,6 @@ input {
     color: black;
     line-height: 1.4;
 }
-#date {
-    text-align: left;
-}
 /* ------- タブレットデザイン -------- */
 @media screen and (max-width: 768px) {
     #app {
