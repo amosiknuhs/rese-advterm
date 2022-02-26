@@ -186,7 +186,7 @@ export default {
     .area select,
     .genre select,
     .content textarea {
-        width: 70%;
+        width: 68%;
     }
 }
 </style>

@@ -85,8 +85,11 @@ export default {
 }
 /* ------ スマートフォンデザイン ------ */
 @media screen and (max-width: 480px) {
-    .mypage-title > * {
+    .reserve-title,
+    .favorite-title {
         font-size: 1.2rem;
+        padding-left: 0;
+        text-align: center;
     }
 }
 </style>

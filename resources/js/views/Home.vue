@@ -333,6 +333,7 @@ export default {
         width: 30%;
         border-left: 1px solid #dfdfdf;
         padding-left: 10px;
+        font-size: 15px;
     }
     .img-container {
         display: none;

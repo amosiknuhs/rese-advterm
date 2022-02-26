@@ -283,10 +283,11 @@ export default {
     }
     .reserve-button button {
         display: inline-block;
-        width: 80px;
+        width: 70px;
     }
     .cancel {
         font-size: 12px;
+        width: 80px !important;
     }
 }
 </style>

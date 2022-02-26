@@ -239,7 +239,7 @@ export default {
     .email-form select,
     .email-form input,
     .email-form textarea {
-        width: 80%;
+        width: 95%;
     }
 }
 </style>

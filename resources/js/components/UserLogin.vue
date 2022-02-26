@@ -192,4 +192,13 @@ export default {
     height: 20px;
     color: red;
 }
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .error-message {
+        padding-left: 0;
+    }
+    .login-error {
+        font-size: 15px;
+    }
+}
 </style>
