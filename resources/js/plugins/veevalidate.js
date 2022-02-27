@@ -7,6 +7,7 @@ import {
     min,
     length,
     alpha_num,
+    image,
 } from "vee-validate/dist/rules";
 import { extend, ValidationObserver, ValidationProvider } from "vee-validate";
 
@@ -46,4 +47,9 @@ extend("alpha_num", {
 extend("length", {
     ...length,
     message: "{_field_}は{length}文字で入力してください",
+});
+
+extend("image", {
+    ...image,
+    message: "画像ファイルを選択してください",
 });
