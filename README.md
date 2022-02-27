@@ -23,6 +23,7 @@ https://rese-app-shun.herokuapp.com/rese/home
 
 -   ユーザーの予約一覧確認
 -   店舗情報の確認・変更
+-   店舗画像のアップロード（※現在ローカル環境のみの提供です）
 
 管理者
 
@@ -57,6 +58,7 @@ https://rese-app-shun.herokuapp.com/rese/home
 
 -   Heroku
 -   PostgresSQL(Heroku)
+-   Docker※ローカル環境のみ（下記参照）
 
 ## ER 図
 
