@@ -65,3 +65,16 @@ https://rese-app-shun.herokuapp.com/rese/home
 ## 開発環境構築について
 
 -   Docker を用いた構築 ※ローカル環境のみ対応：https://github.com/shun0315/rese-app-docker
+
+## 今後の追加実装項目
+
+下記項目については今後実装予定のため、ボタンを押下しても動作しません
+
+店舗オーナー画面
+
+-   予約詳細表示
+
+管理者画面
+
+-   ユーザー詳細表示
+-   店舗オーナー詳細表示
