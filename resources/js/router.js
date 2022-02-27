@@ -37,6 +37,7 @@ import Cancel from "./modals/Cancel.vue";
 import MypageDialog from "./modals/MypageDialog.vue";
 import ReserveCode from "./modals/ReserveCode.vue";
 import OwnerShopEdit from "./modals/OwnerShopEdit.vue";
+import ShopImageEdit from "./modals/ShopImageEdit.vue";
 import OwnerDialog from "./modals/OwnerDialog.vue";
 import OwnerRegister from "./modals/OwnerRegister.vue";
 import EmailDialog from "./modals/EmailDialog.vue";
@@ -195,6 +196,11 @@ const router = new Router({
                             path: "edit",
                             name: "shop-edit",
                             component: OwnerShopEdit,
+                        },
+                        {
+                            path: "image",
+                            name: "image-edit",
+                            component: ShopImageEdit,
                         },
                         {
                             path: "complete",

@@ -2,6 +2,9 @@
     <div>
         <div class="list-header">
             <p class="list-title">店舗情報</p>
+            <router-link v-bind:to="{ name: 'image-edit' }">
+                <button>店舗画像変更</button>
+            </router-link>
         </div>
         <div class="shop-img">
             <img :src="shopData.img_url" alt="" />
@@ -63,6 +66,18 @@ export default {
     align-items: center;
     padding-right: 30px;
 }
+.list-header button {
+    border: none;
+    background-color: #fff;
+    color: #552fff;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+}
+
 .list-title {
     text-decoration: none;
     font-size: 25px;
@@ -114,6 +129,9 @@ export default {
 @media screen and (max-width: 480px) {
     .shop-edit > div > p:first-of-type {
         width: 30%;
+    }
+    .shop-img {
+        height: 200px;
     }
 }
 </style>
