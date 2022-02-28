@@ -1,6 +1,7 @@
 # Rese-app
 
 飲食店予約アプリケーションです。飲食店の検索・お気に入り・予約等の機能を備えております。ユーザーの他に店舗オーナーや、管理者のアカウントも用意されています。
+
 <img width="1336" alt="スクリーンショット 2022-02-23 10 39 39" src="https://user-images.githubusercontent.com/91045911/155640873-ec5c001a-18c0-4247-8071-dcda3079319e.png">
 
 ## アプリケーション URL
@@ -68,6 +69,49 @@ https://rese-app-shun.herokuapp.com/rese/home
 
 -   Docker を用いた構築 ※ローカル環境のみ対応：https://github.com/shun0315/rese-app-docker
 
+## インストール方法
+
+-   任意のディレクトリに移動
+
+```
+$ cd [任意のディレクトリ]
+```
+
+-   Github から Clone
+
+```
+$ git clone https://github.com/shun0315/rese-app.git
+```
+
+-   Composer install
+
+```
+$ cd [プロジェクトディレクトリ]
+$ composer install
+```
+
+-   .env の作成
+    ※詳細な設定については、ご自身の環境に合わせて設定してください
+
+```
+$ cp .env.example .env
+$ php artisan key:generate
+$ php artisan config:clear
+```
+
+-   データベースの準備
+
+```
+$ php artisan migrate:fresh --seed
+```
+
+-   フロントエンドに必要なパッケージをインストール&必要なファイルをコンパイル・ビルド
+
+```
+% npm install
+% npm run dev
+```
+
 ## 今後の追加実装項目
 
 下記項目については今後実装予定のため、ボタンを押下しても動作しません
@@ -80,3 +124,7 @@ https://rese-app-shun.herokuapp.com/rese/home
 
 -   ユーザー詳細表示
 -   店舗オーナー詳細表示
+
+メール送信機能関連
+
+※現状 mailtrap を利用したテストモードになっており、本番環境では利用できません。
