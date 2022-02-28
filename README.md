@@ -83,10 +83,15 @@ $ cd [任意のディレクトリ]
 $ git clone https://github.com/shun0315/rese-app.git
 ```
 
--   Composer install
+-   作成したプロジェクトのディレクトリに移動
 
 ```
 $ cd [プロジェクトディレクトリ]
+```
+
+-   Composer インストール
+
+```
 $ composer install
 ```
 
@@ -95,7 +100,17 @@ $ composer install
 
 ```
 $ cp .env.example .env
+```
+
+-   APP_KEY を発行
+
+```
 $ php artisan key:generate
+```
+
+-   キャッシュをクリア
+
+```
 $ php artisan config:clear
 ```
 
@@ -105,11 +120,22 @@ $ php artisan config:clear
 $ php artisan migrate:fresh --seed
 ```
 
--   フロントエンドに必要なパッケージをインストール&必要なファイルをコンパイル・ビルド
+-   シンボリックリンク作成
 
 ```
-% npm install
-% npm run dev
+$ php artisan storage:link
+```
+
+-   フロントエンドに必要なパッケージをインストール
+
+```
+$ npm install
+```
+
+-   コンパイル・ビルド
+
+```
+$ npm run dev
 ```
 
 ## 今後の追加実装項目
