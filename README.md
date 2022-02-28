@@ -10,7 +10,7 @@ https://rese-app-shun.herokuapp.com/rese/home
 
 ## 機能一覧
 
-ユーザー
+### ユーザー
 
 -   会員登録（メール認証有り）
 -   店舗の検索（エリア・ジャンル・店舗名）
@@ -20,13 +20,13 @@ https://rese-app-shun.herokuapp.com/rese/home
 -   スマホ・タブレット画面での予約情報の QR コード表示
 -   Stripe を利用した事前決済機能
 
-店舗オーナー
+### 店舗オーナー
 
 -   ユーザーの予約一覧確認
 -   店舗情報の確認・変更
 -   店舗画像のアップロード（※現在ローカル環境のみの提供です）
 
-管理者
+### 管理者
 
 -   ユーザーの一覧確認
 -   店舗の一覧確認
@@ -34,7 +34,7 @@ https://rese-app-shun.herokuapp.com/rese/home
 -   店舗オーナーの新規登録
 -   ユーザーとオーナーに対してのメール送信
 
-その他
+### その他
 
 -   レスポンシブ対応（スマートフォン・タブレット・PC）
 -   リアルタイムフォームバリデーション
@@ -43,19 +43,19 @@ https://rese-app-shun.herokuapp.com/rese/home
 
 ## 使用技術
 
-フロントエンド
+### フロントエンド
 
 -   HTML/CSS
 -   JavaScript
 -   Vue.js 2.6.14
 
-バックエンド
+### バックエンド
 
 -   PHP 8.0.14
 -   Laravel 8.78.0
 -   Mysql 5.7.34
 
-インフラ
+### インフラ
 
 -   Heroku
 -   PostgresSQL(Heroku)
@@ -71,68 +71,69 @@ https://rese-app-shun.herokuapp.com/rese/home
 
 ## インストール方法
 
--   任意のディレクトリに移動
+### 任意のディレクトリに移動
 
 ```
 $ cd [任意のディレクトリ]
 ```
 
--   Github から Clone
+### Github から Clone
 
 ```
 $ git clone https://github.com/shun0315/rese-app.git
 ```
 
--   作成したプロジェクトのディレクトリに移動
+### 作成したプロジェクトのディレクトリに移動
 
 ```
 $ cd [プロジェクトディレクトリ]
 ```
 
--   Composer インストール
+### Composer インストール
 
 ```
 $ composer install
 ```
 
--   .env の作成
-    ※詳細な設定については、ご自身の環境に合わせて設定してください
+### .env の作成
+
+※詳細な設定については、ご自身の環境に合わせて設定してください
 
 ```
 $ cp .env.example .env
 ```
 
--   APP_KEY を発行
+### APP_KEY を発行
 
 ```
 $ php artisan key:generate
 ```
 
--   キャッシュをクリア
+### キャッシュをクリア
 
 ```
 $ php artisan config:clear
 ```
 
--   データベースの準備
+### データベースの準備
 
 ```
 $ php artisan migrate:fresh --seed
 ```
 
--   シンボリックリンク作成
+### ストレージ保存用にシンボリックリンク作成
 
 ```
 $ php artisan storage:link
 ```
 
--   フロントエンドに必要なパッケージをインストール
+### フロントエンドに必要なパッケージをインストール
 
 ```
 $ npm install
 ```
 
--   コンパイル・ビルド
+### コンパイル&ビルド
 
 ```
 $ npm run dev
@@ -142,15 +143,15 @@ $ npm run dev
 
 下記項目については今後実装予定のため、ボタンを押下しても動作しません
 
-店舗オーナー画面
+### 店舗オーナー画面
 
 -   予約詳細表示
 
-管理者画面
+### 管理者画面
 
 -   ユーザー詳細表示
 -   店舗オーナー詳細表示
 
-メール送信機能関連
+### メール送信機能関連
 
 ※現状 mailtrap を利用したテストモードになっており、本番環境では利用できません。
