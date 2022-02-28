@@ -21,9 +21,4 @@ class Evaluation extends Model
         'created_at',
         'updated_at',
     ];
-
-    // public function getAverageRate()
-    // {
-    //     return round($this->pluck('rating')->avg(), 2);
-    // }
 }
