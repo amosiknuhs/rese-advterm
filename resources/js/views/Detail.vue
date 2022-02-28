@@ -371,6 +371,7 @@ export default {
 .detail-content {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 .shop-name {
     margin-bottom: 30px;
@@ -380,7 +381,6 @@ export default {
 }
 /* ----------shop-detail---------- */
 .shop-detail {
-    height: 2000px;
     width: 63%;
 }
 .shop-detail h2 {
