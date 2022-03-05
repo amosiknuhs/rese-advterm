@@ -34,9 +34,16 @@
                 v-for="(shop, index) in filteredShops"
                 :key="index"
             >
-                <div class="card-img">
-                    <img :src="shop.img_url" alt="" />
-                </div>
+                <router-link
+                    v-bind:to="{
+                        name: 'detail',
+                        params: { shop_id: shop.id },
+                    }"
+                >
+                    <div class="card-img">
+                        <img :src="shop.img_url" alt="" />
+                    </div>
+                </router-link>
                 <div class="card-content">
                     <p class="shop-name">{{ shop.name }}</p>
                     <div class="tag">
