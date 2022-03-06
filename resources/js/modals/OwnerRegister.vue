@@ -61,12 +61,18 @@
                                 class="pass-form"
                                 mode="eager"
                             >
-                                <input
-                                    name="パスワード"
-                                    type="password"
-                                    v-model="password"
-                                    placeholder="Password"
-                                />
+                                <div class="pass-form-inner">
+                                    <input
+                                        name="パスワード"
+                                        :type="inputType"
+                                        v-model="password"
+                                        placeholder="Password"
+                                    />
+                                    <span
+                                        :class="isVisible"
+                                        @click="passwordConfirm"
+                                    ></span>
+                                </div>
                                 <div class="pass-error">
                                     <span
                                         class="error-message"
@@ -133,6 +139,7 @@ export default {
             shopMessage: "",
             fadeAnimation: "animate__animated animate__fadeIn",
             zoomAnimation: "animate__animated animate__zoomIn",
+            isAppear: false,
         };
     },
     methods: {
@@ -165,6 +172,17 @@ export default {
             setTimeout(() => {
                 this.$router.go(-1);
             }, 300);
+        },
+        passwordConfirm() {
+            this.isAppear = !this.isAppear;
+        },
+    },
+    computed: {
+        inputType() {
+            return this.isAppear ? "text" : "password";
+        },
+        isVisible() {
+            return this.isAppear ? "visible" : "invisible";
         },
     },
     mounted() {
@@ -214,7 +232,7 @@ export default {
 .register-form {
     padding: 20px 40px;
 }
-.register-form input,
+/* ------ パスワード確認 ------ */
 .register-form select {
     width: 89%;
     height: 35px;
@@ -223,6 +241,54 @@ export default {
     outline: 0;
     border-bottom: 1px solid #d1d5db;
 }
+.register-form input {
+    border: none;
+    outline: 0;
+    height: 35px;
+}
+.name-form input,
+.email-form input {
+    width: 89%;
+    border-bottom: 1px solid #d1d5db;
+    margin-left: 10px;
+}
+.pass-form-inner input {
+    width: 92%;
+}
+.invisible,
+.visible {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    background-repeat: no-repeat;
+}
+.invisible {
+    background-image: url("/img/invisible.svg");
+}
+.visible {
+    background-image: url("/img/visible.svg");
+}
+.pass-form-inner {
+    display: inline-block;
+    width: 89%;
+    margin-left: 10px;
+    border-bottom: 1px solid #d1d5db;
+}
+.pass-form::before {
+    content: "";
+    background-image: url("/img/lock.svg");
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    vertical-align: middle;
+    background-size: contain;
+}
+/* -------------------------- */
 .name-form::before {
     content: "";
     background-image: url("/img/person.svg");
@@ -235,15 +301,6 @@ export default {
 .email-form::before {
     content: "";
     background-image: url("/img/email.svg");
-    display: inline-block;
-    height: 35px;
-    width: 35px;
-    vertical-align: middle;
-    background-size: contain;
-}
-.pass-form::before {
-    content: "";
-    background-image: url("/img/lock.svg");
     display: inline-block;
     height: 35px;
     width: 35px;
@@ -300,6 +357,14 @@ export default {
 @media screen and (max-width: 480px) {
     .error-message {
         padding-left: 0;
+    }
+    .name-form input,
+    .email-form input,
+    .pass-form-inner {
+        width: 80%;
+    }
+    .pass-form-inner input {
+        width: 85%;
     }
 }
 </style>

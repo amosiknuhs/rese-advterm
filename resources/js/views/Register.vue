@@ -59,12 +59,18 @@
                             class="pass-form"
                             mode="eager"
                         >
-                            <input
-                                name="パスワード"
-                                type="password"
-                                v-model="password"
-                                placeholder="Password"
-                            />
+                            <div class="pass-form-inner">
+                                <input
+                                    name="パスワード"
+                                    :type="inputType"
+                                    v-model="password"
+                                    placeholder="Password"
+                                />
+                                <span
+                                    :class="isVisible"
+                                    @click="passwordConfirm"
+                                ></span>
+                            </div>
                             <div class="pass-error">
                                 <span
                                     class="error-message"
@@ -94,6 +100,7 @@ export default {
             nameMessage: "",
             emailMessage: "",
             passMessage: "",
+            isAppear: false,
         };
     },
     methods: {
@@ -112,6 +119,17 @@ export default {
                     this.emailMessage = err.response.data.errors.email;
                     this.passMessage = err.response.data.errors.password;
                 });
+        },
+        passwordConfirm() {
+            this.isAppear = !this.isAppear;
+        },
+    },
+    computed: {
+        inputType() {
+            return this.isAppear ? "text" : "password";
+        },
+        isVisible() {
+            return this.isAppear ? "visible" : "invisible";
         },
     },
 };
@@ -145,14 +163,55 @@ export default {
 .register-form {
     padding: 20px 40px;
 }
+/* ------ パスワード確認 ------ */
 .register-form input {
-    width: 89%;
-    height: 35px;
-    margin-left: 10px;
     border: none;
     outline: 0;
+    height: 35px;
+}
+.name-form input,
+.email-form input {
+    width: 89%;
+    border-bottom: 1px solid #d1d5db;
+    margin-left: 10px;
+}
+.pass-form-inner input {
+    width: 90%;
+}
+.invisible,
+.visible {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    background-repeat: no-repeat;
+}
+.invisible {
+    background-image: url("/img/invisible.svg");
+}
+.visible {
+    background-image: url("/img/visible.svg");
+}
+.pass-form-inner {
+    display: inline-block;
+    width: 89%;
+    margin-left: 10px;
     border-bottom: 1px solid #d1d5db;
 }
+.pass-form::before {
+    content: "";
+    background-image: url("/img/lock.svg");
+    display: inline-block;
+    height: 35px;
+    width: 35px;
+    vertical-align: middle;
+    background-size: contain;
+}
+/* -------------------------- */
 .name-form::before {
     content: "";
     background-image: url("/img/person.svg");
@@ -165,15 +224,6 @@ export default {
 .email-form::before {
     content: "";
     background-image: url("/img/email.svg");
-    display: inline-block;
-    height: 35px;
-    width: 35px;
-    vertical-align: middle;
-    background-size: contain;
-}
-.pass-form::before {
-    content: "";
-    background-image: url("/img/lock.svg");
     display: inline-block;
     height: 35px;
     width: 35px;
@@ -204,5 +254,16 @@ export default {
     color: red;
     display: inline-block;
     padding-left: 50px;
+}
+/* ------ スマートフォンデザイン ------ */
+@media screen and (max-width: 480px) {
+    .name-form input,
+    .email-form input,
+    .pass-form-inner {
+        width: 80%;
+    }
+    .pass-form-inner input {
+        width: 85%;
+    }
 }
 </style>
