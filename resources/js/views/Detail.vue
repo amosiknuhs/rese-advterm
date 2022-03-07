@@ -314,32 +314,15 @@ export default {
     },
     methods: {
         async getShopDetail() {
+            this.$store.commit("setLoading");
             await axios.get("/api/detail/" + this.id).then((response) => {
+                this.$store.commit("outLoading");
                 this.shopDetail = response.data;
                 this.evaluations = response.data.evaluations;
                 this.arr = this.shopDetail.evaluations.map((star) =>
                     parseFloat(star["rating"])
                 );
             });
-        },
-        async createRsv() {
-            await axios
-                .post("/api/reserve", {
-                    shop_id: this.id,
-                    date: this.date,
-                    time: this.time,
-                    number: this.number,
-                })
-                .then((response) => {
-                    this.$router.push("/rese/done");
-                })
-                .catch((err) => {
-                    if (err.response.status == 422) {
-                        this.dateMessage = err.response.data.errors.date;
-                        this.timeMessage = err.response.data.errors.time;
-                        this.numMessage = err.response.data.errors.number;
-                    }
-                });
         },
         setMinDate() {
             let today = new Date();

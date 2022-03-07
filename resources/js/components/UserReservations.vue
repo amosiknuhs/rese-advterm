@@ -87,9 +87,11 @@ export default {
     },
     methods: {
         async getReserveList() {
+            this.$store.commit("setLoading");
             await axios
                 .post("/api/reserve-list", { shop_id: this.shopData.id })
                 .then((response) => {
+                    this.$store.commit("outLoading");
                     this.reservations = response.data;
                 });
         },

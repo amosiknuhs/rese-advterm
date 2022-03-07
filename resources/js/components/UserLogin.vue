@@ -74,6 +74,7 @@ export default {
     },
     methods: {
         userLogin() {
+            this.$store.commit("setLoading");
             axios.get("/sanctum/csrf-cookie").then((response) => {
                 axios
                     .post("/api/user/login", {
@@ -81,10 +82,12 @@ export default {
                         password: this.password,
                     })
                     .then((response) => {
+                        this.$store.commit("outLoading");
                         this.setLogin();
                         this.$router.push("/rese/mypage/reservation");
                     })
                     .catch((err) => {
+                        this.$store.commit("outLoading");
                         this.emailMessage = err.response.data.errors.email;
                         this.passMessage = err.response.data.errors.password;
                         this.loginMessage =
@@ -93,6 +96,7 @@ export default {
             });
         },
         guestUserLogin() {
+            this.$store.commit("setLoading");
             axios.get("/sanctum/csrf-cookie").then((response) => {
                 axios
                     .post("/api/user/login", {
@@ -100,10 +104,12 @@ export default {
                         password: "password",
                     })
                     .then((response) => {
+                        this.$store.commit("outLoading");
                         this.setLogin();
                         this.$router.push("/rese/mypage/reservation");
                     })
                     .catch((err) => {
+                        this.$store.commit("outLoading");
                         this.emailMessage = err.response.data.errors.email;
                         this.passMessage = err.response.data.errors.password;
                         this.loginMessage =

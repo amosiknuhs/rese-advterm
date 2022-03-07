@@ -62,6 +62,7 @@ export default {
     },
     methods: {
         async createRsv() {
+            this.$store.commit("setLoading");
             await axios
                 .post("/api/reserve", {
                     shop_id: this.id,
@@ -70,6 +71,7 @@ export default {
                     number: this.number,
                 })
                 .then((response) => {
+                    this.$store.commit("outLoading");
                     this.$router.push("/rese/done");
                 });
         },

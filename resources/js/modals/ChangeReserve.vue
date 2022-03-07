@@ -89,6 +89,7 @@ export default {
     },
     methods: {
         async updateReserve() {
+            this.$store.commit("setLoading");
             await axios
                 .post("/api/change", {
                     id: this.id,
@@ -97,6 +98,7 @@ export default {
                     number: this.number,
                 })
                 .then((response) => {
+                    this.$store.commit("outLoading");
                     this.$router.push("/rese/mypage/reservation/dialog");
                 });
         },

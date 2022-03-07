@@ -107,13 +107,10 @@ export default {
     },
     methods: {
         async getReserves() {
+            this.$store.commit("setLoading");
             await axios.get("/api/mypage/reserves").then((response) => {
+                this.$store.commit("outLoading");
                 this.reserves = response.data;
-            });
-        },
-        async cancelRsv(reserveId) {
-            await axios.post("/api/cancel", { reserveId }).then((response) => {
-                this.getReserves();
             });
         },
     },

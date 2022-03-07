@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         isLogin: false,
+        isLoading: false,
         role: "",
     },
     getters: {},
@@ -20,6 +21,12 @@ export default new Vuex.Store({
         },
         setRole(state, role) {
             state.role = role;
+        },
+        setLoading(state) {
+            state.isLoading = true;
+        },
+        outLoading(state) {
+            state.isLoading = false;
         },
     },
     plugins: [createPersistedState()],

@@ -61,7 +61,9 @@ export default {
     },
     methods: {
         async getUserList() {
+            this.$store.commit("setLoading");
             await axios.get("/api/user-list").then((response) => {
+                this.$store.commit("outLoading");
                 this.users = response.data;
             });
         },

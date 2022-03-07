@@ -113,14 +113,19 @@ export default {
     },
     methods: {
         async sendEmail() {
-            this.$router.push("/rese/admin/email/complete");
+            this.$store.commit("setLoading");
             await axios
                 .post("/api/email", {
                     user_email: this.user_email,
                     subject: this.subject,
                     content: this.content,
                 })
+                .then((response) => {
+                    this.$store.commit("outLoading");
+                    this.$router.push("/rese/admin/email/complete");
+                })
                 .catch((err) => {
+                    this.$store.commit("outLoading");
                     this.userEmailMessage = err.response.data.errors.user_email;
                     this.subjectMessage = err.response.data.errors.subject;
                     this.contentMessage = err.response.data.errors.content;

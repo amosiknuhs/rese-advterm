@@ -42,6 +42,7 @@ export default {
     },
     methods: {
         async createEvaluation() {
+            this.$store.commit("setLoading");
             await axios
                 .post("/api/evaluate", {
                     shop_id: this.shop_id,
@@ -49,9 +50,11 @@ export default {
                     comment: this.comment,
                 })
                 .then((response) => {
+                    this.$store.commit("outLoading");
                     this.$router.push("/rese/mypage/reservation/dialog");
                 })
                 .catch((err) => {
+                    this.$store.commit("outLoading");
                     this.errorMessage = err.response.data.errors.comment;
                 });
         },

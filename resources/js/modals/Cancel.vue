@@ -23,7 +23,9 @@ export default {
     },
     methods: {
         async cancelRsv(reserveId) {
+            this.$store.commit("setLoading");
             await axios.post("/api/cancel", { reserveId }).then((response) => {
+                this.$store.commit("outLoading");
                 this.$router.push("/rese/mypage/reservation/dialog");
             });
         },

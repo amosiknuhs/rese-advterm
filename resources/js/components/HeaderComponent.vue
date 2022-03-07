@@ -228,6 +228,11 @@
                 </div>
             </div>
         </div>
+        <loading-overlay
+            :active.sync="isLoading"
+            :can-cancel="true"
+            :is-full-page="true"
+        ></loading-overlay>
     </div>
 </template>
 
@@ -243,10 +248,15 @@ export default {
         isRole() {
             return this.$store.state.role;
         },
+        isLoading() {
+            return this.$store.state.isLoading;
+        },
     },
     methods: {
         async logout() {
+            this.$store.commit("setLoading");
             await axios.post("/api/logout").then((response) => {
+                this.$store.commit("outLoading");
                 this.setLogout();
                 this.$router.push("/rese/login/user-login");
             });

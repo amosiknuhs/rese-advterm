@@ -76,7 +76,9 @@ export default {
     },
     methods: {
         async getOwnerList() {
+            this.$store.commit("setLoading");
             await axios.get("/api/owner-list").then((response) => {
+                this.$store.commit("outLoading");
                 this.owners = response.data;
             });
         },

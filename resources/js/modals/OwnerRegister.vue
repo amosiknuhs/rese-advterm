@@ -144,6 +144,7 @@ export default {
     },
     methods: {
         registerOwner() {
+            this.$store.commit("setLoading");
             axios
                 .post("/api/owner-register", {
                     name: this.name,
@@ -152,9 +153,11 @@ export default {
                     shop_id: this.shop_id,
                 })
                 .then((response) => {
+                    this.$store.commit("outLoading");
                     this.$router.push("/rese/admin/owner-list/complete");
                 })
                 .catch((err) => {
+                    this.$store.commit("outLoading");
                     this.nameMessage = err.response.data.errors.name;
                     this.emailMessage = err.response.data.errors.email;
                     this.passMessage = err.response.data.errors.password;

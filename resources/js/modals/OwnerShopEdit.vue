@@ -63,6 +63,7 @@ export default {
     },
     methods: {
         async updateReserve() {
+            this.$store.commit("setLoading");
             await axios
                 .post("/api/shop/edit", {
                     id: this.shopId,
@@ -72,6 +73,7 @@ export default {
                     genre_id: this.genre,
                 })
                 .then((response) => {
+                    this.$store.commit("outLoading");
                     this.$router.push("/rese/owner/shop/complete");
                 });
         },

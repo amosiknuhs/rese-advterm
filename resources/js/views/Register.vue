@@ -105,6 +105,7 @@ export default {
     },
     methods: {
         registerUser() {
+            this.$store.commit("setLoading");
             axios
                 .post("/api/register", {
                     name: this.name,
@@ -112,9 +113,11 @@ export default {
                     password: this.password,
                 })
                 .then((response) => {
+                    this.$store.commit("outLoading");
                     this.$router.push("/rese/thanks");
                 })
                 .catch((err) => {
+                    this.$store.commit("outLoading");
                     this.nameMessage = err.response.data.errors.name;
                     this.emailMessage = err.response.data.errors.email;
                     this.passMessage = err.response.data.errors.password;

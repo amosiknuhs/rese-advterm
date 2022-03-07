@@ -12,6 +12,8 @@ import AnimateCss from "animate.css";
 import { Slide } from "vue-burger-menu";
 import VueQrcode from "@chenfengyuan/vue-qrcode";
 import { StripeCheckout } from "@vue-stripe/vue-stripe";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
 Vue.config.productionTip = false;
 
@@ -25,6 +27,7 @@ Vue.component("star-rating", StarRating);
 Vue.component("slide-menu", Slide);
 Vue.component("stripe-checkout", StripeCheckout);
 Vue.component(VueQrcode.name, VueQrcode);
+Vue.component("loading-overlay", Loading);
 
 // エラーハンドリング共通化;
 axios.interceptors.response.use(

@@ -100,6 +100,7 @@ export default {
     filters: {},
     methods: {
         async getShops() {
+            this.$store.commit("setLoading");
             await axios.get("/api/home").then((response) => {
                 for (let i in response.data) {
                     let shop = response.data[i];
@@ -119,6 +120,7 @@ export default {
                             Math.pow(10, 2);
                         shop["reviewCount"] = arr.length;
                     }
+                    this.$store.commit("outLoading");
                 }
                 this.shops = response.data;
             });
