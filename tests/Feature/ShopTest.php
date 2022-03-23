@@ -24,7 +24,7 @@ class ShopTest extends TestCase
         $this->seed(GenresTableSeeder::class);
         $this->seed(ShopsTableSeeder::class);
 
-        $response = $this->json('get', '/api/');
+        $response = $this->json('get', '/api/home');
         $response->assertOK();
     }
 }
