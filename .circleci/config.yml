@@ -14,8 +14,6 @@ jobs:
       # PHP関連パッケージのインストールエラー対策
       # - run: sudo composer self-update --1
 
-      - run: sudo docker-php-ext-install pdo_mysql
-
       - restore_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
 
@@ -42,6 +40,12 @@ jobs:
             - node_modules
 
       - run: npm run dev
+
+      - run:
+          name: get ready for mysql
+          command: |
+            sudo apt-get update
+            sudo docker-php-ext-install pdo_mysql
 
       - run:
           name: php test
