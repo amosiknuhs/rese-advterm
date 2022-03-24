@@ -2,12 +2,13 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/php:8.0.14-node
+      - image: cimg/php:8.0.14-browsers
       - image: cimg/mysql:5.7
 
     environment:
       - APP_DEBUG: true
       - APP_KEY: base64:oQmNMb3MkWL+DCmtghmldg2hXKbthkWyjVFaYUW7618=
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     steps:
       - checkout
@@ -43,9 +44,7 @@ jobs:
 
       - run:
           name: get ready for mysql
-          command: |
-            sudo apt-get update
-            sudo docker-php-ext-install pdo_mysql
+          command: sudo docker-php-ext-install pdo_mysql
 
       - run:
           name: php test
