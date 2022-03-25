@@ -7,9 +7,7 @@ jobs:
 
     environment:
       APP_DEBUG: true
-      APP_ENV: testing
       APP_KEY: base64:oQmNMb3MkWL+DCmtghmldg2hXKbthkWyjVFaYUW7618=
-      DB_CONNECTION: vuelaradb_test
       MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     steps:
