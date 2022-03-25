@@ -3,26 +3,19 @@ jobs:
   build:
     docker:
       - image: cimg/php:8.0.14-browsers
-      - image: circleci/postgres:11.6-alpine
-        environment:
-          POSTGRES_DB: vuelaradb_test
-          POSTGRES_USER: default
-          POSTGRES_PASSWORD: secret
+      - image: cimg/mysql:5.7
 
     environment:
-      APP_KEY: base64:oQmNMb3MkWL+DCmtghmldg2hXKbthkWyjVFaYUW7618=
+      APP_DEBUG: true
       APP_ENV: testing
-      DB_CONNECTION: pgsql
-      DB_HOST: localhost
-      DB_PORT: 5432
-      DB_DATABASE: vuelaradb_test
-      DB_USERNAME: default
-      DB_PASSWORD: secret
+      APP_KEY: base64:oQmNMb3MkWL+DCmtghmldg2hXKbthkWyjVFaYUW7618=
+      DB_CONNECTION: vuelaradb_test
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     steps:
       - checkout
       # PHP関連パッケージのインストールエラー対策
-      - run: sudo composer self-update --1
+      # - run: sudo composer self-update --1
 
       - restore_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
@@ -50,14 +43,6 @@ jobs:
             - node_modules
 
       - run: npm run dev
-
-      - run:
-          name: get ready for postgres
-          command: |
-            sudo apt-get update
-            sudo apt-get install libpq-dev
-            sudo docker-php-ext-install pdo_pgsql
-            dockerize -wait tcp://localhost:5432 -timeout 1m
 
       - run:
           name: php test
