@@ -7,10 +7,9 @@ jobs:
           - APP_KEY: base64:oQmNMb3MkWL+DCmtghmldg2hXKbthkWyjVFaYUW7618=
           - APP_DEBUG: true
           - APP_ENV: testing
-          - DB_CONNECTION: mysql_test
+          - DB_CONNECTION: circle_test
           - DB_DATABASE: vuelaradb_test
           - DB_USERNAME: root
-          - DB_PASSWORD: root
       - image: cimg/mysql:5.7
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
