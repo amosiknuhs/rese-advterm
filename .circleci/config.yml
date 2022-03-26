@@ -10,6 +10,7 @@ jobs:
           - DB_CONNECTION: mysql_test
           - DB_DATABASE: vuelaradb_test
           - DB_USERNAME: root
+          - DB_PASSWORD: root
       - image: cimg/mysql:5.7
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
