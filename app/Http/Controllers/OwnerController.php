@@ -31,7 +31,7 @@ class OwnerController extends Controller
     public function shopImageUpload(ImageRequest $request)
     {
         $file_name = $request->file->getClientOriginalName();
-        $request->file->storeAs('public/', $file_name);
-        Shop::find($request->shop_id)->update(['img_url' => '/storage/' . $file_name]);
+        $request->file->storeAs('shop-image/', $file_name, 's3');
+        Shop::find($request->shop_id)->update(['img_url' => env('AWS_OBJECT_URL') . $file_name]);
     }
 }

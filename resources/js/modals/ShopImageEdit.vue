@@ -61,20 +61,20 @@ export default {
             }
         },
         imageUpload() {
-            // const formData = new FormData();
-            // formData.append("file", this.imageInfo);
-            // formData.append("shop_id", this.shopId);
-            // this.$store.commit("setLoading");
-            // axios
-            //     .post("/api/image-upload", formData)
-            //     .then((response) => {
-            //         this.$store.commit("outLoading");
-            //         this.$router.push("/rese/owner/shop/complete");
-            //     })
-            //     .catch((err) => {
-            //         this.$store.commit("outLoading");
-            //         this.fileMessage = err.response.data.errors.file;
-            //     });
+            const formData = new FormData();
+            formData.append("file", this.imageInfo);
+            formData.append("shop_id", this.shopId);
+            this.$store.commit("setLoading");
+            axios
+                .post("/api/image-upload", formData)
+                .then((response) => {
+                    this.$store.commit("outLoading");
+                    this.$router.push("/rese/owner/shop/complete");
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                    this.fileMessage = err.response.data.errors.file;
+                });
         },
         leaveWithAnimation() {
             this.fadeAnimation = "animate__animated animate__fadeOut";
