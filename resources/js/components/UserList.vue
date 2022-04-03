@@ -135,11 +135,13 @@ export default {
 .user-table button {
     display: inline-block;
     border: none;
+    /* cursor: pointer;
     background-color: #9a2fff;
-    color: #ffffff;
+    color: #ffffff; */
+    background-color: #cfcfcf;
+    color: #999999;
     padding: 7px 20px;
     border-radius: 5px;
-    cursor: pointer;
 }
 .user-id {
     width: 10%;

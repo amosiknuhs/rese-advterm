@@ -120,8 +120,8 @@ export default {
                             Math.pow(10, 2);
                         shop["reviewCount"] = arr.length;
                     }
-                    this.$store.commit("outLoading");
                 }
+                this.$store.commit("outLoading");
                 this.shops = response.data;
             });
         },
