@@ -44,6 +44,7 @@ axios.interceptors.response.use(
             error.response.data.message == "Your email address is not verified."
         ) {
             router.push("/rese/verify-notice");
+            store.commit("outLoading");
         }
         return Promise.reject(error);
     }
