@@ -38,6 +38,7 @@ axios.interceptors.response.use(
         if (error.response.status == 401) {
             store.commit("setLogout");
             router.push("/rese/login/user-login");
+            store.commit("outLoading");
         } else if (
             error.response.status == 403 &&
             error.response.data.message == "Your email address is not verified."
