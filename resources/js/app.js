@@ -37,14 +37,14 @@ axios.interceptors.response.use(
     (error) => {
         if (error.response.status == 401) {
             store.commit("setLogout");
-            router.push("/rese/login/user-login");
             store.commit("outLoading");
+            router.push("/rese/login/user-login");
         } else if (
             error.response.status == 403 &&
             error.response.data.message == "Your email address is not verified."
         ) {
-            router.push("/rese/verify-notice");
             store.commit("outLoading");
+            router.push("/rese/verify-notice");
         }
         return Promise.reject(error);
     }
