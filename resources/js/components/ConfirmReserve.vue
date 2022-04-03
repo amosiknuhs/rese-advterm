@@ -61,9 +61,9 @@ export default {
         },
     },
     methods: {
-        async createRsv() {
+        createRsv() {
             this.$store.commit("setLoading");
-            await axios
+            axios
                 .post("/api/reserve", {
                     shop_id: this.id,
                     date: this.date,
