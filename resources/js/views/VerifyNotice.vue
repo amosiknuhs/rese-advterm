@@ -17,6 +17,14 @@
     </div>
 </template>
 
+<script>
+export default {
+    mounted() {
+        this.$store.commit("outLoading");
+    },
+};
+</script>
+
 <style scoped>
 .thanks-content {
     height: 80vh;
