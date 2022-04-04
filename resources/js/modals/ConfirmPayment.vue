@@ -82,9 +82,6 @@ export default {
                 .then((response) => {
                     this.sessionId = response.data.session.id;
                     this.$refs.checkoutRef.redirectToCheckout();
-                })
-                .catch((err) => {
-                    this.$store.commit("outLoading");
                 });
         },
         leaveWithAnimation() {
