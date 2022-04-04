@@ -100,6 +100,9 @@ export default {
                 .then((response) => {
                     this.$store.commit("outLoading");
                     this.$router.push("/rese/mypage/reservation/dialog");
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
                 });
         },
         setToday() {

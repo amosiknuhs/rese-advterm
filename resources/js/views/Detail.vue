@@ -315,14 +315,19 @@ export default {
     methods: {
         async getShopDetail() {
             this.$store.commit("setLoading");
-            await axios.get("/api/detail/" + this.id).then((response) => {
-                this.$store.commit("outLoading");
-                this.shopDetail = response.data;
-                this.evaluations = response.data.evaluations;
-                this.arr = this.shopDetail.evaluations.map((star) =>
-                    parseFloat(star["rating"])
-                );
-            });
+            await axios
+                .get("/api/detail/" + this.id)
+                .then((response) => {
+                    this.$store.commit("outLoading");
+                    this.shopDetail = response.data;
+                    this.evaluations = response.data.evaluations;
+                    this.arr = this.shopDetail.evaluations.map((star) =>
+                        parseFloat(star["rating"])
+                    );
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
         setMinDate() {
             let today = new Date();

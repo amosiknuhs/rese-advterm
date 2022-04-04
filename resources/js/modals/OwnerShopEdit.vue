@@ -75,6 +75,9 @@ export default {
                 .then((response) => {
                     this.$store.commit("outLoading");
                     this.$router.push("/rese/owner/shop/complete");
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
                 });
         },
         leaveWithAnimation() {

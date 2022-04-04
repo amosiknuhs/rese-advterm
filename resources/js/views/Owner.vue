@@ -19,9 +19,14 @@ export default {
     },
     methods: {
         async getOwnerData() {
-            await axios.get("/api/owner").then((response) => {
-                this.owner = response.data;
-            });
+            await axios
+                .get("/api/owner")
+                .then((response) => {
+                    this.owner = response.data;
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
     },
     mounted() {

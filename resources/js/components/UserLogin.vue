@@ -75,47 +75,59 @@ export default {
     methods: {
         userLogin() {
             this.$store.commit("setLoading");
-            axios.get("/sanctum/csrf-cookie").then((response) => {
-                axios
-                    .post("/api/user/login", {
-                        email: this.email,
-                        password: this.password,
-                    })
-                    .then((response) => {
-                        this.$store.commit("outLoading");
-                        this.setLogin();
-                        this.$router.push("/rese/mypage/reservation");
-                    })
-                    .catch((err) => {
-                        this.$store.commit("outLoading");
-                        this.emailMessage = err.response.data.errors.email;
-                        this.passMessage = err.response.data.errors.password;
-                        this.loginMessage =
-                            err.response.data.errors.login_error;
-                    });
-            });
+            axios
+                .get("/sanctum/csrf-cookie")
+                .then((response) => {
+                    axios
+                        .post("/api/user/login", {
+                            email: this.email,
+                            password: this.password,
+                        })
+                        .then((response) => {
+                            this.$store.commit("outLoading");
+                            this.setLogin();
+                            this.$router.push("/rese/mypage/reservation");
+                        })
+                        .catch((err) => {
+                            this.$store.commit("outLoading");
+                            this.emailMessage = err.response.data.errors.email;
+                            this.passMessage =
+                                err.response.data.errors.password;
+                            this.loginMessage =
+                                err.response.data.errors.login_error;
+                        });
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
         guestUserLogin() {
             this.$store.commit("setLoading");
-            axios.get("/sanctum/csrf-cookie").then((response) => {
-                axios
-                    .post("/api/user/login", {
-                        email: "test@test.com",
-                        password: "password",
-                    })
-                    .then((response) => {
-                        this.$store.commit("outLoading");
-                        this.setLogin();
-                        this.$router.push("/rese/mypage/reservation");
-                    })
-                    .catch((err) => {
-                        this.$store.commit("outLoading");
-                        this.emailMessage = err.response.data.errors.email;
-                        this.passMessage = err.response.data.errors.password;
-                        this.loginMessage =
-                            err.response.data.errors.login_error;
-                    });
-            });
+            axios
+                .get("/sanctum/csrf-cookie")
+                .then((response) => {
+                    axios
+                        .post("/api/user/login", {
+                            email: "test@test.com",
+                            password: "password",
+                        })
+                        .then((response) => {
+                            this.$store.commit("outLoading");
+                            this.setLogin();
+                            this.$router.push("/rese/mypage/reservation");
+                        })
+                        .catch((err) => {
+                            this.$store.commit("outLoading");
+                            this.emailMessage = err.response.data.errors.email;
+                            this.passMessage =
+                                err.response.data.errors.password;
+                            this.loginMessage =
+                                err.response.data.errors.login_error;
+                        });
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
         setLogin() {
             this.$store.commit("setLogin");

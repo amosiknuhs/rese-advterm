@@ -91,6 +91,9 @@ export default {
                 .post("/api/favorite", { isFavorite, shopId })
                 .then((response) => {
                     this.getFavorites();
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
                 });
         },
     },

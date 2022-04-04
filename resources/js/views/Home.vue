@@ -101,35 +101,44 @@ export default {
     methods: {
         async getShops() {
             this.$store.commit("setLoading");
-            await axios.get("/api/home").then((response) => {
-                for (let i in response.data) {
-                    let shop = response.data[i];
-                    let arr = shop.evaluations.map((star) =>
-                        parseFloat(star["rating"])
-                    );
-                    if (arr.length == 0) {
-                        shop["star"] = 0;
-                        shop["reviewCount"] = 0;
-                    } else {
-                        let sum = 0;
-                        arr.forEach(function (value) {
-                            sum += value;
-                        });
-                        shop["star"] =
-                            Math.round((sum / arr.length) * Math.pow(10, 2)) /
-                            Math.pow(10, 2);
-                        shop["reviewCount"] = arr.length;
+            await axios
+                .get("/api/home")
+                .then((response) => {
+                    for (let i in response.data) {
+                        let shop = response.data[i];
+                        let arr = shop.evaluations.map((star) =>
+                            parseFloat(star["rating"])
+                        );
+                        if (arr.length == 0) {
+                            shop["star"] = 0;
+                            shop["reviewCount"] = 0;
+                        } else {
+                            let sum = 0;
+                            arr.forEach(function (value) {
+                                sum += value;
+                            });
+                            shop["star"] =
+                                Math.round(
+                                    (sum / arr.length) * Math.pow(10, 2)
+                                ) / Math.pow(10, 2);
+                            shop["reviewCount"] = arr.length;
+                        }
                     }
-                }
-                this.$store.commit("outLoading");
-                this.shops = response.data;
-            });
+                    this.$store.commit("outLoading");
+                    this.shops = response.data;
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
         changeFav(isFavorite, shopId) {
             axios
                 .post("/api/favorite", { isFavorite, shopId })
                 .then((response) => {
                     this.getShops();
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
                 });
         },
         searchReset() {

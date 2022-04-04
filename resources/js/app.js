@@ -37,7 +37,6 @@ axios.interceptors.response.use(
     (error) => {
         if (error.response.status == 401) {
             store.commit("setLogout");
-            store.commit("outLoading");
             router.push("/rese/login/user-login");
         } else if (
             error.response.status == 403 &&

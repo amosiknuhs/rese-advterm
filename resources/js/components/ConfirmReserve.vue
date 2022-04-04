@@ -73,6 +73,9 @@ export default {
                 .then((response) => {
                     this.$store.commit("outLoading");
                     this.$router.push("/rese/done");
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
                 });
         },
         leaveWithAnimation() {
