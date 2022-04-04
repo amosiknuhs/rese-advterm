@@ -42,8 +42,6 @@ axios.interceptors.response.use(
             error.response.status == 403 &&
             error.response.data.message == "Your email address is not verified."
         ) {
-            console.log("app.js");
-            console.log(error.response);
             router.push("/rese/verify-notice");
         }
         return Promise.reject(error);
