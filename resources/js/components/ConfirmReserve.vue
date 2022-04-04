@@ -75,7 +75,9 @@ export default {
                     this.$router.push("/rese/done");
                 })
                 .catch((err) => {
+                    console.log("ここ");
                     this.$store.commit("outLoading");
+                    console.log(err.response);
                 });
         },
         leaveWithAnimation() {
