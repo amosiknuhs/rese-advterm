@@ -82,6 +82,11 @@ export default {
                 .then((response) => {
                     this.sessionId = response.data.session.id;
                     this.$refs.checkoutRef.redirectToCheckout();
+                })
+                .catch((err) => {
+                    console.log("paymenterror");
+                    console.log(err.response);
+                    this.$router.push("notfound");
                 });
         },
         leaveWithAnimation() {
