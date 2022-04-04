@@ -84,8 +84,6 @@ export default {
                     this.$refs.checkoutRef.redirectToCheckout();
                 })
                 .catch((err) => {
-                    console.log("paymenterror");
-                    console.log(err.response);
                     this.$router.push("notfound");
                 });
         },
