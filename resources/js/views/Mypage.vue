@@ -31,9 +31,14 @@ export default {
     },
     methods: {
         async getUserData() {
-            await axios.get("/api/user").then((response) => {
-                this.user = response.data;
-            });
+            await axios
+                .get("/api/user")
+                .then((response) => {
+                    this.user = response.data;
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
         tabSwitchRsv() {
             this.isActive = true;

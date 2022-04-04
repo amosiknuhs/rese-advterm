@@ -14,9 +14,14 @@ export default {
     },
     methods: {
         async getAdminData() {
-            await axios.get("/api/admin").then((response) => {
-                this.admin = response.data;
-            });
+            await axios
+                .get("/api/admin")
+                .then((response) => {
+                    this.admin = response.data;
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
     },
     mounted() {

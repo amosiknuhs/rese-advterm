@@ -93,6 +93,9 @@ export default {
                 .then((response) => {
                     this.$store.commit("outLoading");
                     this.reservations = response.data;
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
                 });
         },
     },

@@ -69,10 +69,15 @@ export default {
     methods: {
         async getShopList() {
             this.$store.commit("setLoading");
-            await axios.get("/api/shop-list").then((response) => {
-                this.$store.commit("outLoading");
-                this.shops = response.data;
-            });
+            await axios
+                .get("/api/shop-list")
+                .then((response) => {
+                    this.$store.commit("outLoading");
+                    this.shops = response.data;
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
     },
     mounted() {

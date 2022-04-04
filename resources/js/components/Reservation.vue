@@ -108,10 +108,15 @@ export default {
     methods: {
         async getReserves() {
             this.$store.commit("setLoading");
-            await axios.get("/api/mypage/reserves").then((response) => {
-                this.$store.commit("outLoading");
-                this.reserves = response.data;
-            });
+            await axios
+                .get("/api/mypage/reserves")
+                .then((response) => {
+                    this.$store.commit("outLoading");
+                    this.reserves = response.data;
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
     },
     mounted() {

@@ -165,9 +165,14 @@ export default {
                 });
         },
         async getShopList() {
-            await axios.get("/api/home").then((response) => {
-                this.shopList = response.data;
-            });
+            await axios
+                .get("/api/home")
+                .then((response) => {
+                    this.shopList = response.data;
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
         leaveWithAnimation() {
             this.fadeAnimation = "animate__animated animate__fadeOut";

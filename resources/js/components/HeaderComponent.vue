@@ -255,11 +255,16 @@ export default {
     methods: {
         async logout() {
             this.$store.commit("setLoading");
-            await axios.post("/api/logout").then((response) => {
-                this.$store.commit("outLoading");
-                this.setLogout();
-                this.$router.push("/rese/login/user-login");
-            });
+            await axios
+                .post("/api/logout")
+                .then((response) => {
+                    this.$store.commit("outLoading");
+                    this.setLogout();
+                    this.$router.push("/rese/login/user-login");
+                })
+                .catch((err) => {
+                    this.$store.commit("outLoading");
+                });
         },
         setLogout() {
             this.$store.commit("setLogout");
