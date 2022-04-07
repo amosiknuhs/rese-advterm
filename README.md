@@ -93,8 +93,7 @@ URL ▶︎ https://shuns-app.com/rese/home
 ## 6. 開発環境構築について
 
 Docker を用いて開発環境を構築する場合は下記リポジトリを参照ください
-
-    https://github.com/shun0315/rese-app-docker
+https://github.com/shun0315/rese-app-docker
 
 ## 7. インストール方法
 
